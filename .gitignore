@@ -1,0 +1,4 @@
+*.swp
+*.pyc
+*~
+vim/bundle
