@@ -1,0 +1,84 @@
+# GNU Screen configuration file
+# Modified to work with Emacs: C-t is the action command, not C-a.
+
+## Set variables and keybindings for emacs/readline compatibility (remapping Ctrl-A to Ctrl-T)
+markkeys "h=^B:l=^F:$=^E"             # emacs style keybindings during copy mode movement in screen
+autodetach             on             # default: on
+crlf                  off             # default: off
+#deflogin              off            # default: on
+hardcopy_append       on              # default: off
+startup_message       off             # default: on
+vbell                 off             # default: ???
+escape	"^Tt"                         # ctrl-A default interferes with emacs keybindings for terminal
+defutf8 on                            # unicode by default
+defscrollback         10000           # default: 100
+silencewait           15              # default: 30
+activity              "activity in %n (%t) [%w:%s]~"
+bell                  "bell     in %n (%t) [%w:%s]~"
+
+# Change keybindings for convenience
+bind ^Q mapdefault
+bind q mapdefault
+bind k
+bind ^k
+bind .
+bind ^\
+bind \\
+bind ^h
+bind h
+bind ''
+bind 'L'
+#bind 'I' login on
+#bind 'O' login off
+bind '}' history
+bind ^a
+
+# aterm bindings
+bindkey "Oc" next
+bindkey "Od" prev
+
+# Emacs compatibility
+# Easy switching of windows without p/n confusion, as ctrl-p and ctrl-n
+# are frequently used in emacs but u/j are not...
+bind 'u' prev
+bind ^U prev
+bind 'j' next
+bind ^J next
+
+# Emacs compatibility for screen movement (if you use subscreen regions)
+# Using tab to move around regions gets annoying.  These help.
+bind ^P focus up
+bind 'p' focus up
+bind ^N focus down
+bind 'n' focus down
+bind ^F focus top
+bind 'f' focus top
+bind ^B focus bottom
+bind 'b' focus bottom
+
+
+# sorendition = color scheme
+#      Set the colors for the "messages" and "text marking"
+#      Example: "+b kG" = blue screen, black text, green background. Change
+#      to "+b kR" and so on to distinguish machines.
+sorendition "+b kG"
+
+# hardstatus = navigation bar @ bottom
+hardstatus alwayslastline "%H %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+
+# Autoload two screen tabs for vim/bash.
+screen -t vim 0
+screen -t bash 1
+
+# Set up shortcuts for windows in the keyboard-order
+bind 1 select 0
+bind 2 select 1
+bind 3 select 2
+bind 4 select 3
+bind 5 select 4
+bind 6 select 5
+bind 7 select 6
+bind 8 select 7
+bind 9 select 8
+bind 0 select 9
+

@@ -1,0 +1,34 @@
+[user]
+	name = Elias Dorneles
+	email = eliasdorneles@gmail.com
+[alias]
+	co = checkout
+    ci = commit
+    d = diff
+    dc = diff --cached
+    wd = diff --word-diff
+    wdiff = diff --word-diff
+    s = status -sb
+    st = status -sb
+
+    # logs bizurados
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    logtree = log --graph --oneline --decorate --all
+
+    # log dum arquivo
+    filelog = log -u
+    fl = log -u
+
+    # pull com rebase
+    pullr = pull --rebase
+[core]
+	editor = vim -p
+	autocrlf = input
+[push]
+	default = simple
+[http]
+	sslVerify = false
+[color]
+	ui = auto
