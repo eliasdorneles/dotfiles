@@ -1,0 +1,82 @@
+# possible extends:
+# extends html
+snippet block
+	{% block ${1:name} %}
+		$2
+	{% endblock $1 %}
+snippet {{
+	{{ ${1:variable} }}
+snippet {#
+	{# ${1:comment} #}
+snippet #
+	{# $1 #}
+snippet raw
+	{% raw %}
+		$1
+	{% endraw %}
+snippet extends
+	{% extends "${1:template}" %}
+snippet include
+	{% include "${1:template}" %}
+snippet import
+	{% import "${1:template}" %}
+snippet from
+	{% from "${1:template}" import ${2:name}${3: as ${4:$2}} %}
+snippet filter
+	{% filter ${1:filter} %}
+		$2
+	{% endfilter %}
+snippet for
+	{% for ${1:it} in ${2:expr} %}
+		loop
+	{% else %}
+		empty sequence
+	{% endfor %}
+snippet if
+	{% if ${1:expr} %}
+		$2
+	{% elif %}
+		$3
+	{% else %}
+		$4
+	{% endif %}
+snippet macro
+	{% macro ${1:name}(${2:args}) %}
+		$3
+	{% endmacro %}
+snippet call
+	{% call ${1:name}(${2:args}) %}
+		$3
+	{% endcall %}
+snippet set
+	{% set ${1:name} = ${2:'value'} %}
+snippet trans
+	{% trans %}
+		$1
+	{% endtrans %}
+snippet with
+	{% with %}
+		$1
+	{% endwith %}
+snippet autoescape
+	{% autoescape ${1:true} %}
+		$2
+	{% endautoescape %}
+snippet batch
+	batch(linecount=$1, fill_with=${2:None})
+snippet dictsort
+	dictsort(case_sensitive=${1:False}, by=${2:'key'})
+snippet round
+	round(precision=${1:0}, method=${2:'common|ceil|floor'})
+snippet urlize
+	urlize(trim_url_limit=${1:None}, nofollow=${2:False})
+snippet wordwrap
+	wordwrap(width=${1:79}, break_long_words=${2:True})
+snippet truncate
+	truncate(lenght=${1:79}, killwords=${2:False}, end=${3:'...''})
+snippet sum
+	sum(attribute=${1:None}, start=${2:0})
+snippet sort
+	sort(reverse=${1:False}, case_sensitive=${2:False}, attribute=${3:None})
+snippet indent
+	indent(width=${1:4}, indentfirst=${2:False})

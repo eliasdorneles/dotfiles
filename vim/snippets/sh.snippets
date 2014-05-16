@@ -1,0 +1,22 @@
+snippet #!
+	#!/bin/bash
+
+snippet script
+	#!/bin/bash
+
+	abort() {
+		echo "$*"; exit 1;
+	}
+
+	usage() {
+		abort "Usage: $(basename $${0:0}) PARAMS"
+	}
+
+	while [ "$${0:{1#-}}" != "$${0:1}" ]; do
+		case "$${0:1}" in
+			-h) usage;;
+			*) usage;;
+		esac
+		shift
+	done
+	${1}
