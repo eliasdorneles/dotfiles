@@ -1,36 +1,33 @@
 #!/bin/bash
-# Helps to control multiple instances of Tomcat, complementing the create-tomcat-bases.sh script
+# Script to help control multiple instances of Tomcat
+# Author: elias.dorneles gmail com
 
 set -e
 error(){ echo $*; exit 1; }
 usage(){
-	error "Usage: `basename $0` [-c CATALINA_HOME] CATALINA_BASE start|stop"
+	error "Usage: `basename $0` [-c CATALINA_HOME] start|stop"
 }
 
 # defaults
 catalina_home=~/opt/apache-tomcat-7.0.27
 catalina_bases_prefix=~/opt/base-
 
-[ "x$2" == "x" ] && usage
+[ "x$1" == "x" ] && usage
 if [ "$1" = "-c" ]; then
 	catalina_home="$2"; shift; shift;
 fi
-[ "x$2" == "x" ] && usage
+[ "x$1" == "x" ] && usage
+command=$1
 
-catalina_base=$1
-if [ ! -d "$catalina_base" ]; then
-	# if catalina_base is not found, try appending the preffix
-       if [ -d "${catalina_bases_prefix}-$catalina_base" ]; then
-	      catalina_base="${catalina_bases_prefix}-$catalina_base"
-	       echo "Found catalina base: $catalina_base"
-      fi
-fi
-command=$2
+# TODO: add support for -b CATALINA_BASE
+catalina_base=.
 
 export CATALINA_HOME=$catalina_home
 [ -d $CATALINA_HOME ] || error "$CATALINA_HOME not found!"
+[ -d "$CATALINA_HOME/bin" ] || error "$CATALINA_HOME/bin not found! Is $CATALINA_HOME a valid CATALINA_HOME?"
 export CATALINA_BASE=$catalina_base
-[ -d $CATALINA_BASE ] || error "$CATALINA_BASE not found!"
+[ -d "$CATALINA_BASE" ] || error "$CATALINA_BASE not found!"
+[ -d "$CATALINA_BASE/conf" ] || error "$CATALINA_BASE/conf not found! Is $CATALINA_BASE a valid CATALINA_BASE?"
 
 if [ "$command" == "start" ]; then
 	cmd=$CATALINA_HOME/bin/startup.sh
