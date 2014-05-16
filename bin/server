@@ -1,0 +1,8 @@
+#!/bin/bash
+# Starts http server on current directory and opens browser
+
+port=${1:-8000}
+xdg-open http://localhost:$port
+python -m SimpleHTTPServer $port
+
+# vim:set ft=sh:

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+tmpfile=`mktemp`
+cat "$@" > $tmpfile
+xmllint --format $tmpfile
+rm -f $tmpfile
+exit $?
