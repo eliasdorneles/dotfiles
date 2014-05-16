@@ -1,4 +1,4 @@
-shell-utils
-===========
+dotfiles
+========
 
-Small collection of command-line scripts
+My dotfiles
