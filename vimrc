@@ -7,6 +7,7 @@ call vundle#rc()
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+Bundle "tpope/vim-sensible"
 Bundle "ervandew/supertab"
 Bundle "godlygeek/tabular"
 Bundle "pangloss/vim-javascript"
@@ -22,7 +23,8 @@ Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-surround"
 Bundle "tmhedberg/matchit"
 "Bundle "vim-ruby/vim-ruby"
-Bundle "vim-scripts/Gist.vim"
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 Bundle "tpope/vim-unimpaired"
 Bundle "tomtom/tcomment_vim"
 Bundle "tpope/vim-ragtag"
@@ -46,12 +48,15 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "garbas/vim-snipmate"
 Bundle "Glench/Vim-Jinja2-Syntax"
 
+Bundle "jimenezrick/vimerl"
+Bundle "jpalardy/vim-slime"
+
+Bundle "majutsushi/tagbar"
+Bundle "danro/rename.vim"
 
 filetype plugin indent on
 syntax on
-set showcmd
-set wildmenu
-set hlsearch incsearch
+set hlsearch
 
 " disables mouse
 set mouse=
@@ -60,9 +65,6 @@ set scrolloff=2
 set pastetoggle=<F9>
 set modeline
 set sw=4 ts=4 expandtab
-
-" shortcut to clear highlight search
-nmap <Leader>q :nohlsearch<CR>
 
 " is this the leader mapping I was waiting for?
 let mapleader = "-"
@@ -77,7 +79,6 @@ nmap gV `[v`]
 cab W w|cab Q q|cab Wq wq|cab wQ wq|cab WQ wq
 
 if has("gui_running")
-    "colorscheme darkspectrum
     set guifont=Monospace\ 12
     set guioptions=aegiclA
     set lines=40 columns=80
@@ -87,7 +88,6 @@ endif
 syn match annoyingwhite '\s\+$' | hi annoyingwhite ctermbg=red
 
 " Groovy and Grails:
-au FileType groovy setlocal shiftwidth=4 expandtab
 au BufNewFile,BufRead *.gsp set ft=jsp
 
 " Python: highlight self, None and <TAB>s (XXX: is this still needed?)
@@ -96,7 +96,6 @@ au FileType python syn match special '\<None\>'
 au FileType python syn match special '\<True\>'
 au FileType python syn match special '\<False\>'
 au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
-au FileType python setlocal shiftwidth=4 expandtab
 function! ShowPydoc(what)
     let bufname = a:what . ".pydoc"
     " check if the buffer exists already
@@ -140,7 +139,7 @@ au BufReadPost *
 "let g:ctrlp_map = '<Leader>f'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
@@ -168,9 +167,6 @@ command -nargs=0 -bar Update if &modified
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
 
-"nnoremap ; :
-"nnoremap : ;
-
 "windows:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -182,3 +178,15 @@ map <C-f> /\V
 
 " disable highlight search when pressing ENTER on normal mode
 nnoremap <CR> :nohlsearch<CR><CR>
+
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
+
+command -nargs=0 Jsonfmt :%!python -mjson.tool
+
+" clipboard mappings:
+vmap <leader>y "+y
+map <leader>p "+p
+
+" opens a new tab with the current buffer's path
+map <leader>tn :exe "tabnew" expand("%:p:h")<cr>
