@@ -10,6 +10,7 @@
     wdiff = diff --word-diff
     s = status -sb
     st = status -sb
+    amend = commit --amend
 
     # logs bizurados
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
@@ -32,3 +33,5 @@
 	sslVerify = false
 [color]
 	ui = auto
+[github]
+	user = eliasdorneles

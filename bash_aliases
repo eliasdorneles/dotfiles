@@ -18,7 +18,7 @@ alias clean='echo -n "Really clean this directory (y/N)? ";
 # and to keep your life happier!
 alias open='xdg-open'
 alias e='vim -p'
-alias ee='emacsclient'
+alias em='vim -p `git ls-files -m`'
 alias urlencode='python -c "import sys, urllib; print urllib.quote(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib; print urllib.unquote_plus(sys.argv[1])"'
 alias jsonfmt='python -mjson.tool'
