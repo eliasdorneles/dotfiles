@@ -39,6 +39,7 @@ Bundle "jnwhiteh/vim-golang"
 Bundle "derekwyatt/vim-scala"
 Bundle "nelstrom/vim-visual-star-search"
 Bundle "hynek/vim-python-pep8-indent"
+Bundle "nvie/vim-flake8"
 
 Bundle "mattn/emmet-vim"
 Bundle "AndrewRadev/splitjoin.vim"
@@ -62,7 +63,7 @@ set hlsearch
 set mouse=
 
 set scrolloff=2
-set pastetoggle=<F9>
+set pastetoggle=<F10>
 set modeline
 set sw=4 ts=4 expandtab
 
@@ -90,12 +91,10 @@ syn match annoyingwhite '\s\+$' | hi annoyingwhite ctermbg=red
 " Groovy and Grails:
 au BufNewFile,BufRead *.gsp set ft=jsp
 
-" Python: highlight self, None and <TAB>s (XXX: is this still needed?)
+" Python: highlight self, None and <TAB>s
 au FileType python syn match keyword '\<self\>'
-au FileType python syn match special '\<None\>'
-au FileType python syn match special '\<True\>'
-au FileType python syn match special '\<False\>'
 au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
+let g:flake8_max_line_length=100
 function! ShowPydoc(what)
     let bufname = a:what . ".pydoc"
     " check if the buffer exists already
