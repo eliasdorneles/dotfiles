@@ -59,6 +59,10 @@ filetype plugin indent on
 syntax on
 set hlsearch
 
+" setup swap file dir
+silent :!mkdir -p /tmp/.vim-swap
+set dir=/tmp/.vim-swap
+
 " disables mouse
 set mouse=
 
