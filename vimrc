@@ -192,4 +192,4 @@ vmap <leader>y "+y
 map <leader>p "+p
 
 " opens a new tab with the current buffer's path
-map <leader>tn :exe "tabnew" expand("%:p:h")<cr>
+"map <leader>tn :exe "tabnew" expand("%:p:h")<cr>
