@@ -7,11 +7,18 @@ call vundle#rc()
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+" tim pope's sensible defaults
 Bundle "tpope/vim-sensible"
+
+" TAB completes everything
 Bundle "ervandew/supertab"
+
 Bundle "godlygeek/tabular"
 Bundle "pangloss/vim-javascript"
+
+" IDE like file explorer -- haven't used it much since CtrlP
 Bundle "scrooloose/nerdtree"
+
 "Bundle "timcharper/textile.vim"
 "Bundle "tpope/vim-cucumber"
 "Bundle "tpope/vim-fugitive"
@@ -19,17 +26,34 @@ Bundle "scrooloose/nerdtree"
 "Bundle "tpope/vim-haml"
 Bundle "tpope/vim-markdown"
 "Bundle "tpope/vim-rails"
+
+" tim pope's essentials:
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-surround"
+
+" XXX: do I need this? I think vim already ships with it
 Bundle "tmhedberg/matchit"
+
 "Bundle "vim-ruby/vim-ruby"
+
+
+" post a gist directly from vim
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+
 Bundle "tpope/vim-unimpaired"
+
+" gc{motion} for toggle comments
 Bundle "tomtom/tcomment_vim"
+
 Bundle "tpope/vim-ragtag"
+
+" this has not been much useful -- requires too much cognition
 Bundle "Lokaltog/vim-easymotion"
+
+" Ctrl-P, Ctrl-P, Ctrl-P, Ctrl-P!
 Bundle "kien/ctrlp.vim"
+
 Bundle "tpope/vim-capslock"
 Bundle "scrooloose/syntastic"
 Bundle "othree/html5.vim"
@@ -37,25 +61,41 @@ Bundle "jnwhiteh/vim-golang"
 
 "Bundle "vim-scripts/groovyindent"
 Bundle "derekwyatt/vim-scala"
+
+" enables to search from visual selection (useful for weird strings)
 Bundle "nelstrom/vim-visual-star-search"
+
+" pep8 utils
 Bundle "hynek/vim-python-pep8-indent"
 Bundle "nvie/vim-flake8"
 
 Bundle "mattn/emmet-vim"
-Bundle "AndrewRadev/splitjoin.vim"
+
+" keeps split windows using golden ratio widths
 Bundle "roman/golden-ratio"
+
+" snipmante and dependencies:
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "garbas/vim-snipmate"
+
 Bundle "Glench/Vim-Jinja2-Syntax"
 
 Bundle "jimenezrick/vimerl"
+
+" sets up a channel between the current buffer and a tmux/screen session
 Bundle "jpalardy/vim-slime"
 
 Bundle "majutsushi/tagbar"
+
+" :Rename to rename file in current buffer
 Bundle "danro/rename.vim"
 
+" :Scratch to open scratch window
 Bundle "mtth/scratch.vim"
+
+" exchange with cx (motion or selection)
+Bundle "tommcdo/vim-exchange"
 
 filetype plugin indent on
 syntax on
@@ -155,6 +195,7 @@ nmap <Leader>e :NERDTreeToggle<CR>
 " syntax checking on by default (too slow)
 "let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=0
+let g:syntastic_python_checkers=['flake8', 'pylint']
 
 " tell vim to use 256 colors, if supported
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
