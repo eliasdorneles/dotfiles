@@ -55,6 +55,8 @@ Bundle "jpalardy/vim-slime"
 Bundle "majutsushi/tagbar"
 Bundle "danro/rename.vim"
 
+Bundle "mtth/scratch.vim"
+
 filetype plugin indent on
 syntax on
 set hlsearch
