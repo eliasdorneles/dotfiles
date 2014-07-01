@@ -180,8 +180,10 @@ au BufReadPost *
             \   exe "normal g`\"" |
             \ endif
 
+" don't let golden-ratio resize nonmodifiable buffers
+let g:golden_ratio_exclude_nonmodifiable = 1
+
 " CtrlP plugin mappings
-"let g:ctrlp_map = '<Leader>f'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
@@ -192,8 +194,7 @@ let g:ctrlp_switch_buffer = 0
 " nerdtree toggle with \e
 nmap <Leader>e :NERDTreeToggle<CR>
 
-" syntax checking on by default (too slow)
-"let g:syntastic_check_on_open=1
+" keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
 let g:syntastic_python_checkers=['flake8', 'pylint']
 
