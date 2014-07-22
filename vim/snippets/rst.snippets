@@ -1,0 +1,30 @@
+# emphasis
+snippet em
+	*${1}* ${2}
+# strong
+snippet st
+	**${1}** ${2}
+# inline code
+snippet bq
+	\`\`${1}\`\` ${2}
+# footnote
+snippet fn
+	[#]_
+	
+	.. [#] ${1:footnote}
+# hyperlink
+snippet lnk
+	\`${1:link-name}\`_
+	
+	.. _\`$1\`: ${2:link-url}
+# page break
+snippet pb
+	.. raw:: pdf
+	
+		PageBreak
+	
+# code block
+snippet cb
+	.. code-block:: ${1:language}
+	
+		${2:#code}
