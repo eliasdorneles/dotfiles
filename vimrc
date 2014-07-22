@@ -21,7 +21,7 @@ Bundle "scrooloose/nerdtree"
 
 "Bundle "timcharper/textile.vim"
 "Bundle "tpope/vim-cucumber"
-"Bundle "tpope/vim-fugitive"
+Bundle "tpope/vim-fugitive"
 "Bundle "tpope/vim-git"
 "Bundle "tpope/vim-haml"
 Bundle "tpope/vim-markdown"
@@ -96,6 +96,9 @@ Bundle "mtth/scratch.vim"
 
 " exchange with cx (motion or selection)
 Bundle "tommcdo/vim-exchange"
+
+Bundle "sjl/clam.vim"
+
 
 filetype plugin indent on
 syntax on
