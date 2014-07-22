@@ -236,6 +236,7 @@ let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
 
 command -nargs=0 Jsonfmt :%!python -mjson.tool
+map <leader>j :Jsonfmt<cr>
 
 " clipboard mappings:
 vmap <leader>y "+y
