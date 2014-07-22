@@ -217,6 +217,9 @@ command -nargs=0 -bar Update if &modified
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
 
+" open tagbar for these filetypes
+autocmd FileType python,java,erlang,c,cpp nested :TagbarOpen
+
 "windows:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
