@@ -122,6 +122,8 @@ snippet pudb
 	import pudb; pudb.set_trace()
 snippet pprint
 	import pprint; pprint.pprint(${1})
+snippet rinspect
+	from scrapy.shell import inspect_response; inspect_response(response)
 snippet "
 	"""
 	${0:doc}
