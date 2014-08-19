@@ -116,8 +116,9 @@ set pastetoggle=<F10>
 set modeline
 set sw=4 ts=4 expandtab
 
-" is this the leader mapping I was waiting for?
-let mapleader = "-"
+" maps <space> to default leader - this works better
+" than setting mapleader because it works with showcmd
+:map <space> \
 
 " maps %% to expand path of current file directory in cmd mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
