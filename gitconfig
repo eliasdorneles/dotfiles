@@ -3,6 +3,7 @@
 	email = eliasdorneles@gmail.com
 [alias]
 	co = checkout
+	cob = checkout -b
     ci = commit
     d = diff
     dc = diff --cached
@@ -11,6 +12,12 @@
     s = status -sb
     st = status -sb
     amend = commit --amend
+
+    # undo last commit, keeping changes in filesystem
+    undo = reset HEAD~1 --mixed
+
+    # undo "add to index"
+    rk = reset --keep
 
     # logs bizurados
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
