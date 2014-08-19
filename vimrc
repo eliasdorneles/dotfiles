@@ -30,6 +30,7 @@ Bundle "tpope/vim-markdown"
 " tim pope's essentials:
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-surround"
+Bundle "tpope/vim-rsi"
 
 " XXX: do I need this? I think vim already ships with it
 Bundle "tmhedberg/matchit"
@@ -96,6 +97,11 @@ Bundle "mtth/scratch.vim"
 
 " exchange with cx (motion or selection)
 Bundle "tommcdo/vim-exchange"
+
+" expand region
+Bundle "terryma/vim-expand-region"
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 Bundle "sjl/clam.vim"
 
