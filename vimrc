@@ -247,8 +247,8 @@ map <leader>p "+p
 "map <leader>tn :exe "tabnew" expand("%:p:h")<cr>
 
 " toggle mouse control between terminal and vim
-map <silent><F10> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
-imap <silent><F10> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
+map <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
+imap <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
 function ShowMouseMode()
     if (&mouse == 'a')
         echo "vim mouse"
