@@ -118,7 +118,7 @@ set sw=4 ts=4 expandtab
 
 " maps <space> to default leader - this works better
 " than setting mapleader because it works with showcmd
-:map <space> \
+map <space> \
 
 " maps %% to expand path of current file directory in cmd mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -195,8 +195,8 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 
-" nerdtree toggle with \e
-nmap <Leader>e :NERDTreeToggle<CR>
+" nerdtree toggle with \n
+nmap <Leader>n :NERDTreeToggle<CR>
 
 " keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
@@ -242,6 +242,8 @@ map <leader>j :Jsonfmt<cr>
 " clipboard mappings:
 vmap <leader>y "+y
 map <leader>p "+p
+vmap <leader>q "+y
+map <leader>e "+p
 
 " opens a new tab with the current buffer's path
 "map <leader>tn :exe "tabnew" expand("%:p:h")<cr>
