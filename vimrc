@@ -247,7 +247,9 @@ map <leader>j :Jsonfmt<cr>
 
 " clipboard mappings:
 vmap <leader>y "+y
+nmap <leader>y "+y
 map <leader>p "+p
+
 vmap <leader>q "+y
 map <leader>e "+p
 
