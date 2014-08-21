@@ -152,30 +152,13 @@ au BufNewFile,BufRead *.gsp set ft=jsp
 au FileType python syn match keyword '\<self\>'
 au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 let g:flake8_max_line_length=100
-function! ShowPydoc(what)
-    let bufname = a:what . ".pydoc"
-    " check if the buffer exists already
-    if bufexists(bufname)
-        let winnr = bufwinnr(bufname)
-        if winnr != -1
-            " if the buffer is already displayed, switch to that window
-            execute winnr "wincmd w"
-        else
-            " otherwise, open the buffer in a split
-            execute "sbuffer" bufname
-        endif
-    else
-        " create a new buffer, set the nofile buftype and don't display it in the
-        " buffer list
-        execute "split" fnameescape(bufname)
-        setlocal buftype=nofile
-        setlocal nobuflisted
-        " read the output from pydoc
-        execute "r !" . shellescape(s:pydoc_path, 1) . " " . shellescape(a:what, 1)
-    endif
-    " go to the first line of the document
-    1
-endfunction
+
+" access help using devdocs.io
+command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
+au FileType python,ruby,javascript,html,php,eruby,coffee
+            \ nmap <buffer> K
+            \ :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
+
 
 " Lisp: setup lisp mode
 au FileType lisp set lisp
