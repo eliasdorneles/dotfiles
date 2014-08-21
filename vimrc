@@ -104,6 +104,7 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 Bundle "sjl/clam.vim"
+Bundle 'terryma/vim-multiple-cursors'
 
 
 filetype plugin indent on
@@ -266,3 +267,5 @@ function ShowMouseMode()
         echo "X11 mouse"
     endif
 endfunction
+
+map <C-3> <Esc>
