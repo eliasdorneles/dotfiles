@@ -49,9 +49,6 @@ Bundle "tomtom/tcomment_vim"
 
 Bundle "tpope/vim-ragtag"
 
-" this has not been much useful -- requires too much cognition
-Bundle "Lokaltog/vim-easymotion"
-
 " Ctrl-P, Ctrl-P, Ctrl-P, Ctrl-P!
 Bundle "kien/ctrlp.vim"
 
@@ -148,6 +145,10 @@ syn match annoyingwhite '\s\+$' | hi annoyingwhite ctermbg=red
 " Groovy and Grails:
 au BufNewFile,BufRead *.gsp set ft=jsp
 
+" Erlang:
+au BufNewFile,BufRead rebar.config set ft=erlang
+au BufNewFile,BufRead *.app.src set ft=erlang
+
 " Python: highlight self, None and <TAB>s
 au FileType python syn match keyword '\<self\>'
 au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
@@ -165,8 +166,8 @@ au FileType lisp set lisp
 " Ruby: 2 spaces for indenting
 au FileType ruby setlocal shiftwidth=2 expandtab
 
-" customize emmet
-let g:user_emmet_expandabbr_key = '<c-e>'
+" uses Ctrl-Space for emmet expanding
+let g:user_emmet_expandabbr_key = '<Nul>'
 
 " go to last known line whenever opening new file
 au BufReadPost * 
@@ -174,7 +175,7 @@ au BufReadPost *
             \   exe "normal g`\"" |
             \ endif
 
-" don't let golden-ratio resize nonmodifiable buffers
+" don't let golden-ratio resize tagbar window
 let g:golden_ratio_exclude_nonmodifiable = 1
 
 " CtrlP plugin mappings
