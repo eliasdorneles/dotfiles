@@ -12,6 +12,10 @@ snippet script
 		abort "Usage: $(basename $${0:0}) PARAMS"
 	}
 
+	require() {
+		type $1 >/dev/null 2>/dev/null
+	}
+
 	while [ "$${0:{1#-}}" != "$${0:1}" ]; do
 		case "$${0:1}" in
 			-h) usage;;
