@@ -6,12 +6,13 @@ absdirname(){
 }
 
 create_abs_link(){
+    # TODO: rewrite this crap
     local target="$1"
     local origin=${2:-$1}
     local d=`absdirname $0`
     if (cd && test -e "$target");
     then
-        echo "~/$target already exists, skipping..."
+        echo "$target already exists, skipping..."
     else
         echo ln -s "$d/$origin" "$target"
         (cd && ln -s "$d/$origin" "$target")
@@ -30,8 +31,14 @@ create_abs_dotlink gitconfig
 create_abs_dotlink bashrc
 create_abs_dotlink bash_aliases
 
-mkdir -p ~/.config
-create_abs_link ~/.config/redshift.conf config/redshift.conf
+if [ -d config ]; then
+    mkdir -p ~/.config
+    for f in config/*;
+    do
+        target=~/.config/$(basename $f)
+        create_abs_link $target $f
+    done
+fi
 
 create_abs_dotlink vimrc
 create_abs_dotlink vim
