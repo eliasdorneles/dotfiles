@@ -103,7 +103,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 Bundle "sjl/clam.vim"
 Bundle 'terryma/vim-multiple-cursors'
 
-Bundle tomasr/molokai"
+Bundle "tomasr/molokai"
 
 
 filetype plugin indent on
