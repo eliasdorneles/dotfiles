@@ -55,7 +55,7 @@ Bundle "kien/ctrlp.vim"
 Bundle "tpope/vim-capslock"
 Bundle "scrooloose/syntastic"
 Bundle "othree/html5.vim"
-Bundle "jnwhiteh/vim-golang"
+Bundle "fatih/vim-go"
 
 "Bundle "vim-scripts/groovyindent"
 Bundle "derekwyatt/vim-scala"
@@ -82,7 +82,7 @@ Bundle "Glench/Vim-Jinja2-Syntax"
 Bundle "jimenezrick/vimerl"
 
 " sets up a channel between the current buffer and a tmux/screen session
-Bundle "jpalardy/vim-slime"
+" Bundle "jpalardy/vim-slime"
 
 Bundle "majutsushi/tagbar"
 
@@ -102,6 +102,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 Bundle "sjl/clam.vim"
 Bundle 'terryma/vim-multiple-cursors'
+
+Bundle tomasr/molokai"
 
 
 filetype plugin indent on
@@ -210,7 +212,7 @@ nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
 
 " open tagbar for these filetypes
-autocmd FileType python,java,erlang,c,cpp nested :TagbarOpen
+"autocmd FileType python,java,erlang,c,cpp nested :TagbarOpen
 
 "windows:
 map <C-h> <C-w>h
@@ -224,8 +226,8 @@ map <C-f> /\V
 " disable highlight search when pressing ENTER on normal mode
 nnoremap <CR> :nohlsearch<CR><CR>
 
-let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
+" let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
 
 command -nargs=0 Jsonfmt :%!python -mjson.tool
 map <leader>j :Jsonfmt<cr>
