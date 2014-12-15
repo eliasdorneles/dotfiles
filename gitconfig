@@ -20,8 +20,7 @@
     rk = reset --keep
 
     # logs bizurados
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     logtree = log --graph --oneline --decorate --all
 
@@ -35,7 +34,7 @@
 	editor = vim -p
 	autocrlf = input
 [push]
-	default = simple
+	default = upstream
 [http]
 	sslVerify = false
 [color]
