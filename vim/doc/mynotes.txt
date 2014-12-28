@@ -1,0 +1,7 @@
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
+
+==================================================
+My Personal Notes *mynotes* *myhelp* *personal*
+
+* Use cx{motion} twice to exchange two things
+* Use <Ctrl><Space> for HTML zen coding (emmet)
