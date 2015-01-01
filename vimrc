@@ -156,6 +156,12 @@ au FileType python syn match keyword '\<self\>'
 au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 let g:flake8_max_line_length=100
 
+" Python: Inline Temp Variable refactoring
+" this will inline the first reference to the variable assigned in
+" current line. Use dot to repeat the substitution.
+au FileType python nmap <Plug>InlineTemp 0*Nf=l"rDddcgn<c-r>r<esc>
+au FileType python nmap <leader>it <Plug>InlineTemp
+
 " access help using devdocs.io
 command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
 au FileType python,ruby,javascript,html,php,eruby,coffee
