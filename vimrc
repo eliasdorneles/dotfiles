@@ -171,6 +171,25 @@ let g:flake8_max_line_length=100
 au FileType python nmap <Plug>InlineTemp 0*Nf=l"rDddcgn<c-r>r<esc>
 au FileType python nmap <leader>it <Plug>InlineTemp
 
+" stolen from Gary Bernhardt's vimrc:
+function! ExtractVariable()
+    let name = input("Variable name: ")
+    if name == ''
+        return
+    endif
+    " Enter visual mode (not sure why this is needed since we're already in
+    " visual mode anyway)
+    normal! gv
+
+    " Replace selected text with the variable name
+    exec "normal c" . name
+    " Define the variable on the line above
+    exec "normal! O" . name . " = "
+    " Paste the original selected text to be the variable value
+    normal! $p
+endfunction
+vnoremap <leader>ev :call ExtractVariable()<cr>
+
 " access help using devdocs.io
 command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
 au FileType python,ruby,javascript,html,php,eruby,coffee
