@@ -107,6 +107,9 @@ Bundle "tomasr/molokai"
 
 Bundle 'bling/vim-airline'
 
+let g:airline_powerline_fonts = 1
+" disable tagbar integration, it's creating weird characters
+let g:airline#extensions#tagbar#enabled = 0
 
 filetype plugin indent on
 syntax on
