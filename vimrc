@@ -105,6 +105,8 @@ Bundle 'terryma/vim-multiple-cursors'
 
 Bundle "tomasr/molokai"
 
+Bundle 'bling/vim-airline'
+
 
 filetype plugin indent on
 syntax on
