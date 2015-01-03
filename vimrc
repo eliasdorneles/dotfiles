@@ -124,6 +124,13 @@ set pastetoggle=<F10>
 set modeline
 set sw=4 ts=4 expandtab
 
+" Turn folding off for real, hopefully
+set foldmethod=manual
+set nofoldenable
+
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+
 " maps <space> to default leader - this works better
 " than setting mapleader because it works with showcmd
 map <space> \
@@ -146,7 +153,7 @@ endif
 " highlight annoying whitespace at end of line
 syn match annoyingwhite '\s\+$' | hi annoyingwhite ctermbg=red
 
-" Groovy and Grails:
+" Grails:
 au BufNewFile,BufRead *.gsp set ft=jsp
 
 " Erlang:
@@ -230,6 +237,12 @@ map <C-l> <C-w>l
 
 " quick no-regex search
 map <C-f> /\V
+
+" just makes C-c equivalent to Esc
+imap <c-c> <esc>
+
+" goes to previous file pressing space twice
+nnoremap <space><space> <c-^>
 
 " disable highlight search when pressing ENTER on normal mode
 nnoremap <CR> :nohlsearch<CR><CR>
