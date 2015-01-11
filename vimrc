@@ -171,8 +171,8 @@ let g:flake8_max_line_length=100
 " Python: Inline Temp Variable refactoring
 " this will inline the first reference to the variable assigned in
 " current line. Use dot to repeat the substitution.
-au FileType python nmap <Plug>InlineTemp 0*Nf=l"rDddcgn<c-r>r<esc>
-au FileType python nmap <leader>it <Plug>InlineTemp
+au FileType python nmap <Plug>InlineVariable 0*Nf=l"rDddcgn<c-r>r<esc>
+au FileType python nmap <leader>iv <Plug>InlineVariable
 
 " stolen from Gary Bernhardt's vimrc:
 function! ExtractVariable()
@@ -220,7 +220,7 @@ let g:golden_ratio_exclude_nonmodifiable = 1
 " CtrlP plugin mappings
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|bower_components|node_modules'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
@@ -282,6 +282,9 @@ map <leader>p "+p
 
 vmap <leader>q "+y
 map <leader>e "+p
+
+" default testing command:
+map <leader>t :!clear; make test<cr>
 
 " toggle mouse control between terminal and vim
 map <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
