@@ -11,6 +11,7 @@
     wdiff = diff --word-diff
     s = status -sb
     st = status -sb
+    aa = add --all
     amend = commit --amend
 
     # undo last commit, keeping changes in filesystem
