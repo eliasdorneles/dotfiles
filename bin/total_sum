@@ -1,0 +1,4 @@
+#!/bin/bash
+# Report sum of numbers fed to the stdin
+
+awk '{ total+=$1 } END { print total }'

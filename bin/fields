@@ -1,0 +1,33 @@
+#!/bin/bash
+# Easily extract fields from STDIN using AWK
+
+abort() {
+    >&2 echo "$*"; exit 1;
+}
+
+usage() {
+    abort "Usage: $(basename $0) FIELD_NUMBER..."
+}
+
+separator='"\t"'
+while [ "${1#-}" != "$1" ]; do
+    case "$1" in
+        -h) usage;;
+        --spaces|-s) separator='" "';;
+        *) usage;;
+    esac
+    shift
+done
+[ -z "$1" ] && usage
+
+fields=""
+for field_no in $@
+do
+    if [ -z "$fields" ]; then
+        fields="\$$field_no "
+    else
+        fields="$fields $separator \$$field_no "
+    fi
+done
+
+awk "{ print $fields }"
