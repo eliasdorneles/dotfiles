@@ -49,6 +49,27 @@ _gittar ()
 
     echo $tar
 }
+_gitzip ()
+{
+    local name=$(pwd)
+    name=${name##*/}
+
+    if [ ! "$1" ]; then
+	echo "[ERROR] what branch to export?"
+	return 1
+    fi
+
+    local pkg="$name"
+    local dir=".."
+    local zip="$dir/$pkg.zip"
+
+    git archive \
+    --format=zip \
+    --prefix="$pkg/" \
+    "$@" > $zip
+
+    echo $zip
+}
 
 # psgrep firef   to check if firefox is running...
 psgrep(){
