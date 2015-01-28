@@ -109,6 +109,10 @@ Bundle 'joonty/vim-sauce'
 
 Bundle 'bling/vim-airline'
 
+Bundle 'kana/vim-textobj-user'
+Bundle 'bps/vim-textobj-python'
+
+
 let g:airline_powerline_fonts = 1
 " disable tagbar integration, it's creating weird characters
 let g:airline#extensions#tagbar#enabled = 0
