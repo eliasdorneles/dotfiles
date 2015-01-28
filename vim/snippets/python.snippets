@@ -3,9 +3,6 @@ snippet #!
 	# -*- coding: utf-8 -*-
 snippet imp
 	import ${0:module}
-snippet uni
-	def __unicode__(self):
-		${0:representation}
 snippet from
 	from ${1:package} import ${0:module}
 
@@ -148,6 +145,10 @@ snippet fut
 snippet script
 	#!/usr/bin/env python
 	# -*- coding: utf-8 -*-
+	"""Script description here
+	"""
+
+	from __future__ import print_function
 	
 	
 	def run(args):
@@ -156,7 +157,7 @@ snippet script
 	
 	if '__main__' == __name__:
 		import argparse
-		parser = argparse.ArgumentParser(description="Script")
+		parser = argparse.ArgumentParser(description=__doc__)
 
 		args = parser.parse_args()
 		run(args)
