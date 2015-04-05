@@ -1,7 +1,19 @@
 " vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
 
 ==================================================
-My Personal Notes *mynotes* *myhelp* *personal*
+My Personal Vim Help Notes *mynotes* *myhelp* *personal*
 
-* Use cx{motion} twice to exchange two things
+
+EXCHANGE:
+
+* Use <Visual>X or cx{motion} twice to exchange two things
+
+
+WRITING HTML/XML:
+
 * Use <Ctrl><Space> for HTML zen coding (emmet)
+
+
+REFORMAT TEXT:
+
+* Use gq{motion} to reformat text

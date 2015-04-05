@@ -109,6 +109,8 @@ Bundle 'joonty/vim-sauce'
 
 Bundle 'bling/vim-airline'
 
+Bundle 'editorconfig/editorconfig-vim'
+
 Bundle 'kana/vim-textobj-user'
 Bundle 'bps/vim-textobj-python'
 
@@ -237,6 +239,10 @@ nmap <Leader>n :NERDTreeToggle<CR>
 " keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
 let g:syntastic_python_checkers=['flake8', 'pylint']
+let g:syntastic_mode_map = {
+            \ "mode": "active",
+            \ "active_filetypes": ["ruby", "php", "python", "javascript"],
+            \ "passive_filetypes": ["puppet", "java"] }
 
 " tell vim to use 256 colors, if supported
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
