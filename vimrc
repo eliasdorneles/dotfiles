@@ -97,8 +97,6 @@ Bundle "tommcdo/vim-exchange"
 
 " expand region
 Bundle "terryma/vim-expand-region"
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
 
 Bundle "sjl/clam.vim"
 Bundle 'terryma/vim-multiple-cursors'
@@ -115,12 +113,45 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'bps/vim-textobj-python'
 
 
-let g:airline_powerline_fonts = 1
-" disable tagbar integration, it's creating weird characters
-let g:airline#extensions#tagbar#enabled = 0
+" PLUGIN CONFIGURATIONS:
 
-filetype plugin indent on
-syntax on
+" Configuring shortcuts for expand-region plugin
+vmap v     <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" nerdtree toggle shortcut
+nnoremap <Leader>n :NERDTreeToggle<CR>
+
+" uses Ctrl-Space for emmet expanding
+let g:user_emmet_expandabbr_key = '<Nul>'
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tagbar#enabled = 0 " disabled b/c weird chars in output
+
+" don't let golden-ratio resize tagbar window
+let g:golden_ratio_exclude_nonmodifiable = 1
+
+" CtrlP plugin mappings
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+            \ . '|bower_components|node_modules|build|_build'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_switch_buffer = 0
+
+" keep syntastic minimally annoying
+let g:syntastic_enable_signs=0
+let g:syntastic_python_checkers=['flake8', 'pylint']
+let g:syntastic_mode_map = {
+            \ "mode": "active",
+            \ "active_filetypes": ["ruby", "php", "python", "javascript"],
+            \ "passive_filetypes": ["puppet", "java"] }
+
+let g:flake8_max_line_length=100
+
+
+" MY CUSTOMIZATIONS:
 set hlsearch
 
 " setup swap file dir
@@ -133,7 +164,7 @@ set mouse=
 set scrolloff=2
 set pastetoggle=<F10>
 set modeline
-set sw=4 ts=4 expandtab
+set shiftwidth=4 tabstop=4 expandtab
 
 " Turn folding off for real, hopefully
 set foldmethod=manual
@@ -161,8 +192,10 @@ if has("gui_running")
     set lines=40 columns=80
 endif
 
-" highlight annoying whitespace at end of line
-syn match annoyingwhite '\s\+$' | hi annoyingwhite ctermbg=red
+augroup highlight_annoying_whitespace_at_eol
+    au BufNewFile,BufRead * syntax match annoyingwhitespace '\s\+$' |
+                \ highlight annoyingwhitespace ctermbg=red
+augroup END
 
 " Grails:
 au BufNewFile,BufRead *.gsp set ft=jsp
@@ -172,15 +205,16 @@ au BufNewFile,BufRead rebar.config set ft=erlang
 au BufNewFile,BufRead *.app.src set ft=erlang
 
 " Python: highlight self, None and <TAB>s
-au FileType python syn match keyword '\<self\>'
-au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
-let g:flake8_max_line_length=100
+augroup highlight_self_and_tabs
+    au FileType python syn match keyword '\<self\>'
+    au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
+augroup END
 
-" Python: Inline Temp Variable refactoring
+" Inline Temp Variable refactoring
 " this will inline the first reference to the variable assigned in
 " current line. Use dot to repeat the substitution.
-au FileType python nmap <Plug>InlineVariable 0*Nf=l"rDddcgn<c-r>r<esc>
-au FileType python nmap <leader>iv <Plug>InlineVariable
+nnoremap <Plug>InlineVariable 0*Nf=l"rDddcgn<c-r>r<esc>
+nmap <leader>iv <Plug>InlineVariable
 
 " stolen from Gary Bernhardt's vimrc:
 function! ExtractVariable()
@@ -201,10 +235,11 @@ function! ExtractVariable()
 endfunction
 vnoremap <leader>ev :call ExtractVariable()<cr>
 
-" access help using devdocs.io
+
+" access help using devdocs.io -- TODO: write plugin?
 command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
 au FileType python,ruby,javascript,html,php,eruby,coffee
-            \ nmap <buffer> K
+            \ nnoremap <buffer> K
             \ :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
 
 
@@ -213,37 +248,11 @@ au FileType lisp set lisp
 " Ruby: 2 spaces for indenting
 au FileType ruby setlocal shiftwidth=2 expandtab
 
-" uses Ctrl-Space for emmet expanding
-let g:user_emmet_expandabbr_key = '<Nul>'
-
 " go to last known line whenever opening new file
 au BufReadPost * 
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal g`\"" |
             \ endif
-
-" don't let golden-ratio resize tagbar window
-let g:golden_ratio_exclude_nonmodifiable = 1
-
-" CtrlP plugin mappings
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-            \ . '|bower_components|node_modules|build|_build'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_switch_buffer = 0
-
-" nerdtree toggle with \n
-nmap <Leader>n :NERDTreeToggle<CR>
-
-" keep syntastic minimally annoying
-let g:syntastic_enable_signs=0
-let g:syntastic_python_checkers=['flake8', 'pylint']
-let g:syntastic_mode_map = {
-            \ "mode": "active",
-            \ "active_filetypes": ["ruby", "php", "python", "javascript"],
-            \ "passive_filetypes": ["puppet", "java"] }
 
 " tell vim to use 256 colors, if supported
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
@@ -262,42 +271,40 @@ nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
 
 "windows:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " quick no-regex search
-map <C-f> /\V
+noremap <C-f> /\V
 
 " makes <C-c> and <C-3> equivalent to Esc
-imap <C-c> <esc>
-map <C-3> <Esc>
+inoremap <C-c> <esc>
+noremap <C-3> <esc>
 
 " goes to previous file pressing space twice
-nnoremap <space><space> <c-^>
+nnoremap <leader><space> <c-^>
 
 " disable highlight search when pressing ENTER on normal mode
 nnoremap <CR> :nohlsearch<CR><CR>
 
+" TODO: wrap this properly, avoid overwriting buffer when error
 command! -nargs=0 Jsonfmt :%!python -mjson.tool
-map <leader>j :Jsonfmt<cr>
+noremap <leader>j :Jsonfmt<cr>
 
 " clipboard mappings:
-vmap <leader>y "+y
-nmap <leader>y "+y
-map <leader>p "+p
-
-vmap <leader>q "+y
-map <leader>e "+p
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+noremap <leader>p "+p
 
 " mappings for quoting words
 map <leader>qw ysiw`
 map <leader>qW ysiW`
 
 " toggle mouse control between terminal and vim
-map <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
-imap <silent><F2> <ESC>:let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>l
+noremap <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
+inoremap <silent><F2> <ESC>:let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>l
 function! ShowMouseMode()
     if (&mouse == 'a')
         echo "vim mouse"
@@ -306,9 +313,17 @@ function! ShowMouseMode()
     endif
 endfunction
 
-" testing command:
-map <leader>t :!clear; make test<cr>
+" use <leader>t for run tests, <leader>ct to customize test command
+" TODO: show current test command, better history (consider wrap in plugin)
+nnoremap <leader>t :!clear; make test<cr>
+function! RemapTestCmd()
+    let testcmd = input("Test command: ")
+    exec 'noremap <leader>t :!clear; ' . testcmd . '<cr>'
+endfunction
+nnoremap <leader>ct :call RemapTestCmd()<cr>
 
+" use <leader>r to reload vimrc
+nnoremap <leader>r :source $MYVIMRC<cr>:redraw!<cr>:nohlsearch<cr>
 
 augroup gen_tags_for_personal_help
     autocmd BufWritePost ~/.vim/doc/*.txt :helptags ~/.vim/doc
