@@ -295,6 +295,10 @@ map <leader>p "+p
 vmap <leader>q "+y
 map <leader>e "+p
 
+" mappings for quoting words
+map <leader>qw ysiw`
+map <leader>qW ysiW`
+
 " default testing command:
 map <leader>t :!clear; make test<cr>
 
