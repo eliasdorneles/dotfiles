@@ -44,3 +44,5 @@
 	user = eliasdorneles
 [web]
 	browser = xdg-open
+[rerere]
+	enabled = true
