@@ -16,7 +16,7 @@ FORMATTING:
 * Use <leader>qw or <leader>qW for quoting words with backticks
 
 SEARCHING:
-* Use <C-f> for non-regex search
+* Use <C-f> for non-regex search (needs escaping slash and backslash)
 
 MOUSE:
 * Use <F2> for toggling mouse control between X11 and Vim
