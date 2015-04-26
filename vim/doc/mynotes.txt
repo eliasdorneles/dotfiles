@@ -3,17 +3,20 @@
 ==================================================
 My Personal Vim Help Notes *mynotes* *myhelp* *personal*
 
+SELECTING:
+* Start & expand a selection pressing v (shrink with <Ctrl-v>)
+* Use gV to reselect the last thing edited or pasted
 
 EXCHANGE:
-
 * Use <Visual>X or cx{motion} twice to exchange two things
 
-
-WRITING HTML/XML:
-
+FORMATTING:
 * Use <Ctrl><Space> for HTML zen coding (emmet)
-
-
-REFORMAT TEXT:
-
 * Use gq{motion} to reformat text
+* Use <leader>qw or <leader>qW for quoting words with backticks
+
+SEARCHING:
+* Use <C-f> for non-regex search
+
+MOUSE:
+* Use <F2> for toggling mouse control between X11 and Vim
