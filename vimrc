@@ -228,7 +228,8 @@ let g:golden_ratio_exclude_nonmodifiable = 1
 " CtrlP plugin mappings
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|bower_components|node_modules'
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+            \ . '|bower_components|node_modules|build|_build'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
@@ -250,7 +251,7 @@ if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gno
 endif
 
 " save using <C-S>
-command -nargs=0 -bar Update if &modified 
+command! -nargs=0 -bar Update if &modified
                            \|    if empty(bufname('%'))
                            \|        browse confirm write
                            \|    else
@@ -259,9 +260,6 @@ command -nargs=0 -bar Update if &modified
                            \|endif
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
-
-" open tagbar for these filetypes
-"autocmd FileType python,java,erlang,c,cpp nested :TagbarOpen
 
 "windows:
 map <C-h> <C-w>h
@@ -272,8 +270,9 @@ map <C-l> <C-w>l
 " quick no-regex search
 map <C-f> /\V
 
-" just makes C-c equivalent to Esc
-imap <c-c> <esc>
+" makes <C-c> and <C-3> equivalent to Esc
+imap <C-c> <esc>
+map <C-3> <Esc>
 
 " goes to previous file pressing space twice
 nnoremap <space><space> <c-^>
@@ -281,10 +280,7 @@ nnoremap <space><space> <c-^>
 " disable highlight search when pressing ENTER on normal mode
 nnoremap <CR> :nohlsearch<CR><CR>
 
-" let g:slime_target = "tmux"
-" let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
-
-command -nargs=0 Jsonfmt :%!python -mjson.tool
+command! -nargs=0 Jsonfmt :%!python -mjson.tool
 map <leader>j :Jsonfmt<cr>
 
 " clipboard mappings:
@@ -299,13 +295,10 @@ map <leader>e "+p
 map <leader>qw ysiw`
 map <leader>qW ysiW`
 
-" default testing command:
-map <leader>t :!clear; make test<cr>
-
 " toggle mouse control between terminal and vim
 map <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
-imap <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
-function ShowMouseMode()
+imap <silent><F2> <ESC>:let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>l
+function! ShowMouseMode()
     if (&mouse == 'a')
         echo "vim mouse"
     else
@@ -313,7 +306,10 @@ function ShowMouseMode()
     endif
 endfunction
 
-map <C-3> <Esc>
+" testing command:
+map <leader>t :!clear; make test<cr>
 
-" automatically generate tags
-autocmd BufWritePost ~/.vim/doc/*.txt :helptags ~/.vim/doc
+
+augroup gen_tags_for_personal_help
+    autocmd BufWritePost ~/.vim/doc/*.txt :helptags ~/.vim/doc
+augroup END
