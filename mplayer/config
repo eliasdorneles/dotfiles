@@ -1,6 +1,6 @@
 # Write your default config options here!
 
 af=scaletempo
-subfont-text-scale=4
+subfont-text-scale=5
 vo=xv
 nolirc=1
