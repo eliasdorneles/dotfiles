@@ -313,14 +313,18 @@ function! ShowMouseMode()
     endif
 endfunction
 
-" use <leader>t for run tests, <leader>ct to customize test command
+" use <leader>t for run tests, :TestCmd {test command} to customize test command
 " TODO: show current test command, better history (consider wrap in plugin)
-nnoremap <leader>t :!clear; make test<cr>
-function! RemapTestCmd()
-    let testcmd = input("Test command: ")
+function! RemapTestCmd(...)
+    if a:0 ==# 1 && a:1 !=# ''
+        let testcmd = a:1
+    else
+        let testcmd = input("Test command: ")
+    endif
     exec 'noremap <leader>t :!clear; ' . testcmd . '<cr>'
 endfunction
-nnoremap <leader>ct :call RemapTestCmd()<cr>
+call RemapTestCmd('make test')
+command! -nargs=? TestCmd :call RemapTestCmd('<args>')
 
 " use <leader>r to reload vimrc
 nnoremap <leader>r :source $MYVIMRC<cr>:redraw!<cr>:nohlsearch<cr>
