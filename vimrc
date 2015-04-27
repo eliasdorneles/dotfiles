@@ -290,8 +290,11 @@ nnoremap <leader><space> <c-^>
 nnoremap <CR> :nohlsearch<CR><CR>
 
 " TODO: wrap this properly, avoid overwriting buffer when error
-command! -nargs=0 Jsonfmt :%!python -mjson.tool
-noremap <leader>j :Jsonfmt<cr>
+function! JsonFormat() range
+    exec 'normal! :' + a:firstline . ',' . a:lastline . '!python -mjson.tool'
+endfunction
+nnoremap <leader>j :%call JsonFormat()<cr>
+vnoremap <leader>j :call JsonFormat()<cr>
 
 " clipboard mappings:
 vnoremap <leader>y "+y
