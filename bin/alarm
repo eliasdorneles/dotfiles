@@ -1,0 +1,40 @@
+#!/bin/bash
+
+abort() {
+    echo "$*"; exit 1;
+}
+
+usage() {
+    abort "Usage: $(basename $0) [--repeat]"
+}
+
+require() {
+    type $1 >/dev/null 2>/dev/null
+}
+
+repeat=false
+while [ "${1#-}" != "$1" ]; do
+    case "$1" in
+        -h) usage;;
+        --repeat) repeat=true;;
+        *) usage;;
+    esac
+    shift
+done
+
+ring()
+{
+    for i in $( seq 5 )
+    do
+        play -qn synth 0.1 pluck F5
+        sleep 0.01
+    done
+}
+
+# TODO: implement wait argument with time spec
+if $repeat
+then
+    while true; do ring; sleep 0.5; done
+else
+    ring
+fi
