@@ -112,6 +112,8 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'bps/vim-textobj-python'
 
+Bundle 'kchmck/vim-coffee-script'
+
 
 " PLUGIN CONFIGURATIONS:
 
@@ -230,7 +232,7 @@ augroup END
 " Inline Temp Variable refactoring
 " this will inline the first reference to the variable assigned in
 " current line. Use dot to repeat the substitution.
-nnoremap <Plug>InlineVariable 0*Nf=l"rDddcgn<c-r>r<esc>
+nnoremap <Plug>InlineVariable 0*Nf=w"rDddcgn<c-r>r<esc>$
 nmap <leader>iv <Plug>InlineVariable
 
 " stolen from Gary Bernhardt's vimrc:
