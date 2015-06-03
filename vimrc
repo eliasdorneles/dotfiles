@@ -223,6 +223,9 @@ augroup stylesheets_autocomplete_hyphen
     autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
+" Strace:
+autocmd BufRead,BufNewFile *.strace set filetype=strace
+
 " Python:
 augroup highlight_self_and_tabs
     au FileType python syn match keyword '\<self\>'
