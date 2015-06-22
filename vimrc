@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Let Vundle manage Vundle
@@ -351,7 +351,8 @@ function! RemapTestCmd(...)
     else
         let testcmd = input("Test command: ")
     endif
-    exec 'noremap <leader>t :!clear; ' . testcmd . '<cr>'
+    silent !clear
+    exec 'noremap <leader>t :!' . testcmd . '<cr>'
 endfunction
 call RemapTestCmd('make test')
 command! -nargs=? TestCmd :call RemapTestCmd('<args>')
