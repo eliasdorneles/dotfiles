@@ -114,6 +114,7 @@ Bundle 'bps/vim-textobj-python'
 
 Bundle 'kchmck/vim-coffee-script'
 
+Bundle 'tmhedberg/SimpylFold'
 
 " PLUGIN CONFIGURATIONS:
 
@@ -160,6 +161,9 @@ let g:syntastic_mode_map = {
 
 let g:flake8_max_line_length=100
 
+" don't fold docstrings
+let g:SimpylFold_fold_docstring = 0
+
 
 " MY CUSTOMIZATIONS:
 set hlsearch
@@ -175,10 +179,6 @@ set scrolloff=2
 set pastetoggle=<F10>
 set modeline
 set shiftwidth=4 tabstop=4 expandtab
-
-" Turn folding off for real, hopefully
-set foldmethod=manual
-set nofoldenable
 
 " use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
@@ -199,6 +199,11 @@ cab Q q
 cab Wq wq
 cab wQ wq
 cab WQ wq
+
+" giving folding a second chance
+set nofoldenable
+nmap <leader>l za
+nmap <leader>f :set foldenable!<cr>
 
 if has("gui_running")
     set guifont=Monospace\ 12
