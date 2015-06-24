@@ -375,8 +375,7 @@ function! RemapTestCmd(...)
     else
         let testcmd = input("Test command: ")
     endif
-    silent !clear
-    exec 'noremap <leader>t :!' . testcmd . '<cr>'
+    exec 'noremap <leader>t :!clear; ' . testcmd . '<cr>'
 endfunction
 call RemapTestCmd('make test')
 command! -nargs=? TestCmd :call RemapTestCmd('<args>')
