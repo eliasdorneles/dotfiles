@@ -116,6 +116,8 @@ Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'tmhedberg/SimpylFold'
 
+Bundle 'davidbeckingsale/writegood.vim'
+
 " PLUGIN CONFIGURATIONS:
 
 " Configuring shortcuts for expand-region plugin
@@ -323,10 +325,15 @@ endfunction
 nnoremap <leader>j :%call JsonFormat()<cr>
 vnoremap <leader>j :call JsonFormat()<cr>
 
-" clipboard mappings:
+" copying from clipboard:
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
+
+" paste from clipboard
+vnoremap <leader>p "+p
 noremap <leader>p "+p
+noremap <leader>P "+P
+
 
 " mappings for quoting words
 map <leader>qw ysiw`
