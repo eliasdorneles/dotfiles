@@ -207,6 +207,8 @@ endw
 set ttimeout ttimeoutlen=50
 
 " move a line of text using Alt+[jk]
+inoremap <M-j> <esc>lmz:m+<cr>`zi
+inoremap <M-k> <esc>lmz:m-2<cr>`zi
 nnoremap <M-j> mz:m+<cr>`z
 nnoremap <M-k> mz:m-2<cr>`z
 vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
