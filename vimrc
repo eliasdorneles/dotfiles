@@ -16,38 +16,19 @@ Bundle "ervandew/supertab"
 Bundle "godlygeek/tabular"
 Bundle "pangloss/vim-javascript"
 
-" IDE like file explorer -- haven't used it much since CtrlP
-Bundle "scrooloose/nerdtree"
-
-"Bundle "timcharper/textile.vim"
-"Bundle "tpope/vim-cucumber"
 Bundle "tpope/vim-fugitive"
 "Bundle "tpope/vim-git"
-"Bundle "tpope/vim-haml"
 Bundle "tpope/vim-markdown"
-"Bundle "tpope/vim-rails"
 
 " tim pope's essentials:
 Bundle "tpope/vim-repeat"
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-rsi"
 
-" XXX: do I need this? I think vim already ships with it
-Bundle "tmhedberg/matchit"
-
-"Bundle "vim-ruby/vim-ruby"
-
-
-" post a gist directly from vim
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-
 Bundle "tpope/vim-unimpaired"
 
 " gc{motion} for toggle comments
 Bundle "tomtom/tcomment_vim"
-
-Bundle "tpope/vim-ragtag"
 
 " Ctrl-P, Ctrl-P, Ctrl-P, Ctrl-P!
 Bundle "kien/ctrlp.vim"
@@ -57,7 +38,6 @@ Bundle "scrooloose/syntastic"
 Bundle "othree/html5.vim"
 Bundle "fatih/vim-go"
 
-"Bundle "vim-scripts/groovyindent"
 Bundle "derekwyatt/vim-scala"
 
 " enables to search from visual selection (useful for weird strings)
@@ -69,9 +49,6 @@ Bundle "nvie/vim-flake8"
 
 Bundle "mattn/emmet-vim"
 
-" keeps split windows using golden ratio widths
-Bundle "roman/golden-ratio"
-
 " snipmante and dependencies:
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -80,9 +57,6 @@ Bundle "garbas/vim-snipmate"
 Bundle "Glench/Vim-Jinja2-Syntax"
 
 Bundle "jimenezrick/vimerl"
-
-" sets up a channel between the current buffer and a tmux/screen session
-" Bundle "jpalardy/vim-slime"
 
 Bundle "majutsushi/tagbar"
 
