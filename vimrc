@@ -194,6 +194,8 @@ cab Q q
 cab Wq wq
 cab wQ wq
 cab WQ wq
+cab Qa qa
+cab QA qa
 
 " giving folding a second chance
 set nofoldenable
