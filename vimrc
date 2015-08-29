@@ -235,6 +235,7 @@ autocmd BufRead,BufNewFile *.strace set filetype=strace
 augroup highlight_self_and_tabs
     au FileType python syn match keyword '\<self\>'
     au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
+    au FileType python setlocal formatprg=autopep8\ --aggressive\ --aggressive\ -
 augroup END
 
 " Inline Temp Variable refactoring
