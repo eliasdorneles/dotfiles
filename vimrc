@@ -92,6 +92,9 @@ Bundle 'tmhedberg/SimpylFold'
 
 Bundle 'davidbeckingsale/writegood.vim'
 
+Bundle 'ekalinin/Dockerfile.vim'
+
+
 " PLUGIN CONFIGURATIONS:
 
 " Configuring shortcuts for expand-region plugin
