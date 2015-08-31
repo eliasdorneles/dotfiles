@@ -236,8 +236,8 @@ augroup highlight_self_and_tabs
     au FileType python syn match keyword '\<self\>'
     au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 
-    " setup autopep8 for python formatting
-    au FileType python setlocal formatprg=autopep8
+    " setup isort and autopep8 for python formatting
+    au FileType python setlocal formatprg=isort\ -\ \|\ autopep8
                 \\ --aggressive
                 \\ --aggressive
                 \\ --pep8-passes\ 50
