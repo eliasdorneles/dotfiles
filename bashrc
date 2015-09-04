@@ -26,49 +26,11 @@ repeat() {
         eval "$@";
     done
 }
-_gittar ()
-{
-    local name=$(pwd)
-    name=${name##*/}
 
-    if [ ! "$1" ]; then
-	echo "[ERROR] what branch to export?"
-	return 1
-    fi
-
-    local date=$(TZ=UTC date '+%Y%m%d.%H%M')
-    local pkg="$name-$date"
-    local dir=".."
-    local tar="$dir/$pkg.tar.gz"
-
-    git archive \
-    --format=tar \
-    --prefix="$pkg/" \
-    "$@" |
-    gzip --best > "$tar"
-
-    echo $tar
-}
-_gitzip ()
-{
-    local name=$(pwd)
-    name=${name##*/}
-
-    if [ ! "$1" ]; then
-	echo "[ERROR] what branch to export?"
-	return 1
-    fi
-
-    local pkg="$name"
-    local dir=".."
-    local zip="$dir/$pkg.zip"
-
-    git archive \
-    --format=zip \
-    --prefix="$pkg/" \
-    "$@" > $zip
-
-    echo $zip
+# progress 13 40
+# 13 of 40 (32.50%)
+function progress(){
+    awk "BEGIN { printf \"$1 of $2 (%.2f%%)\n\", 100 * $1 / $2 }" 
 }
 
 # psgrep firef   to check if firefox is running...
