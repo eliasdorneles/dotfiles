@@ -1,0 +1,22 @@
+#!/usr/bin/awk -f
+# Summarize a dataset giving count, min, max and average
+
+NR == 1 {
+    max=$1
+    min=$1
+    sum=0
+}
+
+{
+    if ($1 > max) max=$1
+    if ($1 < min) min=$1
+    total += $1
+    count += 1
+}
+
+END {
+    print "count:", count
+    print "min:", min
+    print "max:", max
+    print "avg:", total / count
+}
