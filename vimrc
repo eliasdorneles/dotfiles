@@ -216,11 +216,14 @@ augroup highlight_annoying_whitespace_at_eol
 augroup END
 
 " Grails:
-au BufNewFile,BufRead *.gsp set ft=jsp
+au BufNewFile,BufRead *.gsp setlocal ft=jsp
 
 " Erlang:
-au BufNewFile,BufRead rebar.config set ft=erlang
-au BufNewFile,BufRead *.app.src set ft=erlang
+au BufNewFile,BufRead rebar.config setlocal ft=erlang
+au BufNewFile,BufRead *.app.src setlocal ft=erlang
+
+" YAML:
+au FileType yaml setlocal shiftwidth=2 tabstop=2
 
 " CSS:
 augroup stylesheets_autocomplete_hyphen
@@ -228,7 +231,7 @@ augroup stylesheets_autocomplete_hyphen
 augroup END
 
 " Strace:
-autocmd BufRead,BufNewFile *.strace set filetype=strace
+autocmd BufRead,BufNewFile *.strace setlocal filetype=strace
 
 " Python:
 augroup highlight_self_and_tabs
