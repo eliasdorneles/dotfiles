@@ -180,8 +180,7 @@ while c <= 'z'
     exec "imap \e".c." <A-".c.">"
     let c = nr2char(1+char2nr(c))
 endw
-
-set ttimeout ttimeoutlen=50
+set ttimeout ttimeoutlen=10
 
 " move a line of text using Alt+[jk]
 inoremap <M-j> <esc>lmz:m+<cr>`zi
