@@ -229,6 +229,12 @@ augroup highlight_self_and_tabs
                 \\ -
 augroup END
 
+function ConfigureMarkdownMappings()
+    " requires vim-surround
+    vmap <buffer> <leader>k S]f]a()<Esc>i
+endfunction
+au FileType markdown :call ConfigureMarkdownMappings()
+
 " Inline Temp Variable refactoring
 " this will inline the first reference to the variable assigned in
 " current line. Use dot to repeat the substitution.
