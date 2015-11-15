@@ -172,24 +172,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " visually select the text that was last edited/pasted
 nmap gV `[v`]
 
-" allows Alt to be used in terminal:
-" http://stackoverflow.com/a/10216459/149872
-let c='a'
-while c <= 'z'
-    exec "set <A-".c.">=\e".c
-    exec "imap \e".c." <A-".c.">"
-    let c = nr2char(1+char2nr(c))
-endw
-set ttimeout ttimeoutlen=10
-
-" move a line of text using Alt+[jk]
-inoremap <M-j> <esc>lmz:m+<cr>`zi
-inoremap <M-k> <esc>lmz:m-2<cr>`zi
-nnoremap <M-j> mz:m+<cr>`z
-nnoremap <M-k> mz:m-2<cr>`z
-vnoremap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vnoremap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
 " keep my sanity whenever I type :Wq or :W
 cab W w
 cab Q q
