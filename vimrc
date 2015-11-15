@@ -212,6 +212,9 @@ augroup stylesheets_autocomplete_hyphen
     autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
+" Bash:
+autocmd FileType sh map <leader>r :exec '!clear;'.getline('.')<cr>
+
 " Strace:
 autocmd BufRead,BufNewFile *.strace setlocal filetype=strace
 

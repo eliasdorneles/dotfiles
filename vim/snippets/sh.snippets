@@ -4,6 +4,8 @@ snippet #!
 snippet script
 	#!/bin/bash
 
+	set -e
+
 	abort() {
 		echo "$*"; exit 1;
 	}
