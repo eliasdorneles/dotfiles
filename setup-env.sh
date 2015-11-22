@@ -14,8 +14,8 @@ create_abs_link(){
     then
         echo "$target already exists, skipping..."
     else
-        echo ln -s "$d/$origin" "$target"
-        (cd && ln -s "$d/$origin" "$target")
+        echo ln -sf "$d/$origin" "$target"
+        (cd && ln -sf "$d/$origin" "$target")
     fi
 }
 
