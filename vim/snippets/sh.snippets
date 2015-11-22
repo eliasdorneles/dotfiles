@@ -11,16 +11,21 @@ snippet script
 	}
 
 	usage() {
-		abort "Usage: $(basename $${0:0}) PARAMS"
+		abort "Usage: $(basename $${0:0}) [-h|--help] PARAMS"
 	}
 
 	require() {
 		type $${0:1} >/dev/null 2>/dev/null
 	}
 
+	cleanup() {
+		# Fill-in cleanup code here...
+	}
+	trap cleanup EXIT
+
 	while [ "$${0:{1#-}}" != "$${0:1}" ]; do
 		case "$${0:1}" in
-			-h) usage;;
+			-h|--help) usage;;
 			*) usage;;
 		esac
 		shift
