@@ -31,6 +31,7 @@
 
     # pull com rebase
     pullr = pull --rebase
+    pulr = pull --rebase
 [core]
 	editor = vim -p
 	autocrlf = input

@@ -93,6 +93,7 @@ Bundle 'tmhedberg/SimpylFold'
 Bundle 'davidbeckingsale/writegood.vim'
 
 Bundle 'ekalinin/Dockerfile.vim'
+Bundle 'lambdatoast/elm.vim'
 
 
 " PLUGIN CONFIGURATIONS:
