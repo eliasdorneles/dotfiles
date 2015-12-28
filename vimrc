@@ -149,8 +149,8 @@ let g:SimpylFold_fold_docstring = 0
 set hlsearch
 
 " setup swap file dir
-silent :!mkdir -p /tmp/.vim-swap
-set dir=/tmp/.vim-swap
+silent :!mkdir -p $HOME/.swap-$USER-vim
+set dir=$HOME/.swap-$USER-vim
 
 " disables mouse
 set mouse=
