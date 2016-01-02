@@ -139,3 +139,9 @@ command! -nargs=? TestCmd :call RemapTestCmd('<args>')
 
 " use <leader>r to reload vimrc
 nnoremap <leader>r :source $MYVIMRC<cr>:redraw!<cr>:nohlsearch<cr>
+
+" access help using devdocs.io -- TODO: write plugin?
+command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
+au FileType python,ruby,javascript,html,php,eruby,coffee
+            \ nnoremap <buffer> K
+            \ :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>

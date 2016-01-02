@@ -1,6 +1,6 @@
 set hlsearch
 
-" setup swap file dir
+" setup swap files dir per user
 silent :!mkdir -p $HOME/.swap-$USER-vim
 set dir=$HOME/.swap-$USER-vim
 
@@ -15,17 +15,16 @@ set shiftwidth=4 tabstop=4 expandtab
 " use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
 
+set nofoldenable
 
 " uses Ctrl-Space for emmet expanding
 let g:user_emmet_expandabbr_key = '<Nul>'
 
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tagbar#enabled = 0 " disabled b/c weird chars in output
+" disabled for causing weird chars in output
+let g:airline#extensions#tagbar#enabled = 0
 
-" don't let golden-ratio resize tagbar window
-let g:golden_ratio_exclude_nonmodifiable = 1
-
-" CtrlP plugin mappings
+" CtrlP config:
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 
@@ -52,15 +51,18 @@ let g:syntastic_mode_map = {
 
 let g:flake8_max_line_length=100
 
-" don't fold docstrings
+" don't fold docstrings:
 let g:SimpylFold_fold_docstring = 0
-
-set nofoldenable
 
 if has("gui_running")
     set guifont=Monospace\ 12
     set guioptions=aegiclA
     set lines=40 columns=80
+endif
+
+" use 256 colors, if supported
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+	set t_Co=256
 endif
 
 augroup go_to_last_known_line_when_open_file
@@ -75,29 +77,34 @@ augroup highlight_annoying_whitespace_at_eol
                 \ highlight annoyingwhitespace ctermbg=red
 augroup END
 
-" Grails:
-au BufNewFile,BufRead *.gsp setlocal ft=jsp
+augroup grails_config
+    au BufNewFile,BufRead *.gsp setlocal ft=jsp
+augroup END
 
-" Erlang:
-au BufNewFile,BufRead rebar.config setlocal ft=erlang
-au BufNewFile,BufRead *.app.src setlocal ft=erlang
+augroup erlang_config
+    au BufNewFile,BufRead rebar.config setlocal ft=erlang
+    au BufNewFile,BufRead *.app.src setlocal ft=erlang
+augroup END
 
-" YAML:
-au FileType yaml setlocal shiftwidth=2 tabstop=2
+augroup yaml_config
+    au FileType yaml setlocal shiftwidth=2 tabstop=2
+augroup END
 
 " CSS:
 augroup stylesheets_autocomplete_hyphen
     autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
-" Bash:
-autocmd FileType sh map <leader>r :exec '!clear;'.getline('.')<cr>
+augroup bash_config
+    autocmd FileType sh map <leader>r :exec '!clear;'.getline('.')<cr>
+augroup END
 
-" Strace:
-autocmd BufRead,BufNewFile *.strace setlocal filetype=strace
+augroup strace_dump_config
+    autocmd BufRead,BufNewFile *.strace setlocal filetype=strace
+augroup END
 
-" Python:
-augroup highlight_self_and_tabs
+augroup python_config
+    " highlight self and tabs
     au FileType python syn match keyword '\<self\>'
     au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 
@@ -114,18 +121,10 @@ augroup gen_tags_for_personal_help
     autocmd BufWritePost ~/.vim/doc/*.txt :helptags ~/.vim/doc
 augroup END
 
-" Lisp: setup lisp mode
-au FileType lisp set lisp
-" Ruby: 2 spaces for indenting
-au FileType ruby setlocal shiftwidth=2 expandtab
+augroup lisp_config
+    au FileType lisp set lisp
+augroup END
 
-" tell vim to use 256 colors, if supported
-if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
-	set t_Co=256
-endif
-
-" access help using devdocs.io -- TODO: write plugin?
-command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
-au FileType python,ruby,javascript,html,php,eruby,coffee
-            \ nnoremap <buffer> K
-            \ :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
+augroup ruby_config
+    au FileType ruby setlocal shiftwidth=2 expandtab
+augroup END
