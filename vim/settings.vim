@@ -61,6 +61,10 @@ let g:jedi#goto_command = 'gD'
 let g:jedi#popup_on_dot = 0
 let g:jedi#rename_command = "<leader>r"
 
+let g:ropevim_guess_project=1
+let g:ropevim_local_prefix='<leader>r'
+let g:ropevim_global_prefix='<leader>R'
+
 
 if has("gui_running")
     set guifont=Monospace\ 12

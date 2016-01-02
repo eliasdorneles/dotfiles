@@ -97,3 +97,5 @@ Bundle 'lambdatoast/elm.vim'
 
 " Python completion and goto definition
 Bundle 'davidhalter/jedi-vim'
+
+Bundle 'python-rope/ropevim'
