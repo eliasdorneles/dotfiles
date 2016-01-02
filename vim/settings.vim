@@ -54,6 +54,14 @@ let g:flake8_max_line_length=100
 " don't fold docstrings:
 let g:SimpylFold_fold_docstring = 0
 
+" make Python plugin Jedi minimally annoying
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#goto_assignments_command = 'gd'
+let g:jedi#goto_command = 'gD'
+let g:jedi#popup_on_dot = 0
+let g:jedi#rename_command = "<leader>r"
+
+
 if has("gui_running")
     set guifont=Monospace\ 12
     set guioptions=aegiclA

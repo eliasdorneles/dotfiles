@@ -49,7 +49,7 @@ Bundle "nvie/vim-flake8"
 
 Bundle "mattn/emmet-vim"
 
-" snipmante and dependencies:
+" snipmate and dependencies:
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "garbas/vim-snipmate"
@@ -95,3 +95,5 @@ Bundle 'davidbeckingsale/writegood.vim'
 Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'lambdatoast/elm.vim'
 
+" Python completion and goto definition
+Bundle 'davidhalter/jedi-vim'
