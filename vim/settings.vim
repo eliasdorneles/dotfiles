@@ -59,7 +59,8 @@ let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#goto_assignments_command = 'gd'
 let g:jedi#goto_command = 'gD'
 let g:jedi#popup_on_dot = 0
-let g:jedi#rename_command = "<leader>r"
+let g:jedi#rename_command = ""
+let g:jedi#smart_auto_mappings = 0
 
 let g:ropevim_guess_project=1
 let g:ropevim_local_prefix='<leader>r'
