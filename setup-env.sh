@@ -28,6 +28,7 @@ set -e
 create_abs_dotlink screenrc
 create_abs_dotlink mplayer
 create_abs_dotlink gitconfig
+create_abs_dotlink gitignore_global
 create_abs_dotlink bashrc
 create_abs_dotlink bash_aliases
 
