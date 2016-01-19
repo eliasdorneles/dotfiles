@@ -99,3 +99,5 @@ Bundle 'lambdatoast/elm.vim'
 Bundle 'davidhalter/jedi-vim'
 
 Bundle 'python-rope/ropevim'
+
+Bundle 'saltstack/salt-vim'

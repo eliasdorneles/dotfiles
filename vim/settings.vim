@@ -62,6 +62,7 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#rename_command = ""
 let g:jedi#smart_auto_mappings = 0
 
+
 let g:ropevim_guess_project=1
 let g:ropevim_local_prefix='<leader>r'
 let g:ropevim_global_prefix='<leader>R'
@@ -130,6 +131,10 @@ augroup python_config
                 \\ -
 augroup END
 
+augroup javascript_config
+    au FileType javascript set shiftwidth=2 tabstop=2
+augroup END
+
 augroup gen_tags_for_personal_help
     autocmd BufWritePost ~/.vim/doc/*.txt :helptags ~/.vim/doc
 augroup END
@@ -139,5 +144,5 @@ augroup lisp_config
 augroup END
 
 augroup ruby_config
-    au FileType ruby setlocal shiftwidth=2 expandtab
+    au FileType ruby setlocal shiftwidth=2
 augroup END
