@@ -14,6 +14,8 @@ Bundle "tpope/vim-sensible"
 Bundle "ervandew/supertab"
 
 Bundle "godlygeek/tabular"
+
+" JS stuff
 Bundle "pangloss/vim-javascript"
 
 Bundle "tpope/vim-fugitive"

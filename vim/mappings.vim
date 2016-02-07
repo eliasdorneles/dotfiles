@@ -1,14 +1,8 @@
 " Mappings and mapped custom functions
 
-" show search results in the middle of the screen
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-nnoremap <silent> g# g#zz
-nnoremap <silent> <C-o> <C-o>zz
-nnoremap <silent> <C-i> <C-i>zz
+" navigate tabs with <shift-hl>
+map <S-H> gT
+map <S-L> gt
 
 " shortcuts for expand-region plugin
 vmap v     <Plug>(expand_region_expand)

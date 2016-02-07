@@ -1,5 +1,12 @@
 set hlsearch
 
+" disable startup message
+set shortmess+=I
+
+" split by default to the right and below
+set splitbelow
+set splitright
+
 " setup swap files dir per user
 silent :!mkdir -p $HOME/.swap-$USER-vim
 set dir=$HOME/.swap-$USER-vim
