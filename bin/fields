@@ -11,7 +11,7 @@ Usage: $(basename $0) [OPTIONS] FIELD_NUMBER...
 
 OPTIONS:
 
-    -d --delimiter   String to separate fields with
+    -s --separator   String to separate fields with (default: TAB)
     """
 }
 
