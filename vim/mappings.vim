@@ -140,6 +140,8 @@ endfunction
 call RemapTestCmd('make test')
 command! -nargs=? TestCmd :call RemapTestCmd('<args>')
 
+au FileType python call RemapTestCmd('py.test -s -v')
+
 " access help using devdocs.io -- TODO: write plugin?
 command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
 au FileType python,ruby,javascript,html,php,eruby,coffee
