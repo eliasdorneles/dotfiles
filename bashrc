@@ -5,32 +5,9 @@
 
 [ -f ~/.sensible.bash ] && source ~/.sensible.bash
 
-# don't put duplicate lines in the history
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries
-export HISTCONTROL=ignoreboth
-# ... and unlimited history
+# overwrite sensible.bash for unlimited history
 export HISTFILESIZE=
 export HISTSIZE=
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# tell history to consider what I've already typed
-bind '"\e[A"':history-search-backward
-bind '"\e[B"':history-search-forward
-
-# "repeat" command.  Like:
-#	repeat 10 echo foo
-repeat() {
-    local count="$1" i;
-    shift;
-    for i in $(seq 1 "$count");
-    do
-        eval "$@";
-    done
-}
 
 # progress 13 40
 # 13 of 40 (32.50%)
