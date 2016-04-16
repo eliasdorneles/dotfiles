@@ -3,6 +3,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+[ -f ~/.sensible.bash ] && source ~/.sensible.bash
+
 # don't put duplicate lines in the history
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries
@@ -96,7 +98,7 @@ alias cp='cp -i'
 [ -f ~/bin/z.sh ] && . ~/bin/z.sh
 
 export EDITOR=vim
-export PATH=~/bin:$PATH
+export PATH=~/bin:~/.local/bin:$PATH
 
 # disable terminal locking
 bind -r '\C-s'
