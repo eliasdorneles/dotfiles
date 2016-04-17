@@ -103,3 +103,5 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'python-rope/ropevim'
 
 Bundle 'saltstack/salt-vim'
+
+Bundle 'embear/vim-localvimrc'
