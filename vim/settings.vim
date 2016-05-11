@@ -54,11 +54,12 @@ endif
 
 " keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
-let g:syntastic_python_checkers=['flake8', 'pylint']
+let g:syntastic_python_checkers=['flake8']
 let g:syntastic_mode_map = {
             \ "mode": "active",
             \ "active_filetypes": ["ruby", "php", "python", "javascript"],
             \ "passive_filetypes": ["puppet", "java"] }
+" let g:syntastic_debug=1
 
 let g:flake8_max_line_length=100
 
