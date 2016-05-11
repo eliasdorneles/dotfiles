@@ -25,7 +25,11 @@ set wildmode=longest,list
 set nofoldenable
 
 " uses Ctrl-Space for emmet expanding
-let g:user_emmet_expandabbr_key = '<Nul>'
+if has("gui_running")
+    let g:user_emmet_expandabbr_key = '<C-space>'
+else
+    let g:user_emmet_expandabbr_key = '<Nul>'
+end
 
 let g:airline_powerline_fonts = 1
 " disabled for causing weird chars in output
@@ -74,11 +78,14 @@ let g:ropevim_guess_project=1
 let g:ropevim_local_prefix='<leader>r'
 let g:ropevim_global_prefix='<leader>R'
 
+" save and load bookmarks automatically
+let g:bookmark_manage_per_buffer = 1
 
 if has("gui_running")
-    set guifont=Monospace\ 12
+    set guifont=Monospace\ 14
     set guioptions=aegiclA
-    set lines=40 columns=80
+    set lines=40 columns=140
+    colorscheme molokai
 endif
 
 " use 256 colors, if supported

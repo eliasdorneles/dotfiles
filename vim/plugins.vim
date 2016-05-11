@@ -105,3 +105,5 @@ Bundle 'python-rope/ropevim'
 Bundle 'saltstack/salt-vim'
 
 Bundle 'embear/vim-localvimrc'
+
+Bundle 'MattesGroeger/vim-bookmarks'
