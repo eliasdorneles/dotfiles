@@ -32,6 +32,7 @@ create_abs_dotlink gitignore_global
 create_abs_dotlink bashrc
 create_abs_dotlink bash_aliases
 create_abs_dotlink sensible.bash
+create_abs_dotlink profile
 
 if [ -d config ]; then
     mkdir -p ~/.config
