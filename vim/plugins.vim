@@ -79,8 +79,6 @@ Bundle 'terryma/vim-multiple-cursors'
 
 Bundle "tomasr/molokai"
 
-Bundle 'joonty/vim-sauce'
-
 Bundle 'bling/vim-airline'
 
 Bundle 'editorconfig/editorconfig-vim'
@@ -109,3 +107,5 @@ Bundle 'embear/vim-localvimrc'
 Bundle 'MattesGroeger/vim-bookmarks'
 
 Bundle 'mbbill/undotree'
+
+Bundle 'airblade/vim-gitgutter'
