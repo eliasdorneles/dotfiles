@@ -48,3 +48,9 @@
 	browser = xdg-open
 [rerere]
 	enabled = true
+[diff]
+	compactionHeuristic = true
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
