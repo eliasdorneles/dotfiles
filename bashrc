@@ -78,6 +78,9 @@ alias cp='cp -i'
 
 export EDITOR=vim
 
+# don't write pyc files by default
+export PYTHONDONTWRITEBYTECODE=1
+
 # disable terminal locking
 bind -r '\C-s'
 stty -ixon
