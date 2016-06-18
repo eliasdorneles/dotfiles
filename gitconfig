@@ -15,9 +15,10 @@
     amend = commit --amend
 
     # undo last commit, keeping changes in filesystem
+    undo-commit = reset HEAD~1 --mixed
     undo = reset HEAD~1 --mixed
 
-    # undo "add to index"
+    undo-add = reset --keep
     rk = reset --keep
 
     # logs bizurados

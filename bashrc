@@ -7,9 +7,10 @@
 
 [ -f ~/.profile ] && source ~/.profile
 
-# overwrite sensible.bash for unlimited history
+# sensible.bash overrides
 export HISTFILESIZE=
 export HISTSIZE=
+set +o noclobber
 
 # progress 13 40
 # 13 of 40 (32.50%)
