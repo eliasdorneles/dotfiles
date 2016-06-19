@@ -33,6 +33,23 @@
     # pull com rebase
     pullr = pull --rebase
     pulr = pull --rebase
+
+	alias = !sh -c 'git config --global "alias.$1" "$2"' --
+    fetch-pr = "!f(){\
+        [ -z \"$1\" ] && { echo Usage: git fetch-pr PULL_REQUEST_ID [new_branch_name]; exit 1; }; \
+        branch=${2:-pr-$1}; \
+        git fetch origin \"pull/$1/head:$branch\"; \
+        }; f "
+
+	branches = !legit branches
+	graft = !legit graft
+	harvest = !legit harvest
+	publish = !legit publish
+	unpublish = !legit unpublish
+	sprout = !legit sprout
+	sync = !legit sync
+	switch = !legit switch
+	resync = !legit resync
 [core]
 	editor = vim -p
 	autocrlf = input
@@ -41,8 +58,6 @@
 	default = upstream
 [http]
 	sslVerify = false
-[color]
-	ui = auto
 [github]
 	user = eliasdorneles
 [web]

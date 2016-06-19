@@ -93,7 +93,7 @@ edit_modified_files(){
 edit_files_with_conflicts(){
     $EDITOR -p $(git diff --name-only --diff-filter=U)
 }
-edit_recently_commited(){
+edit_recently_committed(){
     $EDITOR -p $(git show --name-only --oneline | egrep -v "^[a-z0-9]+ ")
 }
 alias em=edit_modified_files
@@ -101,4 +101,4 @@ alias ec=edit_files_with_conflicts
 alias er=edit_recently_commited
 gm(){ EDITOR=gvim edit_modified_files $@; }
 gc(){ EDITOR=gvim edit_files_with_conflicts $@; }
-gr(){ EDITOR=gvim edit_recently_commited $@; }
+gr(){ EDITOR=gvim edit_recently_committed $@; }
