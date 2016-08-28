@@ -98,7 +98,7 @@ edit_recently_committed(){
 }
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
-alias er=edit_recently_commited
+alias er=edit_recently_committed
 gm(){ EDITOR=gvim edit_modified_files $@; }
 gc(){ EDITOR=gvim edit_files_with_conflicts $@; }
 gr(){ EDITOR=gvim edit_recently_committed $@; }
