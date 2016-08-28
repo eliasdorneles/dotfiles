@@ -166,3 +166,32 @@ snippet args
 	parser = argparse.ArgumentParser(description="Script")
 
 	args = parser.parse_args()
+snippet twiscript
+	from __future__ import print_function
+	from twisted.internet import reactor, task
+
+
+	def main(args):
+		${0:pass}
+
+
+	def on_script_success(_):
+		print('Done')
+		reactor.stop()
+
+
+	def on_script_failure(result):
+		print('ERROR calling script: %s' % result)
+		print('Exiting...')
+		reactor.stop()
+
+
+	if '__main__' == __name__:
+		import argparse
+		parser = argparse.ArgumentParser(description=__doc__)
+
+		args = parser.parse_args()
+
+		d = task.deferLater(reactor, 0, main, args)
+		d.addCallbacks(on_script_success, on_script_failure)
+		reactor.run()
