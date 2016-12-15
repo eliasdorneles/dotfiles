@@ -195,3 +195,21 @@ snippet twiscript
 		d = task.deferLater(reactor, 0, main, args)
 		d.addCallbacks(on_script_success, on_script_failure)
 		reactor.run()
+snippet flask
+	"""
+	A Flask app -- please describe me here
+	Run with: flask run
+	"""
+
+	from flask import Flask
+	app = Flask(__name__)
+
+
+	@app.route('/')
+	def index():
+	    return 'Index Page'
+
+
+	@app.route('/hello/<user>')
+	def hello(user='World'):
+		return 'Hello, {}'.format(user)
