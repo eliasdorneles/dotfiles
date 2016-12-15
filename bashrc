@@ -86,6 +86,13 @@ export PYTHONDONTWRITEBYTECODE=1
 bind -r '\C-s'
 stty -ixon
 
+copy() {
+    xclip -in -selection clipboard
+}
+
+copyn() {
+    tr -d '\n' | xclip -in -selection clipboard
+}
 
 edit_modified_files(){
     $EDITOR -p $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only) | sort | uniq)
