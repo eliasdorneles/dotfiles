@@ -4,7 +4,8 @@
 [alias]
 	co = checkout
 	cob = checkout -b
-    ci = commit
+    commit = commit --signoff # sadly, this doesn't work =/
+    ci = commit --signoff
     d = diff
     dc = diff --cached
     wd = diff --word-diff
@@ -13,6 +14,9 @@
     st = status -sb
     aa = add --all
     amend = commit --amend
+
+    stash-new = stash --keep-index
+    stash-all = stash --include-untracked
 
     # undo last commit, keeping changes in filesystem
     undo-commit = reset HEAD~1 --mixed
@@ -33,6 +37,8 @@
     # pull com rebase
     pullr = pull --rebase
     pulr = pull --rebase
+
+    please = push --force-with-lease
 
 	alias = !sh -c 'git config --global "alias.$1" "$2"' --
     fetch-pr = "!f(){\
