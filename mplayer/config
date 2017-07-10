@@ -1,6 +1,14 @@
 # Write your default config options here!
 
 af=scaletempo
-subfont-text-scale=5
 vo=xv
 nolirc=1
+
+font=Ubuntu
+utf8=yes
+
+ffactor="10" #black outline
+sub-bg-alpha="0" #background color ala closed captions
+sub-bg-color="0" #black to white
+subfont-text-scale="3.7"#truetype font scaling
+subfont-blur="1" #Slight blur
