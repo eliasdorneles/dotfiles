@@ -5,7 +5,6 @@
 
 [ -f ~/.sensible.bash ] && source ~/.sensible.bash
 
-[ -f ~/.profile ] && source ~/.profile
 
 # sensible.bash overrides
 export HISTFILESIZE=
