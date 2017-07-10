@@ -46,6 +46,7 @@
         branch=${2:-pr-$1}; \
         git fetch origin \"pull/$1/head:$branch\"; \
         }; f "
+    meld = difftool -t meld --dir-diff
 
 	branches = !legit branches
 	graft = !legit graft
@@ -61,9 +62,7 @@
 	autocrlf = input
 	excludesfile = /home/elias/.gitignore_global
 [push]
-	default = upstream
-[http]
-	sslVerify = false
+	default = simple
 [github]
 	user = eliasdorneles
 [web]
@@ -76,3 +75,29 @@
 	log = diff-highlight | less
 	show = diff-highlight | less
 	diff = diff-highlight | less
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    untracked = cyan
+
+
+# work stuff:
+[gitflow "branch"]
+	master = master
+	develop = dev
+[gitflow "prefix"]
+	feature = f/
+	release = r/
+	hotfix = h/
+	support = s/
+	versiontag = 
