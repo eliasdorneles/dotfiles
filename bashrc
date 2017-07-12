@@ -94,7 +94,7 @@ copyn() {
 }
 
 edit_modified_files(){
-    $EDITOR -p $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only) | sort | uniq)
+    $EDITOR -p $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only --relative .) | sort | uniq)
 }
 edit_files_with_conflicts(){
     $EDITOR -p $(git diff --name-only --diff-filter=U)
