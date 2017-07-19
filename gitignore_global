@@ -1,7 +1,13 @@
 .ropeproject
 .cache
 .vim-bookmarks
-# ~/.global_ignore
+bower_components
+node_modules
+build
+_build
+*.swp
+*.o
+*.pyc
 
 
 ######### OS X
@@ -20,8 +26,6 @@ Icon
 
 
 ######### VIM
-
-.*.s[a-w][a-z]
 *.un~
 Session.vim
 .netrwhist

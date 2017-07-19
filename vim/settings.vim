@@ -39,14 +39,13 @@ let g:airline#extensions#tagbar#enabled = 0
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-            \ . '|bower_components|node_modules|build|_build'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_use_caching = 0
 
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+" Use ag in CtrlP for listing files.
+" Lightning fast and respects .gitignore (caveat: ignores ctrlp_custom_ignore)
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
