@@ -1,6 +1,8 @@
 .ropeproject
 .cache
 .vim-bookmarks
+.hypothesis
+.gdb_history
 bower_components
 node_modules
 build
