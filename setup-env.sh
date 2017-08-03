@@ -26,6 +26,7 @@ create_abs_dotlink(){
 set -e
 
 create_abs_dotlink screenrc
+create_abs_dotlink pythonrc
 create_abs_dotlink mplayer
 create_abs_dotlink gitconfig
 create_abs_dotlink gitignore_global

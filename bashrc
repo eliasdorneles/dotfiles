@@ -80,6 +80,7 @@ export EDITOR=vim
 
 # don't write pyc files by default
 export PYTHONDONTWRITEBYTECODE=1
+[ -f ~/.pythonrc ] && export PYTHONSTARTUP=~/.pythonrc
 
 # disable terminal locking
 bind -r '\C-s'
