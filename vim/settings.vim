@@ -75,8 +75,11 @@ let g:jedi#smart_auto_mappings = 0
 
 
 let g:ropevim_guess_project=1
+let g:ropevim_enable_autoimport=1
 let g:ropevim_local_prefix='<leader>r'
-let g:ropevim_global_prefix='<leader>R'
+let g:ropevim_global_prefix='<leader>e'
+let g:ropevim_goto_def_newwin="tabnew"
+let g:ropevim_open_files_in_tabs=1
 
 " save and load bookmarks automatically
 let g:bookmark_manage_per_buffer = 1
@@ -143,6 +146,11 @@ augroup python_config
                 \\ --pep8-passes\ 50
                 \\ --max-line-length\ 100
                 \\ -
+augroup END
+
+augroup elm_config
+    au FileType elm set shiftwidth=2 tabstop=2
+    au FileType elm setlocal formatprg=elm-format\ --stdin
 augroup END
 
 augroup javascript_config

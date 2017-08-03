@@ -109,3 +109,9 @@ Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'mbbill/undotree'
 
 Bundle 'airblade/vim-gitgutter'
+
+Bundle 'evanmiller/nginx-vim-syntax'
+
+Bundle 'elixir-lang/vim-elixir'
+
+Bundle 'tfnico/vim-gradle'
