@@ -1,6 +1,7 @@
 # Write your default config options here!
 
 af=scaletempo
+
 vo=xv
 nolirc=1
 
