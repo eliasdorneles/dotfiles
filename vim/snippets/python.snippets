@@ -142,13 +142,15 @@ snippet testcase
 			${0}
 snippet fut
 	from __future__ import ${0}
+snippet future
+	from __future__ import absolute_import, print_function, division
 snippet script
 	#!/usr/bin/env python
 	# -*- coding: utf-8 -*-
 	"""Script description here
 	"""
 
-	from __future__ import print_function
+	from __future__ import print_function, absolute_import, division
 	
 	
 	def run(args):
