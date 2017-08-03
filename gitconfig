@@ -42,9 +42,10 @@
 
 	alias = !sh -c 'git config --global "alias.$1" "$2"' --
     fetch-pr = "!f(){\
-        [ -z \"$1\" ] && { echo Usage: git fetch-pr PULL_REQUEST_ID [new_branch_name]; exit 1; }; \
-        branch=${2:-pr-$1}; \
-        git fetch origin \"pull/$1/head:$branch\"; \
+        [ -z \"$1\" ] && { echo Usage: git fetch-pr PULL_REQUEST_ID [REMOTE_NAME] [NEW_BRANCH_NAME]; exit 1; }; \
+        remote=${2:-origin}; \
+        branch=${3:-pr-$1}; \
+        git fetch $remote \"pull/$1/head:$branch\"; \
         }; f "
     meld = difftool -t meld --dir-diff
 
