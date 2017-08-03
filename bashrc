@@ -7,6 +7,7 @@
 
 
 # sensible.bash overrides
+shopt -u autocd 2> /dev/null
 export HISTFILESIZE=
 export HISTSIZE=
 set +o noclobber
