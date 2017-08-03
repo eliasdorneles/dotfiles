@@ -1,7 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 [ -f ~/.sensible.bash ] && source ~/.sensible.bash
 
@@ -11,6 +14,13 @@ shopt -u autocd 2> /dev/null
 export HISTFILESIZE=
 export HISTSIZE=
 set +o noclobber
+
+if [ -n "$DISPLAY" ]; then
+    export EDITOR="emacsclient -n -c -F \"'(fullscreen . maximized)\""
+else
+    export EDITOR="vim -p"
+fi
+export EDITOR="vim -p"
 
 # progress 13 40
 # 13 of 40 (32.50%)
@@ -77,8 +87,6 @@ alias cp='cp -i'
 # load z script:
 [ -f ~/bin/z.sh ] && . ~/bin/z.sh
 
-export EDITOR=vim
-
 # don't write pyc files by default
 export PYTHONDONTWRITEBYTECODE=1
 [ -f ~/.pythonrc ] && export PYTHONSTARTUP=~/.pythonrc
@@ -86,6 +94,12 @@ export PYTHONDONTWRITEBYTECODE=1
 # disable terminal locking
 bind -r '\C-s'
 stty -ixon
+
+export PATH=~/bin:~/.local/bin:$PATH
+
+if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
 
 copy() {
     xclip -in -selection clipboard
@@ -96,13 +110,13 @@ copyn() {
 }
 
 edit_modified_files(){
-    $EDITOR -p $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only --relative .) | sort | uniq)
+    $EDITOR $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only --relative .) | sort | uniq)
 }
 edit_files_with_conflicts(){
-    $EDITOR -p $(git diff --name-only --diff-filter=U)
+    $EDITOR $(git diff --name-only --diff-filter=U)
 }
 edit_recently_committed(){
-    $EDITOR -p $(git show --name-only --oneline | egrep -v "^[a-z0-9]+ ")
+    $EDITOR $(git show --name-only --oneline | egrep -v "^[a-z0-9]+ ")
 }
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
