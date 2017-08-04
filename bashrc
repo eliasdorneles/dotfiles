@@ -116,7 +116,7 @@ edit_files_with_conflicts(){
     $EDITOR $(git diff --name-only --diff-filter=U)
 }
 edit_recently_committed(){
-    $EDITOR $(git show --name-only --oneline | egrep -v "^[a-z0-9]+ ")
+    $EDITOR $(git show --name-only --oneline --relative . | egrep -v "^[a-z0-9]+ ")
 }
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
