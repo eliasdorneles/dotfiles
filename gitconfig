@@ -1,6 +1,11 @@
 [user]
 	name = Elias Dorneles
 	email = eliasdorneles@gmail.com
+[merge]
+    tool = kdiff3
+    #tool = meld
+[mergetool]
+    keepBackup = false
 [alias]
 	co = checkout
 	cob = checkout -b
@@ -47,7 +52,18 @@
         branch=${3:-pr-$1}; \
         git fetch $remote \"pull/$1/head:$branch\"; \
         }; f "
+    pr = "!f(){\
+        [ -z \"$1\" ] && { echo Usage: git fetch-pr PULL_REQUEST_ID [REMOTE_NAME] [NEW_BRANCH_NAME]; exit 1; }; \
+        remote=${2:-origin}; \
+        branch=${3:-pr-$1}; \
+        git fetch $remote \"pull/$1/head:$branch\"; \
+	git checkout $branch; \
+        }; f "
     meld = difftool -t meld --dir-diff
+    clean-branches = "!f(){\
+        git branch --merged master | grep -v '* master' | xargs --no-run-if-empty -n1\
+        git branch -d; \
+        }; f "
 
 	branches = !legit branches
 	graft = !legit graft
