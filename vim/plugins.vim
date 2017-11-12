@@ -33,7 +33,8 @@ Bundle "tpope/vim-unimpaired"
 Bundle "tomtom/tcomment_vim"
 
 " Ctrl-P, Ctrl-P, Ctrl-P, Ctrl-P!
-Bundle "kien/ctrlp.vim"
+" Bundle "kien/ctrlp.vim"
+Bundle "ctrlpvim/ctrlp.vim"
 
 Bundle "tpope/vim-capslock"
 Bundle "scrooloose/syntastic"
