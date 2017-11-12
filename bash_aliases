@@ -24,4 +24,7 @@ alias jsonfmt='python -mjson.tool'
 
 alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 # vim:set ft=sh:
