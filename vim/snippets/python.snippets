@@ -215,3 +215,28 @@ snippet flask
 	@app.route('/hello/<user>')
 	def hello(user='World'):
 		return 'Hello, {}'.format(user)
+snippet urwid
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
+
+	from __future__ import print_function, absolute_import, division
+	import urwid
+
+
+	PALETTE = [
+		('bold', 'bold', ''),
+	]
+
+
+	def show_or_exit(key):
+		if key in ('q', 'Q', 'esc'):
+			raise urwid.ExitMainLoop()
+
+
+	if __name__ == '__main__':
+		widget = urwid.Columns([
+			urwid.Text(t)
+			for t in ['Hello', ('bold', 'World')]])
+		widget = urwid.Filler(widget, 'top')
+		loop = urwid.MainLoop(widget, PALETTE, unhandled_input=show_or_exit)
+		loop.run()
