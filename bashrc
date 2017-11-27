@@ -18,7 +18,7 @@ set +o noclobber
 if [ -n "$DISPLAY" ]; then
     export EDITOR="emacsclient -n -c -F \"'(fullscreen . maximized)\""
 else
-    export EDITOR="vim -p"
+    export EDITOR="nvim -p"
 fi
 export EDITOR="vim -p"
 
@@ -94,6 +94,7 @@ export PYTHONDONTWRITEBYTECODE=1
 # disable terminal locking
 bind -r '\C-s'
 stty -ixon
+alias reset='reset; stty -ixon'
 
 export PATH=~/bin:~/.local/bin:$PATH
 
@@ -113,7 +114,7 @@ edit_modified_files(){
     $EDITOR $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only --relative .) | sort | uniq)
 }
 edit_files_with_conflicts(){
-    $EDITOR $(git diff --name-only --diff-filter=U)
+    $EDITOR $(git diff --name-only --diff-filter=U --relative .)
 }
 edit_recently_committed(){
     $EDITOR $(git show --name-only --oneline --relative . | egrep -v "^[a-z0-9]+ ")
@@ -124,3 +125,5 @@ alias er=edit_recently_committed
 gm(){ EDITOR=gvim edit_modified_files $@; }
 gc(){ EDITOR=gvim edit_files_with_conflicts $@; }
 gr(){ EDITOR=gvim edit_recently_committed $@; }
+
+_git_switch (){ __gitcomp_nl "$(__git_refs)"; }

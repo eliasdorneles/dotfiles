@@ -22,6 +22,7 @@
 
     stash-new = stash --keep-index
     stash-all = stash --include-untracked
+    stashall = stash --include-untracked
 
     # undo last commit, keeping changes in filesystem
     undo-commit = reset HEAD~1 --mixed
@@ -30,22 +31,46 @@
     undo-add = reset --keep
     rk = reset --keep
 
-    # logs bizurados
+    # logs, enhanced
     ls = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     logtree = log --graph --oneline --decorate --all
 
-    # log dum arquivo
+    # log for specific file
     filelog = log -u
     fl = log -u
 
-    # pull com rebase
+    # pull and rebase
     pullr = pull --rebase
     pulr = pull --rebase
 
     please = push --force-with-lease
 
 	alias = !sh -c 'git config --global "alias.$1" "$2"' --
+
+    # sync current branch
+    sync = "!f(){\
+        set -e; \
+        git stash --include-untracked; \
+        git pull --rebase; \
+        git push; \
+        git stash pop; \
+        }; f "
+
+    # switch to another branch, stashing in between
+    switch = "!f(){\
+        set -e; \
+        [ -z \"$1\" ] && { echo Usage: git switch BRANCH_NAME; exit 1; }; \
+        branch=\"$1\"; \
+        git rev-parse --verify --quiet $branch || { echo \"Branch $branch doesn't exist\"; exit 1; }; \
+        echo \"Switching to branch $branch\"; \
+        git stash --include-untracked; \
+        git checkout $branch; \
+        stash=$(git stash list | grep \"WIP on ${branch}:\" | grep -oE '^stash[^:]+'); \
+        [ -n \"$stash\" ] && git stash pop $stash; \
+        }; f "
+    sw = "!f(){ git switch \"$@\"; }; f"  # direct aliases don't work for complex aliases
+
     fetch-pr = "!f(){\
         [ -z \"$1\" ] && { echo Usage: git fetch-pr PULL_REQUEST_ID [REMOTE_NAME] [NEW_BRANCH_NAME]; exit 1; }; \
         remote=${2:-origin}; \
@@ -53,27 +78,16 @@
         git fetch $remote \"pull/$1/head:$branch\"; \
         }; f "
     pr = "!f(){\
-        [ -z \"$1\" ] && { echo Usage: git pr PULL_REQUEST_ID [REMOTE_NAME] [NEW_BRANCH_NAME]; exit 1; }; \
-        remote=${2:-origin}; \
         branch=${3:-pr-$1}; \
-        git fetch $remote \"pull/$1/head:$branch\"; \
-	git checkout $branch; \
+        git fetch-pr \"$@\"; \
+        git switch $branch; \
         }; f "
     meld = difftool -t meld --dir-diff
     clean-branches = "!f(){\
-        git branch --merged master | grep -v '* master' | xargs --no-run-if-empty -n1\
+        git branch --merged master | grep -v 'master' | xargs --no-run-if-empty -n1\
         git branch -d; \
         }; f "
 
-	branches = !legit branches
-	graft = !legit graft
-	harvest = !legit harvest
-	publish = !legit publish
-	unpublish = !legit unpublish
-	sprout = !legit sprout
-	sync = !legit sync
-	switch = !legit switch
-	resync = !legit resync
 [core]
 	editor = vim -p
 	autocrlf = input
