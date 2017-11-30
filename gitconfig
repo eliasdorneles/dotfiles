@@ -48,6 +48,12 @@
 
 	alias = !sh -c 'git config --global "alias.$1" "$2"' --
 
+    publish = "!f(){\
+        set -e; \
+        branch_name=$(git rev-parse --abbrev-ref HEAD); \
+        git push -u origin $branch_name; \
+        }; f "
+
     # sync current branch
     sync = "!f(){\
         set -e; \
@@ -62,11 +68,12 @@
         set -e; \
         [ -z \"$1\" ] && { echo Usage: git switch BRANCH_NAME; exit 1; }; \
         branch=\"$1\"; \
-        git rev-parse --verify --quiet $branch || { echo \"Branch $branch doesn't exist\"; exit 1; }; \
+        [ \"$branch\" = '-' ] || git rev-parse --verify --quiet $branch || { echo \"Branch $branch doesn't exist\"; exit 1; }; \
         echo \"Switching to branch $branch\"; \
         git stash --include-untracked; \
         git checkout $branch; \
-        stash=$(git stash list | grep \"WIP on ${branch}:\" | grep -oE '^stash[^:]+'); \
+        [ \"$branch\" = '-' ] && branch=$(git rev-parse --abbrev-ref HEAD) \
+        stash=$(git stash list | grep \"WIP on ${branch}:\" | grep -oE '^stash[^:]+' | head -n1); \
         [ -n \"$stash\" ] && git stash pop $stash; \
         }; f "
     sw = "!f(){ git switch \"$@\"; }; f"  # direct aliases don't work for complex aliases
