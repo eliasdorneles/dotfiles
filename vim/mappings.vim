@@ -46,6 +46,9 @@ command! -nargs=0 -bar Update if &modified
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
 
+" exit using <C-Q>
+nnoremap <silent> <C-Q> :qa<CR>
+
 "windows:
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
