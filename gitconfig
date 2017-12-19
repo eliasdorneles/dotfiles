@@ -68,11 +68,11 @@
         set -e; \
         [ -z \"$1\" ] && { echo Usage: git switch BRANCH_NAME; exit 1; }; \
         branch=\"$1\"; \
-        [ \"$branch\" = '-' ] || git rev-parse --verify --quiet $branch || { echo \"Branch $branch doesn't exist\"; exit 1; }; \
+        [ \"$branch\" = '-' ] || git rev-parse --verify --quiet $branch >/dev/null || { echo \"Branch $branch doesn't exist\"; exit 1; }; \
         echo \"Switching to branch $branch\"; \
         git stash --include-untracked; \
         git checkout $branch; \
-        [ \"$branch\" = '-' ] && branch=$(git rev-parse --abbrev-ref HEAD) \
+        [ \"$branch\" = '-' ] && branch=$(git rev-parse --abbrev-ref HEAD); \
         stash=$(git stash list | grep \"WIP on ${branch}:\" | grep -oE '^stash[^:]+' | head -n1); \
         [ -n \"$stash\" ] && git stash pop $stash; \
         }; f "
