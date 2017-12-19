@@ -11,8 +11,8 @@ set splitright
 silent :!mkdir -p $HOME/.swap-$USER-vim
 set dir=$HOME/.swap-$USER-vim
 
-" disables mouse
-set mouse=
+" starts with mouse in vim mode
+set mouse=a
 
 set scrolloff=2
 set pastetoggle=<F10>
@@ -23,6 +23,8 @@ set shiftwidth=4 tabstop=4 expandtab
 set wildmode=longest,list
 
 set nofoldenable
+
+set clipboard=unnamedplus
 
 " uses Ctrl-Space for emmet expanding
 if has("gui_running")
@@ -65,7 +67,7 @@ let g:flake8_max_line_length=100
 " don't fold docstrings:
 let g:SimpylFold_fold_docstring = 0
 
-" make Python plugin Jedi minimally annoying
+" make Python plugin Jedi more awesome
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#goto_assignments_command = 'gd'
 let g:jedi#goto_command = 'gD'
