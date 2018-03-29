@@ -7,6 +7,8 @@
 [mergetool]
     keepBackup = false
 [alias]
+    root = rev-parse --show-toplevel
+
 	co = checkout
 	cob = checkout -b
     commit = commit --signoff # sadly, this doesn't work =/
