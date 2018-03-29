@@ -23,8 +23,9 @@ set shiftwidth=4 tabstop=4 expandtab
 set wildmode=longest,list
 
 set nofoldenable
+set showcmd
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " uses Ctrl-Space for emmet expanding
 if has("gui_running")
@@ -82,6 +83,8 @@ let g:ropevim_local_prefix='<leader>r'
 let g:ropevim_global_prefix='<leader>e'
 let g:ropevim_goto_def_newwin="tabnew"
 let g:ropevim_open_files_in_tabs=1
+
+let g:tagbar_ctags_bin='~/bin/ctags'
 
 " save and load bookmarks automatically
 let g:bookmark_manage_per_buffer = 1
@@ -169,4 +172,8 @@ augroup END
 
 augroup ruby_config
     au FileType ruby setlocal shiftwidth=2
+augroup END
+
+augroup yjsx_config
+    autocmd BufRead,BufNewFile *.yjsx setlocal filetype=xml
 augroup END

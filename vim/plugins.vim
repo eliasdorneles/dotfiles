@@ -17,6 +17,7 @@ Bundle "godlygeek/tabular"
 
 " JS stuff
 Bundle "pangloss/vim-javascript"
+" Bundle "isRuslan/vim-es6"
 
 Bundle "tpope/vim-fugitive"
 "Bundle "tpope/vim-git"
@@ -89,8 +90,6 @@ Bundle 'bps/vim-textobj-python'
 
 Bundle 'kchmck/vim-coffee-script'
 
-Bundle 'tmhedberg/SimpylFold'
-
 Bundle 'davidbeckingsale/writegood.vim'
 
 Bundle 'ekalinin/Dockerfile.vim'
@@ -111,8 +110,12 @@ Bundle 'mbbill/undotree'
 
 Bundle 'airblade/vim-gitgutter'
 
-Bundle 'evanmiller/nginx-vim-syntax'
+Bundle 'chr4/nginx.vim'
 
 Bundle 'elixir-lang/vim-elixir'
 
 Bundle 'tfnico/vim-gradle'
+
+Bundle 'maxbrunsfeld/vim-yankstack'
+
+Bundle 'neo4j-contrib/cypher-vim-syntax'
