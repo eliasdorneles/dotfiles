@@ -15,16 +15,15 @@ export HISTFILESIZE=
 export HISTSIZE=
 set +o noclobber
 
-if [ -n "$DISPLAY" ]; then
-    export EDITOR="emacsclient -n -c -F \"'(fullscreen . maximized)\""
-else
-    export EDITOR="nvim -p"
-fi
 export EDITOR="vim -p"
 
 # progress 13 40
 # 13 of 40 (32.50%)
 function progress(){
+    if [ -z "$2" ]; then
+        echo "Usage: progress CURRENT TOTAL"
+        return
+    fi
     awk "BEGIN { printf \"$1 of $2 (%.2f%%)\n\", 100 * $1 / $2 }" 
 }
 
@@ -45,14 +44,6 @@ pskill(){
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    ;;
-    *)
-    ;;
-esac
 
 # enable color support
 if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ]; then
@@ -65,8 +56,8 @@ if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ];
     GRAY="\[\033[0;37m\]"
     BLUE="\[\033[0;34m\]"
     YELLOW="\[\033[0;33m\]"
-    NORMAL="\[\033[m"
-    export PS1="${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w${NORMAL}\n\$ "
+    NORMAL="\[\033[m\]"
+    PROMPT_COMMAND='__git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w${NORMAL}" "\n\\\$ "'
 fi
 
 # some more ls aliases
@@ -111,7 +102,9 @@ copyn() {
 }
 
 edit_modified_files(){
-    $EDITOR $( (git ls-files -m -o --exclude-standard; git diff --cached --name-only --relative .) | sort | uniq)
+    $EDITOR $(
+    (git ls-files --modified --others --exclude-standard $(git rev-parse --show-toplevel)
+    git diff --cached --name-only --relative .) | sort | uniq)
 }
 edit_files_with_conflicts(){
     $EDITOR $(git diff --name-only --diff-filter=U --relative .)
