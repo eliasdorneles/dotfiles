@@ -120,3 +120,8 @@ gc(){ EDITOR=gvim edit_files_with_conflicts $@; }
 gr(){ EDITOR=gvim edit_recently_committed $@; }
 
 _git_switch (){ __gitcomp_nl "$(__git_refs)"; }
+
+
+# Replace current editing line with eval'd echo, via C-t
+_replace() { READLINE_LINE="$(eval echo "$READLINE_LINE")"; }
+bind -m emacs -x '"\C-t": _replace'
