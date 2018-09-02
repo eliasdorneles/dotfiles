@@ -37,6 +37,7 @@ Session.vim
 ######### PYTHON
 
 *.py[cod]
+.pytest_cache
 
 # C extensions
 *.so
@@ -71,6 +72,8 @@ nosetests.xml
 .project
 .pydevproject
 
+# Linters
+.mypy_cache
 
 ########## DJANGO
 
