@@ -38,7 +38,7 @@ Bundle "tomtom/tcomment_vim"
 Bundle "ctrlpvim/ctrlp.vim"
 
 Bundle "tpope/vim-capslock"
-Bundle "scrooloose/syntastic"
+"Bundle "scrooloose/syntastic"
 Bundle "othree/html5.vim"
 Bundle "fatih/vim-go"
 
@@ -119,3 +119,9 @@ Bundle 'tfnico/vim-gradle'
 Bundle 'maxbrunsfeld/vim-yankstack'
 
 Bundle 'neo4j-contrib/cypher-vim-syntax'
+
+Bundle 'sheerun/vim-polyglot'
+
+Bundle 'w0rp/ale'
+
+Bundle 'wellle/targets.vim'

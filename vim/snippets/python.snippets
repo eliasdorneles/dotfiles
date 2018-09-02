@@ -234,14 +234,15 @@ snippet urwid
 
 
 	if __name__ == '__main__':
+		header = urwid.Text('Header')
+		footer = urwid.Text('Footer')
 		widget = urwid.Pile([
-			urwid.Padding(urwid.Text('Header\n\n\n'), 'center', width=('relative', 6)),
+			header,
 			urwid.Columns([
-				urwid.Text('Salut !'),
-				urwid.Text(('bold', 'Hello World')),
-				urwid.Text('Hiya'),
+				urwid.Text('Hello there'),
+				urwid.Text(('bold', 'world')),
 			]),
-			urwid.Padding(urwid.Text('\n\n\nFooter'), 'center', width=('relative', 6)),
+			footer,
 		])
 		widget = urwid.Filler(widget, 'top')
 		loop = urwid.MainLoop(widget, PALETTE, unhandled_input=show_or_exit)
