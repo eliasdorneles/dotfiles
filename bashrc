@@ -57,6 +57,7 @@ if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ];
     BLUE="\[\033[0;34m\]"
     YELLOW="\[\033[0;33m\]"
     NORMAL="\[\033[m\]"
+    [ -f /etc/bash_completion.d/git-prompt ] && . /etc/bash_completion.d/git-prompt
     PROMPT_COMMAND='__git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w${NORMAL}" "\n\\\$ "'
 fi
 
@@ -89,10 +90,6 @@ alias reset='reset; stty -ixon'
 
 export PATH=~/bin:~/.local/bin:$PATH
 
-if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi
-
 copy() {
     xclip -in -selection clipboard
 }
@@ -123,5 +120,5 @@ _git_switch (){ __gitcomp_nl "$(__git_refs)"; }
 
 
 # Replace current editing line with eval'd echo, via C-t
-_replace() { READLINE_LINE="$(eval echo "$READLINE_LINE")"; }
+_replace() { READLINE_LINE="$(eval echo -n "$READLINE_LINE")"; }
 bind -m emacs -x '"\C-t": _replace'
