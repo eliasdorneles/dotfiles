@@ -89,14 +89,10 @@ stty -ixon
 alias reset='reset; stty -ixon'
 
 export PATH=~/bin:~/.local/bin:$PATH
+[ -f /etc/bash_completion ] && source /etc/bash_completion
 
-copy() {
-    xclip -in -selection clipboard
-}
-
-copyn() {
-    tr -d '\n' | xclip -in -selection clipboard
-}
+alias pbcopy='xclip -selection clipboard -in'
+alias pbpaste='xclip -selection clipboard -out'
 
 edit_modified_files(){
     $EDITOR $(
