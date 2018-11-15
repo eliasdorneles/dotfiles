@@ -27,6 +27,14 @@ set showcmd
 
 set clipboard=unnamed
 
+" Keep undo history across sessions, by storing it in a file.
+set undolevels=1000
+if has('persistent_undo')
+    silent !mkdir -p ~/.local/share/vim/undo > /dev/null 2>&1
+    set undodir=~/.local/share/vim/undo
+    set undofile
+endif
+
 " uses Ctrl-Space for emmet expanding
 if has("gui_running")
     let g:user_emmet_expandabbr_key = '<C-space>'
