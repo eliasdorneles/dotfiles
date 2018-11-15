@@ -86,6 +86,29 @@ let g:ropevim_open_files_in_tabs=1
 
 let g:tagbar_ctags_bin='~/bin/ctags'
 
+" ALE (linter)
+" Only use flake8 for Python, because pylint is huge and impossible to appease
+let g:ale_linters = {
+\ 'python': ['flake8'],
+\}
+" Stupid Unicode tricks
+let g:ale_sign_info = "🚩"
+let g:ale_sign_warning = "🚨"
+let g:ale_sign_error = "💥"
+let g:ale_sign_style_warning = "💈"  " get it?  /style/ issues?  wow tough crowd
+let g:ale_sign_style_error = "🚨"
+
+" Airline; use powerline-style glyphs and colors
+let g:airline_powerline_fonts = 1
+" ALE
+let g:airline#extensions#ale#error_symbol = "🚨"
+
+"Prettier (JS linter):
+let g:prettier#config#semi = 'false'
+let g:prettier#config#arrow_parens = 'always'
+let g:prettier#config#trailing_comma = 'all'
+let g:prettier#config#print_width = 100
+
 " save and load bookmarks automatically
 let g:bookmark_manage_per_buffer = 1
 

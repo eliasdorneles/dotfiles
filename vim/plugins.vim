@@ -125,3 +125,5 @@ Bundle 'sheerun/vim-polyglot'
 Bundle 'w0rp/ale'
 
 Bundle 'wellle/targets.vim'
+
+Bundle 'prettier/vim-prettier'
