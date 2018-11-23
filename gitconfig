@@ -21,6 +21,7 @@
     st = status -sb
     aa = add --all
     amend = commit --amend
+    fixup = commit --amend --no-edit --no-verify
 
     stash-new = stash --keep-index
     stash-all = stash --include-untracked
