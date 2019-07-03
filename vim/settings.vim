@@ -1,4 +1,6 @@
 set hlsearch
+set ignorecase
+set smartcase
 
 " disable startup message
 set shortmess+=I
@@ -26,6 +28,10 @@ set nofoldenable
 set showcmd
 
 set clipboard=unnamed
+
+" Show invisible characters
+set lcs=tab:▸\ ,trail:·,nbsp:_
+set list
 
 " Keep undo history across sessions, by storing it in a file.
 set undolevels=1000
