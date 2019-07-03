@@ -190,6 +190,12 @@ augroup python_config
                 \\ -
 augroup END
 
+
+augroup terraform_config
+    " au FileType terraform setlocal formatprg=terraform\ fmt\ -
+    let g:terraform_fmt_on_save=1
+augroup END
+
 augroup elm_config
     au FileType elm set shiftwidth=2 tabstop=2
     au FileType elm setlocal formatprg=elm-format\ --stdin
