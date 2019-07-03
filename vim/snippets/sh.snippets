@@ -4,7 +4,9 @@ snippet #!
 snippet script
 	#!/bin/bash
 
-	set -e
+	set -o errexit
+	set -o nounset
+
 
 	abort() {
 		echo "$*"; exit 1;
@@ -20,14 +22,17 @@ snippet script
 
 	cleanup() {
 		# Fill-in cleanup code here...
+		echo Bye
 	}
 	trap cleanup EXIT
 
-	while [ "$${0:{1#-}}" != "$${0:1}" ]; do
-		case "$${0:1}" in
+	arg="${${0:1}:-}"
+	while [ "$${0:{arg#-}}" != "$${0:arg}" ]; do
+		case "$${0:arg}" in
 			-h|--help) usage;;
 			*) usage;;
 		esac
 		shift
+		arg="${${0:1}:-}"
 	done
 	${1}
