@@ -1,16 +1,18 @@
 [user]
-	name = Elias Dorneles
-	email = eliasdorneles@gmail.com
+    name = Elias Dorneles
+    email = eliasdorneles@gmail.com
 [merge]
-    tool = kdiff3
-    #tool = meld
+    # tool = kdiff3
+    tool = meld
 [mergetool]
     keepBackup = false
 [alias]
     root = rev-parse --show-toplevel
+    current = rev-parse --abbrev-ref HEAD
+    recent = branch --sort=-committerdate
 
-	co = checkout
-	cob = checkout -b
+    co = checkout
+    cob = checkout -b
     commit = commit --signoff # sadly, this doesn't work =/
     ci = commit --signoff
     d = diff
