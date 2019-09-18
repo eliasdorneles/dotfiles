@@ -81,6 +81,10 @@ noremap <leader>P "+P
 map <leader>qw ysiw`
 map <leader>qW ysiW`
 
+" experimental: map F8 and CTRL_T to open tags map
+nmap <F8> :TagbarToggle<CR>
+nmap <C-t> :TagbarToggle<CR>
+
 " TODO: wrap this properly, avoid overwriting buffer when error
 function! JsonFormat() range
     exec 'normal! :' + a:firstline . ',' . a:lastline . '!python -mjson.tool'

@@ -104,6 +104,7 @@ let g:tagbar_ctags_bin='~/bin/ctags'
 " Only use flake8 for Python, because pylint is huge and impossible to appease
 let g:ale_linters = {
 \ 'python': ['flake8'],
+\ 'javascript': ['prettier'],
 \}
 " Stupid Unicode tricks
 let g:ale_sign_info = "🚩"

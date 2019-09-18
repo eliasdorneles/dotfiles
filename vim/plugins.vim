@@ -20,7 +20,8 @@ Bundle "pangloss/vim-javascript"
 " Bundle "isRuslan/vim-es6"
 
 Bundle "tpope/vim-fugitive"
-"Bundle "tpope/vim-git"
+Bundle "whiteinge/diffconflicts"
+
 Bundle "tpope/vim-markdown"
 
 " tim pope's essentials:
@@ -127,3 +128,7 @@ Bundle 'w0rp/ale'
 Bundle 'wellle/targets.vim'
 
 Bundle 'prettier/vim-prettier'
+
+Bundle 'ambv/black'
+
+Bundle 'hashivim/vim-terraform'
