@@ -189,6 +189,9 @@ augroup python_config
                 \\ --pep8-passes\ 50
                 \\ --max-line-length\ 100
                 \\ -
+
+    au FileType python nnoremap <F9> :Black<CR>
+    au FileType python inoremap <F9> <ESC>:Black<CR>a
 augroup END
 
 
@@ -205,6 +208,10 @@ augroup END
 augroup javascript_config
     au FileType javascript set shiftwidth=2 tabstop=2
     au FileType javascriptreact set shiftwidth=2 tabstop=2
+    au FileType javascript nnoremap <F9> :Prettier<CR>
+    au FileType javascriptreact nnoremap <F9> :Prettier<CR>
+    au FileType javascript inoremap <F9> <ESC>:Prettier<CR>a
+    au FileType javascriptreact inoremap <F9> <ESC>:Prettier<CR>a
 augroup END
 
 augroup gen_tags_for_personal_help
