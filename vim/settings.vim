@@ -204,6 +204,7 @@ augroup END
 
 augroup javascript_config
     au FileType javascript set shiftwidth=2 tabstop=2
+    au FileType javascriptreact set shiftwidth=2 tabstop=2
 augroup END
 
 augroup gen_tags_for_personal_help
