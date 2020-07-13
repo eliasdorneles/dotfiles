@@ -118,3 +118,8 @@ _git_switch (){ __gitcomp_nl "$(__git_refs)"; }
 # Replace current editing line with eval'd echo, via C-t
 _replace() { READLINE_LINE="$(eval echo -n "$READLINE_LINE")"; }
 bind -m emacs -x '"\C-t": _replace'
+
+
+time_curl() {
+    curl -o /dev/null --silent --write-out "namelookup:%{time_namelookup} connect:%{time_connect} appconnect:%{time_appconnect} pretransfer:%{time_pretransfer} redirect:%{time_redirect} starttransfer:%{time_starttransfer} total:%{time_total}\n" "$@";
+}
