@@ -123,3 +123,5 @@ bind -m emacs -x '"\C-t": _replace'
 time_curl() {
     curl -o /dev/null --silent --write-out "namelookup:%{time_namelookup} connect:%{time_connect} appconnect:%{time_appconnect} pretransfer:%{time_pretransfer} redirect:%{time_redirect} starttransfer:%{time_starttransfer} total:%{time_total}\n" "$@";
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
