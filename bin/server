@@ -3,6 +3,6 @@
 
 port=${1:-8000}
 xdg-open http://localhost:$port
-python -m SimpleHTTPServer $port
+python3 -m http.server $port
 
 # vim:set ft=sh:

@@ -229,3 +229,7 @@ augroup END
 augroup yjsx_config
     autocmd BufRead,BufNewFile *.yjsx setlocal filetype=xml
 augroup END
+
+" enable Emoji substitutions for HTML, Markdown and others
+au FileType html,markdown,mmd,text,mail,gitcommit
+    \ runtime macros/emoji-ab.vim

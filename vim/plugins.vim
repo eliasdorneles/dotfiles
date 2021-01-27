@@ -133,3 +133,5 @@ Bundle 'ambv/black'
 
 Bundle 'hashivim/vim-terraform'
 Bundle 'andymass/vim-matchup'
+
+Bundle 'https://gitlab.com/gi1242/vim-emoji-ab'
