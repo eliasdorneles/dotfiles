@@ -124,6 +124,40 @@ time_curl() {
     curl -o /dev/null --silent --write-out "namelookup:%{time_namelookup} connect:%{time_connect} appconnect:%{time_appconnect} pretransfer:%{time_pretransfer} redirect:%{time_redirect} starttransfer:%{time_starttransfer} total:%{time_total}\n" "$@";
 }
 
+# my tiny implementation of virtualenvwrapper
+mkvenv() {
+    [ -n "$1" ] || { echo "Usage: mkvenv VENV_NAME"; return; }
+    venv_dir=~/.virtualenvs/$1
+    [ -d "$venv_dir" ] && { echo "$venv_dir already exists, skipping..."; return; }
+    python3 -m venv $venv_dir
+    source $venv_dir/bin/activate
+}
+
+lsvenv() {
+    /bin/ls ~/.virtualenvs | cat
+}
+
+rmvenv() {
+    [ -n "$1" ] || { echo "Usage: rmvenv VENV_NAME"; return; }
+    venv_dir="$HOME/.virtualenvs/$1"
+    [ -d "$venv_dir" ] || { echo "$venv_dir does not exist, skipping..."; return; }
+    rm -rf "$venv_dir"
+}
+
+workon() {
+    [ -n "$1" ] || { echo "Usage: workon VENV_NAME"; return; }
+    venv_dir="$HOME/.virtualenvs/$1"
+    [ -d "$venv_dir" ] || { echo "$venv_dir does not exist, skipping..."; return; }
+    source "$venv_dir/bin/activate"
+}
+
+mktmpenv() {
+    tmp_venv_dir=$(mktemp -d /tmp/venv-XXXX)
+    python3 -m venv $tmp_venv_dir
+    source $tmp_venv_dir/bin/activate
+    cd $VIRTUAL_ENV
+}
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export NVM_DIR="$HOME/.nvm"
