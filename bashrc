@@ -108,9 +108,9 @@ edit_recently_committed(){
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
 alias er=edit_recently_committed
-gm(){ EDITOR=gvim edit_modified_files $@; }
-gc(){ EDITOR=gvim edit_files_with_conflicts $@; }
-gr(){ EDITOR=gvim edit_recently_committed $@; }
+gm(){ EDITOR="gvim -p" edit_modified_files $@; }
+gc(){ EDITOR="gvim -p" edit_files_with_conflicts $@; }
+gr(){ EDITOR="gvim -p" edit_recently_committed $@; }
 
 _git_switch (){ __gitcomp_nl "$(__git_refs)"; }
 

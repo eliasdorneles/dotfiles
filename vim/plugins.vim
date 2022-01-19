@@ -10,9 +10,6 @@ Bundle 'gmarik/vundle'
 " tim pope's sensible defaults
 Bundle "tpope/vim-sensible"
 
-" TAB completes everything
-Bundle "ervandew/supertab"
-
 Bundle "godlygeek/tabular"
 
 " JS stuff
@@ -49,7 +46,6 @@ Bundle "derekwyatt/vim-scala"
 Bundle "nelstrom/vim-visual-star-search"
 
 " pep8 utils
-Bundle "hynek/vim-python-pep8-indent"
 Bundle "nvie/vim-flake8"
 
 Bundle "mattn/emmet-vim"
@@ -57,13 +53,15 @@ Bundle "mattn/emmet-vim"
 " snipmate and dependencies:
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "garbas/vim-snipmate"
+" disabling because it's not delegating properly to supertab when
+" autocompleting on Python files
+" Bundle "garbas/vim-snipmate"
 
 Bundle "Glench/Vim-Jinja2-Syntax"
 
 Bundle "jimenezrick/vimerl"
 
-Bundle "majutsushi/tagbar"
+Bundle "preservim/tagbar"
 
 " :Rename to rename file in current buffer
 Bundle "danro/rename.vim"
@@ -80,8 +78,6 @@ Bundle "terryma/vim-expand-region"
 Bundle "sjl/clam.vim"
 Bundle 'terryma/vim-multiple-cursors'
 
-Bundle "tomasr/molokai"
-
 Bundle 'bling/vim-airline'
 
 Bundle 'editorconfig/editorconfig-vim'
@@ -97,9 +93,11 @@ Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'lambdatoast/elm.vim'
 
 " Python completion and goto definition
-Bundle 'davidhalter/jedi-vim'
+" Bundle 'davidhalter/jedi-vim'
 
 Bundle 'python-rope/ropevim'
+
+Bundle 'prabirshrestha/vim-lsp'
 
 Bundle 'saltstack/salt-vim'
 
@@ -110,6 +108,9 @@ Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'mbbill/undotree'
 
 Bundle 'airblade/vim-gitgutter'
+
+Plugin 'tomasr/molokai'
+Plugin 'jacoborus/tender.vim'
 
 Bundle 'chr4/nginx.vim'
 
@@ -135,3 +136,6 @@ Bundle 'hashivim/vim-terraform'
 Bundle 'andymass/vim-matchup'
 
 Bundle 'https://gitlab.com/gi1242/vim-emoji-ab'
+
+" TAB completes everything
+Bundle "ervandew/supertab"

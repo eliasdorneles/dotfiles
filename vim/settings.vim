@@ -49,8 +49,13 @@ else
 end
 
 let g:airline_powerline_fonts = 1
-" disabled for causing weird chars in output
+
+" disabled because causing weird chars in output
 let g:airline#extensions#tagbar#enabled = 0
+
+let g:tagbar_autoclose = 1
+" preserve order in source file
+let g:tagbar_sort = 0
 
 " CtrlP config:
 let g:ctrlp_match_window_bottom = 0
@@ -66,6 +71,14 @@ let g:ctrlp_use_caching = 0
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" Use ripgrep in CtrlP for even faster listing files
+if executable('rg')
+  let g:ctrlp_user_command = 'rg --files %s'
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_working_path_mode = 'ra'
+  let g:ctrlp_switch_buffer = 'et'
 endif
 
 " keep syntastic minimally annoying
@@ -98,7 +111,7 @@ let g:ropevim_global_prefix='<leader>e'
 let g:ropevim_goto_def_newwin="tabnew"
 let g:ropevim_open_files_in_tabs=1
 
-let g:tagbar_ctags_bin='~/bin/ctags'
+" let g:tagbar_ctags_bin='~/bin/ctags'
 
 " ALE (linter)
 " Only use flake8 for Python, because pylint is huge and impossible to appease
@@ -128,10 +141,12 @@ let g:prettier#config#print_width = 100
 let g:bookmark_manage_per_buffer = 1
 
 if has("gui_running")
-    set guifont=Monospace\ 14
+    set guifont=Monospace\ 12
     set guioptions=aegiclA
     set lines=40 columns=140
     colorscheme molokai
+else
+    colorscheme tender
 endif
 
 " use 256 colors, if supported
@@ -182,14 +197,6 @@ augroup python_config
     au FileType python syn match keyword '\<self\>'
     au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 
-    " setup isort and autopep8 for python formatting
-    au FileType python setlocal formatprg=isort\ -\ \|\ autopep8
-                \\ --aggressive
-                \\ --aggressive
-                \\ --pep8-passes\ 50
-                \\ --max-line-length\ 100
-                \\ -
-
     au FileType python nnoremap <F9> :Black<CR>
     au FileType python inoremap <F9> <ESC>:Black<CR>a
 augroup END
@@ -233,3 +240,52 @@ augroup END
 " enable Emoji substitutions for HTML, Markdown and others
 au FileType html,markdown,mmd,text,mail,gitcommit
     \ runtime macros/emoji-ab.vim
+
+
+" tell snipMate to use the new parser and shutup
+let g:snipMate = { 'snippet_version' : 1 }
+
+" 
+let g:SuperTabDefaultCompletionType = "context"
+
+" BEGIN VIM-LSP CONFIGURATION
+" (stolen from: https://github.com/prabirshrestha/vim-lsp)
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> <leader>gr <plug>(lsp-references)
+    nmap <buffer> <leader>gi <plug>(lsp-implementation)
+    nmap <buffer> <leader>gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    "Elias: disabling this scrolling stuff that seems broken
+    " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+" END VIM-LSP CONFIGURATION
