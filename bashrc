@@ -36,7 +36,7 @@ pskill(){
 	local pid
 	pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
 	echo -n "killing $1 (process $pid)..."
-	kill -9 $pid
+	kill -9 "$pid"
 	echo "slaughtered."
 }
 
@@ -47,7 +47,7 @@ fi
 
 # enable color support
 if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b`"
+    eval "$(dircolors -b)"
     alias ls='ls -F --color=auto'
     alias grep='grep --color=auto'
     # fancy prompt
@@ -61,11 +61,6 @@ if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ];
     PROMPT_COMMAND='__git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w${NORMAL}" "\n\\\$ "'
 fi
 
-# some more ls aliases
-alias l="ls -l "
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
 # aliases to keep your life safer...
 alias rm='rm -i'
 alias mv='mv -i'
@@ -126,8 +121,8 @@ mkvenv() {
     [ -n "$1" ] || { echo "Usage: mkvenv VENV_NAME"; return; }
     venv_dir=~/.virtualenvs/$1
     [ -d "$venv_dir" ] && { echo "$venv_dir already exists, skipping..."; return; }
-    python3 -m venv $venv_dir
-    source $venv_dir/bin/activate
+    python3 -m venv "$venv_dir"
+    source "$venv_dir/bin/activate"
 }
 
 lsvenv() {
@@ -150,9 +145,20 @@ workon() {
 
 mktmpenv() {
     tmp_venv_dir=$(mktemp -d /tmp/venv-XXXX)
-    python3 -m venv $tmp_venv_dir
-    source $tmp_venv_dir/bin/activate
-    cd $VIRTUAL_ENV
+    python3 -m venv "$tmp_venv_dir"
+    source "$tmp_venv_dir/bin/activate"
+    cd "$VIRTUAL_ENV"
+}
+
+destroy_tmpenv() {
+    if [ -z "$VIRTUAL_ENV" ]; then
+        echo "Not inside a virtualenv, exiting"
+        return
+    fi
+    echo Running: rm -rf "$VIRTUAL_ENV"
+    rm -rf "$VIRTUAL_ENV"
+    echo Done
+    deactivate
 }
 
 alias vim=nvim
