@@ -15,7 +15,7 @@ export HISTFILESIZE=
 export HISTSIZE=
 set +o noclobber
 
-export EDITOR="vim -p"
+export EDITOR="nvim -p"
 
 # progress 13 40
 # 13 of 40 (32.50%)
@@ -108,9 +108,6 @@ edit_recently_committed(){
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
 alias er=edit_recently_committed
-gm(){ EDITOR="gvim -p" edit_modified_files $@; }
-gc(){ EDITOR="gvim -p" edit_files_with_conflicts $@; }
-gr(){ EDITOR="gvim -p" edit_recently_committed $@; }
 
 _git_switch (){ __gitcomp_nl "$(__git_refs)"; }
 
@@ -157,6 +154,8 @@ mktmpenv() {
     source $tmp_venv_dir/bin/activate
     cd $VIRTUAL_ENV
 }
+
+alias vim=nvim
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

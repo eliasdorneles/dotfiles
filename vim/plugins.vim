@@ -32,15 +32,7 @@ Bundle "tpope/vim-unimpaired"
 Bundle "tomtom/tcomment_vim"
 
 " Ctrl-P, Ctrl-P, Ctrl-P, Ctrl-P!
-" Bundle "kien/ctrlp.vim"
 Bundle "ctrlpvim/ctrlp.vim"
-
-Bundle "tpope/vim-capslock"
-"Bundle "scrooloose/syntastic"
-Bundle "othree/html5.vim"
-Bundle "fatih/vim-go"
-
-Bundle "derekwyatt/vim-scala"
 
 " enables to search from visual selection (useful for weird strings)
 Bundle "nelstrom/vim-visual-star-search"
@@ -53,8 +45,8 @@ Bundle "mattn/emmet-vim"
 " snipmate and dependencies:
 Bundle "tomtom/tlib_vim"
 Bundle "MarcWeber/vim-addon-mw-utils"
-" disabling because it's not delegating properly to supertab when
-" autocompleting on Python files
+" TODO: figure out solution for this, had to disable it because it's not
+" delegating properly to supertab when autocompleting on Python files
 " Bundle "garbas/vim-snipmate"
 
 Bundle "Glench/Vim-Jinja2-Syntax"
@@ -118,10 +110,7 @@ Bundle 'elixir-lang/vim-elixir'
 
 Bundle 'tfnico/vim-gradle'
 
-Bundle 'maxbrunsfeld/vim-yankstack'
-
-Bundle 'neo4j-contrib/cypher-vim-syntax'
-
+"TODO: check if this is still useful:
 Bundle 'sheerun/vim-polyglot'
 
 Bundle 'w0rp/ale'
@@ -139,3 +128,11 @@ Bundle 'https://gitlab.com/gi1242/vim-emoji-ab'
 
 " TAB completes everything
 Bundle "ervandew/supertab"
+
+"orgmode and its dependencies
+Bundle 'nvim-treesitter/nvim-treesitter'
+Bundle 'nvim-orgmode/orgmode'
+Bundle 'dhruvasagar/vim-table-mode'
+
+Bundle 'skywind3000/asyncrun.vim'
+Bundle 'jremmen/vim-ripgrep'

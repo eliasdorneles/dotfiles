@@ -87,7 +87,7 @@ nmap <C-t> :TagbarToggle<CR>
 
 " TODO: wrap this properly, avoid overwriting buffer when error
 function! JsonFormat() range
-    exec 'normal! :' + a:firstline . ',' . a:lastline . '!python -mjson.tool'
+    exec 'normal! :' + a:firstline . ',' . a:lastline . '!python3 -mjson.tool'
 endfunction
 nnoremap <leader>j :%call JsonFormat()<cr>
 vnoremap <leader>j :call JsonFormat()<cr>

@@ -36,9 +36,14 @@ set list
 " Keep undo history across sessions, by storing it in a file.
 set undolevels=1000
 if has('persistent_undo')
+  if has('nvim')
+    silent !mkdir -p ~/.local/share/nvim/undo > /dev/null 2>&1
+    set undodir=~/.local/share/nvim/undo
+  else
     silent !mkdir -p ~/.local/share/vim/undo > /dev/null 2>&1
     set undodir=~/.local/share/vim/undo
-    set undofile
+  end
+  set undofile
 endif
 
 " uses Ctrl-Space for emmet expanding
@@ -244,6 +249,14 @@ au FileType html,markdown,mmd,text,mail,gitcommit
 
 " tell snipMate to use the new parser and shutup
 let g:snipMate = { 'snippet_version' : 1 }
+
+let g:asyncrun_open = 6
+
+" use custom hunk text objects for GitGutter
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " 
 let g:SuperTabDefaultCompletionType = "context"
