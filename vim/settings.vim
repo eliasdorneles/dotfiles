@@ -45,6 +45,7 @@ if has('persistent_undo')
   end
   set undofile
 endif
+let g:undotree_WindowLayout = 4
 
 " uses Ctrl-Space for emmet expanding
 if has("gui_running")
@@ -258,7 +259,21 @@ omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
-" 
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md',
+                      \ 'custom_wiki2html': 'vimwiki_markdown',
+                      \ 'links_space_char': '_',
+                      \ 'path_html': '~/Documents/vimwiki/htmlsite/'}]
+
+" let g:vimwiki_list = [{
+" 	\ 'path': '~/vimwiki',
+" 	\ 'template_path': '~/vimwiki/templates/',
+" 	\ 'template_default': 'default',
+" 	\ 'syntax': 'markdown',
+" 	\ 'ext': '.md',
+" 	\ 'template_ext': '.tpl'}]
+
 let g:SuperTabDefaultCompletionType = "context"
 
 " BEGIN VIM-LSP CONFIGURATION

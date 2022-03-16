@@ -129,10 +129,8 @@ Bundle 'https://gitlab.com/gi1242/vim-emoji-ab'
 " TAB completes everything
 Bundle "ervandew/supertab"
 
-"orgmode and its dependencies
-Bundle 'nvim-treesitter/nvim-treesitter'
-Bundle 'nvim-orgmode/orgmode'
 Bundle 'dhruvasagar/vim-table-mode'
+Bundle 'vimwiki/vimwiki'
 
 Bundle 'skywind3000/asyncrun.vim'
 Bundle 'jremmen/vim-ripgrep'
