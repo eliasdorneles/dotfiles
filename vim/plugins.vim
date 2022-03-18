@@ -119,7 +119,8 @@ Bundle 'wellle/targets.vim'
 
 Bundle 'prettier/vim-prettier'
 
-Bundle 'ambv/black'
+" superseded by vim-lsp + python-lsp-black
+" Bundle 'ambv/black'
 
 Bundle 'hashivim/vim-terraform'
 Bundle 'andymass/vim-matchup'

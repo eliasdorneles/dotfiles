@@ -21,8 +21,8 @@ set pastetoggle=<F10>
 set modeline
 set shiftwidth=4 tabstop=4 expandtab
 
-" use emacs-style tab completion when selecting files, etc
-set wildmode=longest,list
+" when tab-completing, complete the longest and display menu w/ options
+set wildmode=longest:full
 
 set nofoldenable
 set showcmd
@@ -203,8 +203,8 @@ augroup python_config
     au FileType python syn match keyword '\<self\>'
     au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 
-    au FileType python nnoremap <F9> :Black<CR>
-    au FileType python inoremap <F9> <ESC>:Black<CR>a
+    " au FileType python nnoremap <F9> :Black<CR>
+    " au FileType python inoremap <F9> <ESC>:Black<CR>a
 augroup END
 
 
@@ -278,11 +278,11 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " BEGIN VIM-LSP CONFIGURATION
 " (stolen from: https://github.com/prabirshrestha/vim-lsp)
-if executable('pyls')
+if executable('pylsp')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
         \ 'allowlist': ['python'],
         \ })
 endif
@@ -301,12 +301,13 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <F9> <plug>(lsp-document-format)
     "Elias: disabling this scrolling stuff that seems broken
     " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    " autocmd! BufWritePre *.py call execute('LspDocumentFormatSync')
 
     " refer to doc to add more commands
 endfunction
