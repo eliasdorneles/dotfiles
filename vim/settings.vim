@@ -145,7 +145,12 @@ if has("gui_running")
     set lines=40 columns=140
     colorscheme molokai
 else
-    colorscheme tender
+    try
+        colorscheme tender
+    catch /^Vim\%((\a\+)\)\=:E185/
+        colorscheme default
+        set background=dark
+    endtry
 endif
 
 " use 256 colors, if supported
