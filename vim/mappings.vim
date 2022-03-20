@@ -148,7 +148,7 @@ endfunction
 call RemapTestCmd('make test')
 command! -nargs=? TestCmd :call RemapTestCmd('<args>')
 
-au FileType python call RemapTestCmd('py.test -s -v')
+au FileType python call RemapTestCmd('pytest -s -v')
 au FileType elixir call RemapTestCmd('mix test')
 
 " access help using devdocs.io -- TODO: write plugin?

@@ -110,13 +110,6 @@ let g:jedi#rename_command = ""
 let g:jedi#smart_auto_mappings = 0
 
 
-let g:ropevim_guess_project=1
-let g:ropevim_enable_autoimport=1
-let g:ropevim_local_prefix='<leader>r'
-let g:ropevim_global_prefix='<leader>e'
-let g:ropevim_goto_def_newwin="tabnew"
-let g:ropevim_open_files_in_tabs=1
-
 " let g:tagbar_ctags_bin='~/bin/ctags'
 
 " ALE (linter)
@@ -266,14 +259,7 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
                       \ 'links_space_char': '_',
                       \ 'path_html': '~/Documents/vimwiki/htmlsite/'}]
 
-" let g:vimwiki_list = [{
-" 	\ 'path': '~/vimwiki',
-" 	\ 'template_path': '~/vimwiki/templates/',
-" 	\ 'template_default': 'default',
-" 	\ 'syntax': 'markdown',
-" 	\ 'ext': '.md',
-" 	\ 'template_ext': '.tpl'}]
-
+" TODO: need to make supertab work nicely w/ lsp autocompletion
 let g:SuperTabDefaultCompletionType = "context"
 
 " BEGIN VIM-LSP CONFIGURATION
@@ -298,6 +284,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>gi <plug>(lsp-implementation)
     nmap <buffer> <leader>gt <plug>(lsp-type-definition)
     nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> <leader>? <plug>(lsp-peek-definition)
+    nmap <buffer> <leader>la <plug>(lsp-code-action)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)

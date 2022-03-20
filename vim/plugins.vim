@@ -37,21 +37,10 @@ Bundle "ctrlpvim/ctrlp.vim"
 " enables to search from visual selection (useful for weird strings)
 Bundle "nelstrom/vim-visual-star-search"
 
-" pep8 utils
-Bundle "nvie/vim-flake8"
-
+" quick html writing with: TAGNAME<ctrl-space>
 Bundle "mattn/emmet-vim"
 
-" snipmate and dependencies:
-Bundle "tomtom/tlib_vim"
-Bundle "MarcWeber/vim-addon-mw-utils"
-" TODO: figure out solution for this, had to disable it because it's not
-" delegating properly to supertab when autocompleting on Python files
-" Bundle "garbas/vim-snipmate"
-
 Bundle "Glench/Vim-Jinja2-Syntax"
-
-Bundle "jimenezrick/vimerl"
 
 Bundle "preservim/tagbar"
 
@@ -77,21 +66,12 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'bps/vim-textobj-python'
 
-Bundle 'kchmck/vim-coffee-script'
-
+" linter for English prose, see :Writegood<TAB...> commands
 Bundle 'davidbeckingsale/writegood.vim'
 
 Bundle 'ekalinin/Dockerfile.vim'
-Bundle 'lambdatoast/elm.vim'
-
-" Python completion and goto definition
-" Bundle 'davidhalter/jedi-vim'
-
-Bundle 'python-rope/ropevim'
 
 Bundle 'prabirshrestha/vim-lsp'
-
-Bundle 'saltstack/salt-vim'
 
 Bundle 'embear/vim-localvimrc'
 
@@ -101,6 +81,7 @@ Bundle 'mbbill/undotree'
 
 Bundle 'airblade/vim-gitgutter'
 
+"colorschemes:
 Plugin 'tomasr/molokai'
 Plugin 'jacoborus/tender.vim'
 
@@ -110,17 +91,15 @@ Bundle 'elixir-lang/vim-elixir'
 
 Bundle 'tfnico/vim-gradle'
 
-"TODO: check if this is still useful:
-Bundle 'sheerun/vim-polyglot'
+"TODO: disaibling this to check if it is still useful
+" Bundle 'sheerun/vim-polyglot'
 
 Bundle 'w0rp/ale'
 
 Bundle 'wellle/targets.vim'
 
+" TODO: consider finding a lsp-based replacement for this
 Bundle 'prettier/vim-prettier'
-
-" superseded by vim-lsp + python-lsp-black
-" Bundle 'ambv/black'
 
 Bundle 'hashivim/vim-terraform'
 Bundle 'andymass/vim-matchup'
@@ -135,3 +114,5 @@ Bundle 'vimwiki/vimwiki'
 
 Bundle 'skywind3000/asyncrun.vim'
 Bundle 'jremmen/vim-ripgrep'
+
+Bundle "SirVer/ultisnips"
