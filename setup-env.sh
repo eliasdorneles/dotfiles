@@ -6,10 +6,9 @@ absdirname(){
 }
 
 create_abs_link(){
-    # TODO: rewrite this crap
     local target="$1"
     local origin=${2:-$1}
-    local d=`absdirname $0`
+    local d=$(absdirname $0)
     if (cd && test -e "$target");
     then
         echo "$target already exists, skipping..."
@@ -93,8 +92,10 @@ if ! diff -q <(echo "$fontlist") <(ls $fonts_dir) >/dev/null; then
     echo "You may need to restart X for the new fonts to be used"
 fi
 
-if [ ! -f ~/bin/zz ]; then
-    echo -n "Downloading zz ... "
-    wget --quiet http://funcoeszz.net/funcoeszz -O ~/bin/zz && chmod u+x ~/bin/zz
-    echo done
-fi
+
+# install the python3 deps needed for vim-lsp & Python
+pip3 install --user python-lsp-server \
+    python-lsp-black \
+    pyls-flake8 \
+    pylsp-rope \
+    pylsp-mypy
