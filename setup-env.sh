@@ -46,12 +46,6 @@ fi
 
 create_abs_dotlink vimrc
 create_abs_dotlink vim
-if [ ! -d ~/.vim/bundle ]; then
-	mkdir -p ~/.vim/bundle
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-    echo "Vundle installed, please remember to run:"
-    echo "    vim -c ':BundleInstall'"
-fi
 
 echo -n "Copying files to ~/bin... "
 mkdir -p ~/bin
