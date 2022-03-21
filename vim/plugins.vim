@@ -3,12 +3,11 @@ filetype off
 
 call plug#begin()
 
-" Let Vundle manage Vundle
-Plug 'gmarik/vundle'
-
 " tim pope's sensible defaults
 Plug 'tpope/vim-sensible'
 
+" left align stuff with :Tab /<search here>
+" (use \zs after search expr to leave it left-side)
 Plug 'godlygeek/tabular'
 
 " JS stuff
@@ -52,25 +51,23 @@ Plug 'mtth/scratch.vim'
 " exchange with cx (motion or selection)
 Plug 'tommcdo/vim-exchange'
 
-" expand region
+" expand/shrink current visual selection with v/^v
 Plug 'terryma/vim-expand-region'
-
-Plug 'sjl/clam.vim'
-Plug 'terryma/vim-multiple-cursors'
 
 Plug 'bling/vim-airline'
 
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'kana/vim-textobj-user'
+
+" adds Python text objects: af (around function), ac (around class)
+" TODO: check why it breaks for arguments in multiple lines
 Plug 'bps/vim-textobj-python'
 
 " linter for English prose, see :Writegood<TAB...> commands
 Plug 'davidbeckingsale/writegood.vim'
 
 Plug 'ekalinin/Dockerfile.vim'
-
-Plug 'prabirshrestha/vim-lsp'
 
 Plug 'embear/vim-localvimrc'
 
@@ -86,14 +83,12 @@ Plug 'jacoborus/tender.vim'
 
 Plug 'chr4/nginx.vim'
 
-Plug 'elixir-lang/vim-elixir'
-
-Plug 'tfnico/vim-gradle'
-
 "TODO: disaibling this to check if it is still useful
 " Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'rhysd/vim-lsp-ale'
 
 Plug 'wellle/targets.vim'
 

@@ -2,10 +2,12 @@
     name = Elias Dorneles
     email = elias.dorneles@hey.com
 [merge]
-    # tool = kdiff3
-    tool = meld
+    tool = diffconflicts
 [mergetool]
     keepBackup = false
+[mergetool "diffconflicts"]
+    cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
 [alias]
     root = rev-parse --show-toplevel
     current = rev-parse --abbrev-ref HEAD
