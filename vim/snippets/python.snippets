@@ -247,3 +247,23 @@ snippet urwid
 		widget = urwid.Filler(widget, 'top')
 		loop = urwid.MainLoop(widget, PALETTE, unhandled_input=show_or_exit)
 		loop.run()
+snippet fastapi
+	from typing import Optional, Dict, Any, List, Union  # NOQA
+	from fastapi import FastAPI, APIRouter, Request, Response, Path, Body, Query  # NOQA
+	from pydantic import BaseModel  # NOQA
+
+	router = APIRouter()
+
+
+	@router.get("/")
+	def index():
+		return {"endpoints": ["/", "/hello", "/docs"]}
+
+
+	@router.post("/hello")
+	def hello(who: str = Body(..., embed=True)):
+		return {"hello": who}
+
+
+	app = FastAPI(title="Test API")
+	app.include_router(router)

@@ -33,6 +33,12 @@ set clipboard=unnamed
 set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
 
+let g:netrw_banner=0
+let g:netrw_browser_split=4 " open in prior windoe
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',.git'
+
 " Keep undo history across sessions, by storing it in a file.
 set undolevels=1000
 if has('persistent_undo')
@@ -283,6 +289,7 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gD :tab LspDefinition<cr>
     nmap <buffer> gs <plug>(lsp-document-symbol-search)
     nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
     nmap <buffer> <leader>gr <plug>(lsp-references)
