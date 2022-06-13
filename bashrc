@@ -143,6 +143,14 @@ workon() {
     source "$venv_dir/bin/activate"
 }
 
+mkvenv-curdirname() {
+    mkvenv $(basename $(pwd))
+}
+
+workon-curdirname() {
+    workon $(basename $(pwd))
+}
+
 mktmpenv() {
     tmp_venv_dir=$(mktemp -d /tmp/venv-XXXX)
     python3 -m venv "$tmp_venv_dir"
