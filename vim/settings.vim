@@ -54,11 +54,7 @@ endif
 let g:undotree_WindowLayout = 4
 
 " uses Ctrl-Space for emmet expanding
-if has("gui_running")
-    let g:user_emmet_expandabbr_key = '<C-space>'
-else
-    let g:user_emmet_expandabbr_key = '<Nul>'
-end
+let g:user_emmet_expandabbr_key = '<C-space>'
 
 let g:airline_powerline_fonts = 1
 
