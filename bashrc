@@ -41,7 +41,7 @@ pskill(){
 }
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -89,6 +89,9 @@ export PATH=~/bin:~/.local/bin:$PATH
 alias pbcopy='xclip -selection clipboard -in'
 alias pbpaste='xclip -selection clipboard -out'
 
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 edit_modified_files(){
     $EDITOR $(
     (git ls-files --modified --others --exclude-standard $(git rev-parse --show-toplevel)
@@ -119,7 +122,7 @@ time_curl() {
 # my tiny implementation of virtualenvwrapper
 mkvenv() {
     [ -n "$1" ] || { echo "Usage: mkvenv VENV_NAME"; return; }
-    venv_dir=~/.virtualenvs/$1
+    venv_dir="$HOME/.virtualenvs/$1"
     [ -d "$venv_dir" ] && { echo "$venv_dir already exists, skipping..."; return; }
     python3 -m venv "$venv_dir"
     source "$venv_dir/bin/activate"
@@ -143,11 +146,11 @@ workon() {
     source "$venv_dir/bin/activate"
 }
 
-mkvenv-curdirname() {
+mkvenv-project() {
     mkvenv $(basename $(pwd))
 }
 
-workon-curdirname() {
+workon-project() {
     workon $(basename $(pwd))
 }
 
@@ -158,9 +161,17 @@ mktmpenv() {
     cd "$VIRTUAL_ENV"
 }
 
-destroy_tmpenv() {
+destroy_venv() {
     if [ -z "$VIRTUAL_ENV" ]; then
         echo "Not inside a virtualenv, exiting"
+        return
+    fi
+    if [ ! -d "$VIRTUAL_ENV" ]; then
+        echo "'$VIRTUAL_ENV' is not a virtualenv, exiting"
+        return
+    fi
+    if [ ! -f "$VIRTUAL_ENV/bin/activate" ]; then
+        echo "'$VIRTUAL_ENV' is not a virtualenv, exiting"
         return
     fi
     echo Running: rm -rf "$VIRTUAL_ENV"
