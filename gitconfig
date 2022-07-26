@@ -117,7 +117,9 @@
 
     meld = difftool -t meld --dir-diff
     clean-branches = "!f(){\
-        git branch --merged master | grep -v 'master' | xargs --no-run-if-empty -n1\
+        main_branch=master; \
+        [ \"x$1\" = \"x--main\" ] && { main_branch=\"$2\"; shift; shift; }; \
+        git branch --merged \"$main_branch\" | grep -v \"$main_branch\" | xargs --no-run-if-empty -n1\
         git branch -d; \
         }; f "
 
