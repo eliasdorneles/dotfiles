@@ -92,16 +92,26 @@ alias pbpaste='xclip -selection clipboard -out'
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-edit_modified_files(){
-    $EDITOR $(
+ls_modified_files(){
+    echo $(
     (git ls-files --modified --others --exclude-standard $(git rev-parse --show-toplevel)
     git diff --cached --name-only --relative .) | sort | uniq)
 }
+ls_files_with_conflicts(){
+    git diff --name-only --diff-filter=U --relative .
+}
+ls_recently_committed(){
+    git show --name-only --oneline $1 --relative . | egrep -v "^[a-z0-9]+ "
+}
+
+edit_modified_files(){
+    $EDITOR $(ls_modified_files)
+}
 edit_files_with_conflicts(){
-    $EDITOR $(git diff --name-only --diff-filter=U --relative .)
+    $EDITOR $(ls_files_with_conflicts)
 }
 edit_recently_committed(){
-    $EDITOR $(git show --name-only --oneline $1 --relative . | egrep -v "^[a-z0-9]+ ")
+    $EDITOR $(ls_recently_committed)
 }
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
@@ -140,8 +150,17 @@ rmvenv() {
 }
 
 workon() {
-    [ -n "$1" ] || { echo "Usage: workon VENV_NAME"; return; }
-    venv_dir="$HOME/.virtualenvs/$1"
+    if [ -n "$1" ]; then
+        venv_dir="$HOME/.virtualenvs/$1"
+    else
+        # if no given virtualenv name, assume "venv" in current dir
+        if [ -d venv ]; then
+            venv_dir="venv"
+        else
+            echo "Usage: workon VENV_NAME"
+            return
+        fi
+    fi
     [ -d "$venv_dir" ] || { echo "$venv_dir does not exist, skipping..."; return; }
     source "$venv_dir/bin/activate"
 }
