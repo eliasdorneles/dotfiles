@@ -199,6 +199,12 @@ destroy_venv() {
     deactivate
 }
 
+
+pwgen(){
+    size=${1:-20}
+    python -c "import random, string; print(''.join(random.choice(string.ascii_letters + string.digits) for x in range($size)))"
+}
+
 alias vim=nvim
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
