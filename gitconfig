@@ -59,6 +59,24 @@
     hub = "!f() { git clone git@github.com:$1; }; f"
     lab = "!f() { git clone git@gitlab.com:$1; }; f"
 
+    # list files with conflicts
+    ls-conflicts = diff --name-only --diff-filter=U --relative .
+    lc = ls-conflicts
+
+    # list files modified in previous commit
+    ls-recently-committed = "!f(){\
+            git show --name-only --oneline $1 --relative . | egrep -v \"^[a-z0-9]+ \"; \
+        }; f "
+    lr = ls-recently-committed
+
+    # list files added/modified but not yet committed
+    ls-modified = "!f(){\
+            echo $( \
+            (git ls-files --modified --others --exclude-standard $(git rev-parse --show-toplevel); \
+            git diff --cached --name-only --relative .) | sort | uniq); \
+        }; f "
+    lm = ls-modified
+
     publish = "!f(){\
         set -e; \
         branch_name=$(git rev-parse --abbrev-ref HEAD); \
