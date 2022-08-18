@@ -45,6 +45,41 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# prompt timing function, stolen from: https://stackoverflow.com/a/64524817/149872
+function convert_secs {
+    ((h=${1}/3600))
+    ((m=(${1}%3600)/60))
+    ((s=${1}%60))
+    if [ $h -gt 0 ]; then printf "${h}h "; fi
+    if [ $h -gt 0 ] || [ $m -gt 0 ]; then printf "${m}m "; fi
+    if [ $s -gt 0 ]; then printf "${s}s "; fi
+}
+
+function timer_start {
+    timer=${timer:-$SECONDS}
+}
+TIMER_SHOW=""
+
+function timer_stop {
+    time_threshold=3
+    timer_time=$(($SECONDS - $timer))
+
+    if [ ! -z $timer_time ] && [ $timer_time -ge ${time_threshold} ]; then
+        TIMER_SHOW="took $(convert_secs $timer_time)"
+    else
+        TIMER_SHOW=""
+    fi
+
+    unset timer
+}
+
+trap 'timer_start' DEBUG
+
+my_prompt(){
+    timer_stop
+    __git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w  ${CYAN}${TIMER_SHOW}${NORMAL}" "\n\\\$ "
+}
+
 # enable color support
 if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ]; then
     eval "$(dircolors -b)"
@@ -58,7 +93,7 @@ if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ];
     YELLOW="\[\033[0;33m\]"
     NORMAL="\[\033[m\]"
     [ -f /etc/bash_completion.d/git-prompt ] && . /etc/bash_completion.d/git-prompt
-    PROMPT_COMMAND='__git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w${NORMAL}" "\n\\\$ "'
+    PROMPT_COMMAND=my_prompt
 fi
 
 # aliases to keep your life safer...
