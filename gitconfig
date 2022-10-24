@@ -136,7 +136,10 @@
     meld = difftool -t meld --dir-diff
     clean-branches = "!f(){\
         main_branch=master; \
+        current_branch=$(git rev-parse --abbrev-ref HEAD); \
+        [ \"$current_branch\" = \"main\" ] && { main_branch=\"main\"; }; \
         [ \"x$1\" = \"x--main\" ] && { main_branch=\"$2\"; shift; shift; }; \
+        echo \"Using main_branch=$main_branch\" ; \
         git branch --merged \"$main_branch\" | grep -v \"$main_branch\" | xargs --no-run-if-empty -n1\
         git branch -d; \
         }; f "
@@ -173,3 +176,5 @@
 
 [color "status"]
     untracked = cyan
+[init]
+	defaultBranch = main
