@@ -75,9 +75,19 @@ function timer_stop {
 
 trap 'timer_start' DEBUG
 
+__kube_ps1()
+{
+    # Get current context
+    CONTEXT=$(cat ~/.kube/config | grep "current-context:" | sed "s/current-context: //")
+
+    if [ -n "$CONTEXT" ]; then
+        echo "(k8s: ${CONTEXT})"
+    fi
+}
+
 my_prompt(){
     timer_stop
-    __git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w  ${CYAN}${TIMER_SHOW}${NORMAL}" "\n\\\$ "
+    __git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w ${MAGENTA}\$(__kube_ps1) ${CYAN}${TIMER_SHOW}${NORMAL}" "\n\\\$ "
 }
 
 # enable color support
@@ -87,6 +97,8 @@ if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ];
     alias grep='grep --color=auto'
     # fancy prompt
     GREEN="\[\033[0;32m\]"
+    RED="\[\033[0;31m\]"
+    MAGENTA="\[\033[0;35m\]"
     CYAN="\[\033[0;36m\]"
     GRAY="\[\033[0;37m\]"
     BLUE="\[\033[0;34m\]"
