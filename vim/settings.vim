@@ -253,6 +253,9 @@ let g:snipMate = { 'snippet_version' : 1 }
 
 let g:asyncrun_open = 6
 
+
+let g:localvimrc_whitelist = ['/home/elias/code/']
+
 " use custom hunk text objects for GitGutter
 omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)

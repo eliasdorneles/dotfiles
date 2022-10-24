@@ -1,6 +1,7 @@
 .ropeproject
 .cache
 .vim-bookmarks
+.lvimrc
 .hypothesis
 .gdb_history
 bower_components

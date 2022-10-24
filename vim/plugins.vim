@@ -111,4 +111,6 @@ Plug 'jremmen/vim-ripgrep'
 
 Plug 'SirVer/ultisnips'
 
+Plug 'mechatroner/rainbow_csv'
+
 call plug#end()

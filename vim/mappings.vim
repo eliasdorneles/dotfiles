@@ -36,15 +36,15 @@ nmap <leader>l za
 nmap <leader>f :set foldenable!<cr>
 
 " save using <C-S>
-command! -nargs=0 -bar Update if &modified
+command! -nargs=0 -bar SaveCurrentFile if &modified
                            \|    if empty(bufname('%'))
                            \|        browse confirm write
                            \|    else
                            \|        confirm write
                            \|    endif
                            \|endif
-nnoremap <silent> <C-S> :<C-u>Update<CR>
-inoremap <silent> <C-S> <Esc>:<C-u>Update<CR>a
+nnoremap <silent> <C-S> :<C-u>SaveCurrentFile<CR>
+inoremap <silent> <C-S> <Esc>:<C-u>SaveCurrentFile<CR>a
 
 " exit using <C-Q>
 nnoremap <silent> <C-Q> :qa<CR>
