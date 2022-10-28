@@ -50,9 +50,9 @@ function convert_secs {
     ((h=${1}/3600))
     ((m=(${1}%3600)/60))
     ((s=${1}%60))
-    if [ $h -gt 0 ]; then printf "${h}h "; fi
-    if [ $h -gt 0 ] || [ $m -gt 0 ]; then printf "${m}m "; fi
-    if [ $s -gt 0 ]; then printf "${s}s "; fi
+    if [ $h -gt 0 ]; then echo -n "${h}h "; fi
+    if [ $h -gt 0 ] || [ $m -gt 0 ]; then echo -n "${m}m "; fi
+    if [ $s -gt 0 ]; then echo -n "${s}s "; fi
 }
 
 function timer_start {
@@ -62,9 +62,9 @@ TIMER_SHOW=""
 
 function timer_stop {
     time_threshold=3
-    timer_time=$(($SECONDS - $timer))
+    timer_time=$((SECONDS - timer))
 
-    if [ ! -z $timer_time ] && [ $timer_time -ge ${time_threshold} ]; then
+    if [ -n "$timer_time" ] && [ $timer_time -ge ${time_threshold} ]; then
         TIMER_SHOW="took $(convert_secs $timer_time)"
     else
         TIMER_SHOW=""
@@ -78,7 +78,8 @@ trap 'timer_start' DEBUG
 __kube_ps1()
 {
     # Get current context
-    CONTEXT=$(cat ~/.kube/config | grep "current-context:" | sed "s/current-context: //")
+    [ -f ~/.kube/config ] || return
+    CONTEXT=$(grep "current-context:" ~/.kube/config | sed "s/current-context: //")
 
     if [ -n "$CONTEXT" ]; then
         echo "(k8s: ${CONTEXT})"
