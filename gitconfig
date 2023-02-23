@@ -71,11 +71,15 @@
 
     # list files added/modified but not yet committed
     ls-modified = "!f(){\
-            echo $( \
             (git ls-files --modified --others --exclude-standard $(git rev-parse --show-toplevel); \
-            git diff --cached --name-only --relative .) | sort | uniq); \
+            git diff --cached --name-only --relative .) | sort | uniq; \
         }; f "
     lm = ls-modified
+
+    ls-new = "!f(){\
+            git ls-files --others --exclude-standard $(git rev-parse --show-toplevel); \
+        }; f "
+    ln = ls-new
 
     publish = "!f(){\
         set -e; \
