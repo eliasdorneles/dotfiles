@@ -46,7 +46,7 @@ Plug 'preservim/tagbar'
 Plug 'danro/rename.vim'
 
 " :Scratch to open scratch window
-Plug 'mtth/scratch.vim'
+" Plug 'mtth/scratch.vim'
 
 " exchange with cx (motion or selection)
 Plug 'tommcdo/vim-exchange'
@@ -58,11 +58,7 @@ Plug 'bling/vim-airline'
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'kana/vim-textobj-user'
-
-" adds Python text objects: af (around function), ac (around class)
-" TODO: check why it breaks for arguments in multiple lines
-Plug 'bps/vim-textobj-python'
+Plug 'wellle/targets.vim'
 
 " linter for English prose, see :Writegood<TAB...> commands
 Plug 'davidbeckingsale/writegood.vim'
@@ -83,17 +79,7 @@ Plug 'jacoborus/tender.vim'
 
 Plug 'chr4/nginx.vim'
 
-"TODO: disaibling this to check if it is still useful
-" Plug 'sheerun/vim-polyglot'
-
-Plug 'w0rp/ale'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'rhysd/vim-lsp-ale'
-
-Plug 'wellle/targets.vim'
-
-" TODO: consider finding a lsp-based replacement for this
-Plug 'prettier/vim-prettier'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'hashivim/vim-terraform'
 Plug 'andymass/vim-matchup'
@@ -112,5 +98,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'SirVer/ultisnips'
 
 Plug 'mechatroner/rainbow_csv'
+
+Plug 'github/copilot.vim'
 
 call plug#end()

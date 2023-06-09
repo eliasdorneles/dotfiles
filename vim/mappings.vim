@@ -85,13 +85,6 @@ map <leader>qW ysiW`
 nmap <F8> :TagbarToggle<CR>
 nmap <C-t> :TagbarToggle<CR>
 
-" TODO: wrap this properly, avoid overwriting buffer when error
-function! JsonFormat() range
-    exec 'normal! :' + a:firstline . ',' . a:lastline . '!python3 -mjson.tool'
-endfunction
-nnoremap <leader>j :%call JsonFormat()<cr>
-vnoremap <leader>j :call JsonFormat()<cr>
-
 
 " toggle mouse control between terminal and vim
 noremap <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
@@ -150,12 +143,6 @@ command! -nargs=? TestCmd :call RemapTestCmd('<args>')
 
 au FileType python call RemapTestCmd('pytest -s -v')
 au FileType elixir call RemapTestCmd('mix test')
-
-" access help using devdocs.io -- TODO: write plugin?
-command! -nargs=? DevDocs :call system('xdg-open http://devdocs.io/#q=<args> &')
-au FileType python,ruby,javascript,html,php,eruby,coffee
-            \ nnoremap <buffer> K
-            \ :exec "DevDocs " . fnameescape(expand('<cword>'))<CR>
 
 
 function! InsertCurrentPosition(pos, text)
