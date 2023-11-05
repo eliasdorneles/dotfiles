@@ -158,7 +158,8 @@ if has("gui_running")
     colorscheme molokai
 else
     try
-        colorscheme tender
+        " colorscheme tender
+        colorscheme gruvbox
     catch /^Vim\%((\a\+)\)\=:E185/
         colorscheme default
         set background=dark
@@ -278,8 +279,12 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
 " COPILOT CONFIG:
 let g:copilot_filetypes = {
             \ '*': v:false,
+            \ 'gitcommit': v:true,
             \ 'python': v:true,
             \ 'javascript': v:true,
+            \ 'Dockerfile': v:true,
+            \ 'vue': v:true,
+            \ 'js': v:true,
             \ 'sh': v:true,
             \ 'html': v:true,
             \ 'yaml': v:true,
@@ -288,6 +293,7 @@ let g:copilot_filetypes = {
             \ 'conf': v:true,
             \ 'c': v:true,
             \ 'cpp': v:true,
+            \ 'sql': v:true,
             \ }
 
 " add alternative map for copilot, for when TAB doesn't work (e.g. in Markdown files)
@@ -297,7 +303,21 @@ imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 " COC.NVIM CONFIG:
 " See: https://github.com/neoclide/coc.nvim#example-vim-configuration
 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+" inoremap <silent><expr> <TAB>
+" inoremap <TAB>
+imap <TAB> <Plug>coc#pum#confirm()
+"       \ <Plug>coc#pum#visible() ? coc#pum#next(1) :
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+
+" Make <CR> (Enter) to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -389,8 +409,10 @@ endif
 " Format selected code
 xmap <F9>  <Plug>(coc-format-selected)
 nmap <F9>  <Plug>(coc-format-selected)
+
 " Format current buffer
-nmap <F9> :call CocActionAsync('format')<CR>:call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
+" nmap <F9> :call CocActionAsync('format')<CR>:call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
+nmap <F9> :call CocActionAsync('format')<CR>
 
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')

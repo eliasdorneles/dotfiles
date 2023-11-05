@@ -76,6 +76,7 @@ Plug 'airblade/vim-gitgutter'
 "colorschemes:
 Plug 'tomasr/molokai'
 Plug 'jacoborus/tender.vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'chr4/nginx.vim'
 
@@ -90,15 +91,19 @@ Plug 'https://gitlab.com/gi1242/vim-emoji-ab'
 Plug 'ervandew/supertab'
 
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'vimwiki/vimwiki'
 
 Plug 'skywind3000/asyncrun.vim'
 Plug 'jremmen/vim-ripgrep'
 
-Plug 'SirVer/ultisnips'
+" TODO: why is this breaking?
+" Plug 'SirVer/ultisnips'
 
 Plug 'mechatroner/rainbow_csv'
 
 Plug 'github/copilot.vim'
+
+Plug 'junegunn/goyo.vim'
+
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
