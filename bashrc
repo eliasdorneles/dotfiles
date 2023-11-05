@@ -116,9 +116,6 @@ alias cp='cp -i'
 # load the rest of aliases
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
-# load my environment specific variables:
-[ -f ~/.myenv ] && . ~/.myenv
-
 # load z script:
 [ -f ~/bin/z.sh ] && . ~/bin/z.sh
 
@@ -159,7 +156,7 @@ edit_files_with_conflicts(){
     $EDITOR $(ls_files_with_conflicts)
 }
 edit_recently_committed(){
-    $EDITOR $(ls_recently_committed)
+    $EDITOR $(ls_recently_committed $1)
 }
 alias em=edit_modified_files
 alias ec=edit_files_with_conflicts
@@ -247,6 +244,11 @@ destroy_venv() {
     deactivate
 }
 
+poenv-destroy() {
+    poetry env remove $(poetry env list | cut -d' ' -f1)
+}
+
+alias poenv-rm=poenv-destroy
 
 pwgen(){
     size=${1:-20}
@@ -260,3 +262,6 @@ alias vim=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# load my environment specific variables:
+[ -f ~/.myenv ] && . ~/.myenv
