@@ -71,6 +71,7 @@ download_file_if_needed(){
 
 # install powerline fonts and reload if needed
 fonts_dir=~/.fonts
+mkdir -p $fonts_dir
 fontconfig_dir=~/.config/fontconfig/conf.d/
 
 fontlist=$(ls ~/.fonts)
