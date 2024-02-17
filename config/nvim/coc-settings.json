@@ -1,6 +1,15 @@
 {
-    "python.formatting.provider": "black",
-    "pyright.organizeimports.provider": "isort",
-    "python.sortImports.path": "~/.local/bin/isort",
-    "coc.preferences.jumpCommand": "tab drop"
+  "python.formatting.provider": "black",
+  "pyright.organizeimports.provider": "isort",
+  "python.sortImports.path": "~/.local/bin/isort",
+  "coc.preferences.jumpCommand": "tab drop",
+  "zig.zls.enabled": true,
+  "zig.zls.path": "/home/batman/bin/zls",
+  "zig.zls.checkForUpdate": false,
+  "languageserver": {
+    "turtle": {
+      "command": "turtle_langserver",
+      "filetypes": ["ttl", "turtle"]
+    }
+  }
 }

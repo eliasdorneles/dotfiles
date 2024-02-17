@@ -215,6 +215,9 @@ augroup python_config
     au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
 augroup END
 
+augroup turtle_config
+    au BufRead,BufNewFile *.ttl set filetype=turtle
+augroup END
 
 augroup terraform_config
     " au FileType terraform setlocal formatprg=terraform\ fmt\ -
@@ -292,6 +295,7 @@ let g:copilot_filetypes = {
             \ 'vim': v:true,
             \ 'conf': v:true,
             \ 'c': v:true,
+            \ 'zig': v:true,
             \ 'cpp': v:true,
             \ 'sql': v:true,
             \ }

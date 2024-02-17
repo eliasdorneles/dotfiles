@@ -106,4 +106,9 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'elixir-editors/vim-elixir'
 
+" using this as coc-zls seems broken for now... =/
+Plug 'ziglang/zig.vim'
+
+Plug 'niklasl/vim-rdf'
+
 call plug#end()
