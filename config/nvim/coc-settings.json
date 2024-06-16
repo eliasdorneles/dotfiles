@@ -3,9 +3,9 @@
   "pyright.organizeimports.provider": "isort",
   "python.sortImports.path": "~/.local/bin/isort",
   "coc.preferences.jumpCommand": "tab drop",
-  "zig.zls.enabled": true,
-  "zig.zls.path": "/home/batman/bin/zls",
-  "zig.zls.checkForUpdate": false,
+  "zig.enabled": true,
+  "zig.path": "zls",
+  "zig.debugLog": false,
   "languageserver": {
     "turtle": {
       "command": "turtle_langserver",

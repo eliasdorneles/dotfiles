@@ -85,7 +85,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
 Plug 'andymass/vim-matchup'
 
-Plug 'https://gitlab.com/gi1242/vim-emoji-ab'
+" Plug 'https://gitlab.com/gi1242/vim-emoji-ab'
 
 " TAB completes everything
 Plug 'ervandew/supertab'
