@@ -251,8 +251,19 @@ poenv-destroy() {
 alias poenv-rm=poenv-destroy
 
 pwgen(){
+    # generate a random password of given size, default 20
     size=${1:-20}
-    python -c "import random, string; print(''.join(random.choice(string.ascii_letters + string.digits) for x in range($size)))"
+    python3 -c "import random, string; print(''.join(random.choice(string.ascii_letters + string.digits) for x in range($size)))"
+}
+
+lastdl(){
+    # show last N downloads, default 1
+    n=1
+    [ -n "$1" ] && n=$1
+    ls -t ~/Downloads | head -n $n | while read f
+    do
+        echo "$HOME/Downloads/$f"
+    done
 }
 
 alias vim=nvim
