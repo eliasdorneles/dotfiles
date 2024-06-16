@@ -290,14 +290,15 @@ let g:copilot_filetypes = {
             \ 'js': v:true,
             \ 'sh': v:true,
             \ 'html': v:true,
-            \ 'yaml': v:true,
             \ 'json': v:true,
+            \ 'make': v:true,
             \ 'vim': v:true,
             \ 'conf': v:true,
             \ 'c': v:true,
             \ 'zig': v:true,
             \ 'cpp': v:true,
             \ 'sql': v:true,
+            \ 'yaml': v:true,
             \ }
 
 " add alternative map for copilot, for when TAB doesn't work (e.g. in Markdown files)
