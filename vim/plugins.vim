@@ -102,6 +102,7 @@ Plug 'mechatroner/rainbow_csv'
 
 Plug 'github/copilot.vim'
 
+" :Goyo to focus on writing
 Plug 'junegunn/goyo.vim'
 
 Plug 'elixir-editors/vim-elixir'
@@ -110,5 +111,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'ziglang/zig.vim'
 
 Plug 'niklasl/vim-rdf'
+
+Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 
 call plug#end()
