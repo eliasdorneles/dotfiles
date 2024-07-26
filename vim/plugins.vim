@@ -102,6 +102,10 @@ Plug 'mechatroner/rainbow_csv'
 
 Plug 'github/copilot.vim'
 
+Plug 'zbirenbaum/copilot.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
+
 " :Goyo to focus on writing
 Plug 'junegunn/goyo.vim'
 

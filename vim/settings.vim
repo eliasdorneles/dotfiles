@@ -382,7 +382,7 @@ xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " Run the Code Lens action on the current line
-nmap <leader>cl  <Plug>(coc-codelens-action)
+nmap <leader>co  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server
@@ -431,7 +431,7 @@ nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent><nowait> <leader>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>cl  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
@@ -443,7 +443,16 @@ nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 " nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>
 
+" mini.nvim config:
 lua << EOF
 require('mini.pairs').setup()
 require('mini.files').setup()
+EOF
+
+" Copilot chat config:
+lua << EOF
+require("CopilotChat").setup {
+  debug = true,
+  show_help = "yes",
+}
 EOF
