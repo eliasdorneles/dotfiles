@@ -442,17 +442,3 @@ nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 " nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>
-
-" mini.nvim config:
-lua << EOF
-require('mini.pairs').setup()
-require('mini.files').setup()
-EOF
-
-" Copilot chat config:
-lua << EOF
-require("CopilotChat").setup {
-  debug = true,
-  show_help = "yes",
-}
-EOF
