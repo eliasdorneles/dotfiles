@@ -44,7 +44,7 @@ if [ -d config ]; then
     done
 fi
 
-create_abs_dotlink vimrc
+# holds plug and my legacy vim settings not yet converted to Lua
 create_abs_dotlink vim
 
 echo -n "Copying files to ~/bin... "
