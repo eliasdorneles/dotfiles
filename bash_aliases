@@ -27,4 +27,6 @@ alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+alias zbr='zig build run'
+
 # vim:set ft=sh:
