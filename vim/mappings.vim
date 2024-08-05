@@ -81,10 +81,11 @@ noremap <leader>P "+P
 map <leader>qw ysiw`
 map <leader>qW ysiW`
 
-" experimental: map F8 and CTRL_T to open tags map
-nmap <F8> :TagbarToggle<CR>
+" map CTRL_T to open tags map
 nmap <C-t> :TagbarToggle<CR>
 
+" make <F8> toggle inlay type hints
+nmap <F8> :CocCommand document.toggleInlayHint<CR>
 
 " toggle mouse control between terminal and vim
 noremap <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>
@@ -127,58 +128,3 @@ function! ExtractVariable()
     normal! $p
 endfunction
 vnoremap <leader>ev :call ExtractVariable()<cr>
-
-" use <leader>t for run tests, :TestCmd {test command} to customize test command
-" TODO: show current test command, better history (consider wrap in plugin)
-function! RemapTestCmd(...)
-    if a:0 ==# 1 && a:1 !=# ''
-        let testcmd = a:1
-    else
-        let testcmd = input("Test command: ")
-    endif
-    exec 'noremap <leader>t :!clear; ' . testcmd . '<cr>'
-endfunction
-call RemapTestCmd('make test')
-command! -nargs=? TestCmd :call RemapTestCmd('<args>')
-
-au FileType python call RemapTestCmd('pytest -s -v')
-au FileType elixir call RemapTestCmd('mix test')
-
-
-function! InsertCurrentPosition(pos, text)
-"******************************************************************************
-"* PURPOSE:
-"   Insert a:text at a:pos.
-"* ASSUMPTIONS / PRECONDITIONS:
-"   Buffer is modifiable.
-"* EFFECTS / POSTCONDITIONS:
-"   Changes the buffer.
-"* INPUTS:
-"   a:pos   [line, col]; col is the 1-based byte-index.
-"   a:text  String to insert.
-"* RETURN VALUES:
-"   Flag whether the position existed (inserting in column 1 of one line beyond
-"   the last one is also okay) and insertion was done.
-"******************************************************************************
-    let [l:lnum, l:col] = a:pos
-    if l:lnum > line('$') + 1
-    return 0
-    endif
-
-    let l:line = getline(l:lnum)
-    if l:col > len(l:line) + 1
-    return 0
-    elseif l:col < 1
-    throw 'Insert: Column must be at least 1'
-    elseif l:col == 1
-    return (setline(l:lnum, a:text . l:line) == 0)
-    elseif l:col == len(l:line) + 1
-    return (setline(l:lnum, l:line . a:text) == 0)
-    elseif l:col == len(l:line) + 1
-    return (setline(l:lnum, l:line . a:text) == 0)
-    endif
-    return (setline(l:lnum, strpart(l:line, 0, l:col - 1) . a:text . strpart(l:line, l:col - 1)) == 0)
-endfunction
-
-command! -nargs=0 GenerateId :call InsertCurrentPosition([line('.'), col('.')],
-            \ system("echo -n $(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 20 | head -1)"))
