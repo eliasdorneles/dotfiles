@@ -118,4 +118,13 @@ Plug 'niklasl/vim-rdf'
 
 Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 
+Plug 'mfussenegger/nvim-dap'
+
+" nvim-nio is dependency of nvim-dap-ui
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
+
+" requires debugpy installed
+Plug 'mfussenegger/nvim-dap-python'
+
 call plug#end()
