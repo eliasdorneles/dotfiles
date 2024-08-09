@@ -46,16 +46,42 @@ require('dap.ext.vscode').load_launchjs(nil, {})
 
 local sign = vim.fn.sign_define
 
-sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = ""})
-sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = ""})
-sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = ""})
-sign('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
+sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+sign('DapStopped', { text = '', texthl = 'DapStopped', linehl = 'DapStopped', numhl = 'DapStopped' })
 
 
 -- Define your color table
 local C = {
-    grey = "#808080",  -- Replace with your desired grey color
+    grey = "#505050", -- Replace with your desired grey color
 }
 
 -- Set the highlight group
 vim.api.nvim_set_hl(0, 'DapStopped', { bg = C.grey })
+
+
+-- configure codelldb adapter
+-- codelldb needs to be installed via VSCodium, and then put in the path, like so:
+-- cd ~/bin && ln -s ~/.vscode-oss/extensions/vadimcn.vscode-lldb-1.10.0-universal/adapter/codelldb codelldb
+dap.adapters.codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+        command = "codelldb",
+        args = { "--port", "${port}" },
+    },
+}
+
+-- setup a debugger for zig projects
+dap.configurations.zig = {
+    {
+        name = 'Launch',
+        type = 'codelldb',
+        request = 'launch',
+        program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+    },
+}
