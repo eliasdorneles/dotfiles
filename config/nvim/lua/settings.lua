@@ -14,14 +14,15 @@ require("CopilotChat").setup {
 -- nvim-dap settings
 require("dap-python").setup("python")
 
--- nvim dap mappings
-vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
-vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
-vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
-vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
-vim.keymap.set('n', '<M-b>', function() require('dap').toggle_breakpoint() end)
-
 local dap, dapui = require("dap"), require("dapui")
+
+-- nvim dap mappings
+vim.keymap.set('n', '<F5>', function() dap.continue() end)
+vim.keymap.set('n', '<F10>', function() dap.step_over() end)
+vim.keymap.set('n', '<F11>', function() dap.step_into() end)
+vim.keymap.set('n', '<F12>', function() dap.step_out() end)
+vim.keymap.set('n', '<M-b>', function() dap.toggle_breakpoint() end)
+
 dapui.setup()
 
 -- open Dap UI automatically when debug starts (e.g. after <F5>)
@@ -39,3 +40,22 @@ end, {})
 
 -- use <Alt-e> to eval expressions
 vim.keymap.set({ 'n', 'v' }, '<M-e>', function() require('dapui').eval() end)
+
+-- makes nvim-dap work w/ .vscode/launch.json files
+require('dap.ext.vscode').load_launchjs(nil, {})
+
+local sign = vim.fn.sign_define
+
+sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = ""})
+sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = ""})
+sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = ""})
+sign('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
+
+
+-- Define your color table
+local C = {
+    grey = "#808080",  -- Replace with your desired grey color
+}
+
+-- Set the highlight group
+vim.api.nvim_set_hl(0, 'DapStopped', { bg = C.grey })
