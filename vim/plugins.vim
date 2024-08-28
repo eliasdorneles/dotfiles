@@ -29,14 +29,8 @@ Plug 'tpope/vim-unimpaired'
 " gc{motion} for toggle comments
 Plug 'tomtom/tcomment_vim'
 
-" Ctrl-P, Ctrl-P, Ctrl-P, Ctrl-P!
-Plug 'ctrlpvim/ctrlp.vim'
-
 " enables to search from visual selection (useful for weird strings)
 Plug 'nelstrom/vim-visual-star-search'
-
-" quick html writing with: TAGNAME<ctrl-space>
-Plug 'mattn/emmet-vim'
 
 Plug 'Glench/Vim-Jinja2-Syntax'
 
@@ -44,9 +38,6 @@ Plug 'preservim/tagbar'
 
 " :Rename to rename file in current buffer
 Plug 'danro/rename.vim'
-
-" :Scratch to open scratch window
-" Plug 'mtth/scratch.vim'
 
 " exchange with cx (motion or selection)
 Plug 'tommcdo/vim-exchange'
@@ -92,8 +83,10 @@ Plug 'ervandew/supertab'
 
 Plug 'dhruvasagar/vim-table-mode'
 
-Plug 'skywind3000/asyncrun.vim'
-Plug 'jremmen/vim-ripgrep'
+" needed for telescope and copilotchat
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " TODO: why is this breaking?
 " Plug 'SirVer/ultisnips'
@@ -103,7 +96,6 @@ Plug 'mechatroner/rainbow_csv'
 Plug 'github/copilot.vim'
 
 Plug 'zbirenbaum/copilot.lua'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " :Goyo to focus on writing

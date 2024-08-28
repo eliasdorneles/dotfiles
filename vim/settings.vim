@@ -75,29 +75,16 @@ let g:tagbar_autoclose = 1
 " preserve order in source file
 let g:tagbar_sort = 0
 
-" CtrlP config:
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
 
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_use_caching = 0
+" Telescope mappings
+nnoremap <C-p> <cmd>Telescope find_files theme=dropdown<cr>
+nnoremap <C-g> <cmd>Telescope live_grep theme=dropdown<cr>
 
-" Use ag in CtrlP for listing files.
-" Lightning fast and respects .gitignore (caveat: ignores ctrlp_custom_ignore)
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" Use ripgrep in CtrlP for even faster listing files
-if executable('rg')
-  let g:ctrlp_user_command = 'rg --files %s'
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_working_path_mode = 'ra'
-  let g:ctrlp_switch_buffer = 'et'
-endif
+nnoremap <leader>ff <cmd>Telescope find_files theme=dropdown<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep theme=dropdown<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fp <cmd>Telescope registers<cr>
 
 " keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
