@@ -1,5 +1,6 @@
 {
-  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnSave": false,
+  "inlayHint.display": false,
   "python.formatting.provider": "black",
   "pyright.organizeimports.provider": "isort",
   "python.sortImports.path": "~/.local/bin/isort",

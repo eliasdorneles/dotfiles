@@ -75,17 +75,6 @@ let g:tagbar_autoclose = 1
 " preserve order in source file
 let g:tagbar_sort = 0
 
-
-" Telescope mappings
-nnoremap <C-p> <cmd>Telescope find_files theme=dropdown<cr>
-nnoremap <C-g> <cmd>Telescope live_grep theme=dropdown<cr>
-
-nnoremap <leader>ff <cmd>Telescope find_files theme=dropdown<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep theme=dropdown<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fp <cmd>Telescope registers<cr>
-
 " keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
 let g:syntastic_python_checkers=['flake8']

@@ -119,4 +119,6 @@ Plug 'rcarriga/nvim-dap-ui'
 " requires debugpy installed
 Plug 'mfussenegger/nvim-dap-python'
 
+Plug 'knsh14/vim-github-link'
+
 call plug#end()

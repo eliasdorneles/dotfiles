@@ -128,3 +128,7 @@ function! ExtractVariable()
     normal! $p
 endfunction
 vnoremap <leader>ev :call ExtractVariable()<cr>
+
+" Telescope mappings
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <C-g> <cmd>Telescope live_grep<cr>
