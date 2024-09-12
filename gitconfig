@@ -81,6 +81,11 @@
         }; f "
     ln = ls-new
 
+    recent-branches = "!f(){\
+            git branch --sort=-committerdate | head $@; \
+        }; f "
+    lb = recent-branches
+
     publish = "!f(){\
         set -e; \
         branch_name=$(git rev-parse --abbrev-ref HEAD); \
