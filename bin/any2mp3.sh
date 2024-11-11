@@ -30,16 +30,17 @@ fi
 dump=`mktemp wavdumpXXXX.wav`
 for i in "$@"
 do
-	[ -f "$i" ] || abort "File $i not found"
-	ext="${filename##*.}"
+    [ -f "$i" ] || abort "File $i not found"
+    filename=$(basename "$i")
+    ext="${filename##*.}"
     dest="${filename%.*}.mp3"
-	echo -n "Decoding wave... "
-	mplayer -vo null -novideo -af resample=44100 \
+    echo -n "Decoding wave... "
+    mplayer -vo null -novideo -af resample=44100 \
         -ao pcm:waveheader:fast:file="$dump" "$i" \
         >/dev/null 2>/dev/null || abort "problem decoding file $i"
-	echo -n "encoding to mp3... "
-	lame -h -m s "$dump" -o "$dest" >/dev/null 2>/dev/null
-	echo "done"
+    echo -n "encoding to mp3... "
+    lame -h -m s "$dump" -o "$dest"
+    echo "done"
 done
 
 rm -f "$dump"
