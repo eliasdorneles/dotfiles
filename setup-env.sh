@@ -88,9 +88,4 @@ if ! diff -q <(echo "$fontlist") <(ls $fonts_dir) >/dev/null; then
 fi
 
 
-# install the python3 deps needed for vim-lsp & Python
-pip3 install --user python-lsp-server \
-    python-lsp-black \
-    pyls-flake8 \
-    pylsp-rope \
-    pylsp-mypy
+pip install --user python-dateutil matplotlib
