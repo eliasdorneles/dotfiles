@@ -10,7 +10,8 @@
     trustExitCode = true
 [alias]
     root = rev-parse --show-toplevel
-    current = rev-parse --abbrev-ref HEAD
+    current = rev-parse --abbrev-ref HEAD  # current branch
+    last = rev-parse --short HEAD  # last commit
     recent = branch --sort=-committerdate
 
     co = checkout
