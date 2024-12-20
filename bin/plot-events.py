@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Plot events over a time axis
 """
-# Relies on matplotlib and dateutil
+# Requires matplotlib and python-dateutil libraries installed
 
 from __future__ import print_function, absolute_import, division
 import sys
@@ -30,13 +30,15 @@ def parse_timestamp(ts):
 
 
 def parse_date(dttime):
-    if USE_DATEPARSER:
-        import dateparser
-        return dateparser.parse(dttime)
-
     # TODO: catch ValueError and suggest user to use delimiter if needed
     if dttime.isdigit():
         return parse_timestamp(int(dttime))
+
+    if USE_DATEPARSER:
+        import dateparser
+
+        return dateparser.parse(dttime)
+
     return dateutil.parser.parse(dttime)
 
 
@@ -59,23 +61,29 @@ def parse_input(input_lines, delimiter):
 def main(args):
     datetimes, values = parse_input(read_input(args.input), args.delimiter)
     event_times = mdates.date2num(datetimes)
-    if args.title:
-        plt.title(args.title)
 
     if args.sum_by_date:
         import itertools
+
         combined = [
             (k, sum(v for _, v in group))
-            for k, group in
-            itertools.groupby(zip(event_times, values), key=lambda x: x[0])
+            for k, group in itertools.groupby(
+                zip(event_times, values), key=lambda x: x[0]
+            )
         ]
         event_times, values = zip(*combined)
 
-    # ax = plt.subplot()
-    # ax.plot(event_times, values, 'o', alpha=0.5)
-    # ax.xaxis_date()
-    # ax.autoscale_view()
-    plt.plot_date(event_times, values, alpha=0.5)
+    fig, ax = plt.subplots()
+    if args.title:
+        ax.set_title(args.title)
+
+    ax.xaxis_date()
+    ax.autoscale_view()
+
+    # TODO: consider adding CLI option to set date format
+    # ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d %H:%M"))
+
+    plt.plot(event_times, values, args.fmt, alpha=0.5)
 
     plt.gcf().autofmt_xdate()
     plt.show()
@@ -85,12 +93,31 @@ if "__main__" == __name__:
     import argparse
 
     parser = argparse.ArgumentParser(description=__doc__)
-    # TODO: consider making combine generic
-    parser.add_argument("--sum-by-date", action='store_true')
-    parser.add_argument("input", nargs='?', default="-")
-    parser.add_argument("-d", "--delimiter", default="\t")
+    parser.add_argument(
+        "input", nargs="?", default="-", help="Input file. Default: stdin"
+    )
+
+    # TODO: consider refactoring --sum-by-date into a more generic --aggregate-by AGGREGATE_FN option
+    parser.add_argument(
+        "--sum-by-date",
+        action="store_true",
+        help="When given, assumes input is in format 'DATE COUNT', sum up the counts for the same date and plot it.",
+    )
+
+    parser.add_argument(
+        "-d",
+        "--delimiter",
+        default=None,
+        help="Default: whitespace",
+    )
     parser.add_argument("-t", "--title")
-    parser.add_argument("--use-dateparser", action='store_true')
+    parser.add_argument(
+        "--fmt",
+        default="o",
+        choices=["-", "o", "x"],
+        help="Matplotlib graph style. Default: 'o'",
+    )
+    parser.add_argument("--use-dateparser", action="store_true")
 
     args = parser.parse_args()
     if args.use_dateparser:
