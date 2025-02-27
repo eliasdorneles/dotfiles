@@ -260,7 +260,7 @@ lastdl(){
     # show last N downloads, default 1
     n=1
     [ -n "$1" ] && n=$1
-    ls -t ~/Downloads | head -n $n | while read f
+    ls --sort=time --escape ~/Downloads 2>/dev/null | head -n $n | while read f
     do
         echo "$HOME/Downloads/$f"
     done
