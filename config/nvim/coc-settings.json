@@ -1,7 +1,7 @@
 {
   "coc.preferences.formatOnSave": false,
   "inlayHint.display": false,
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "ruff",
   "pyright.organizeimports.provider": "isort",
   "python.sortImports.path": "~/.local/bin/isort",
   "coc.preferences.jumpCommand": "tab drop",
@@ -12,6 +12,11 @@
     "turtle": {
       "command": "turtle_langserver",
       "filetypes": ["ttl", "turtle"]
+    },
+    "odin": {
+      "command": "ols",
+      "filetypes": ["odin"],
+      "rootPatterns": ["ols.json"]
     }
   }
 }

@@ -5,12 +5,6 @@ vim.cmd('set nu')
 require('mini.files').setup()
 
 
--- CopilotChat settings:
-require("CopilotChat").setup {
-    debug = true,
-    show_help = "yes",
-}
-
 -- nvim-dap settings
 require("dap-python").setup("python")
 

@@ -76,27 +76,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
 Plug 'andymass/vim-matchup'
 
-" Plug 'https://gitlab.com/gi1242/vim-emoji-ab'
-
 " TAB completes everything
 Plug 'ervandew/supertab'
 
 Plug 'dhruvasagar/vim-table-mode'
 
-" needed for telescope and copilotchat
 Plug 'nvim-lua/plenary.nvim'
-
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
 " TODO: why is this breaking?
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 Plug 'mechatroner/rainbow_csv'
 
 Plug 'github/copilot.vim'
-
-Plug 'zbirenbaum/copilot.lua'
-Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " :Goyo to focus on writing
 Plug 'junegunn/goyo.vim'

@@ -25,7 +25,6 @@ set signcolumn=yes
 set mouse=a
 
 set scrolloff=2
-set pastetoggle=<F10>
 set modeline
 set shiftwidth=4 tabstop=4 expandtab
 
@@ -42,12 +41,6 @@ set clipboard=unnamed
 " Show invisible characters
 set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
-
-let g:netrw_banner=0
-let g:netrw_browser_split=4 " open in prior windoe
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',.git'
 
 " Keep undo history across sessions, by storing it in a file.
 set undolevels=1000
@@ -82,7 +75,6 @@ let g:syntastic_mode_map = {
             \ "mode": "active",
             \ "active_filetypes": ["ruby", "php", "python", "javascript", "c", "cpp"],
             \ "passive_filetypes": ["puppet", "java"] }
-" let g:syntastic_debug=1
 
 let g:flake8_max_line_length=100
 
