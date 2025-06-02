@@ -1,0 +1,95 @@
+snippet script
+	package main
+
+	import "core:fmt"
+	import "core:strings"
+	import "core:time"
+	import "core:c/libc"
+	import "core:math"
+
+	main :: proc () {
+		fmt.println(__INPUT_CODE_HERE__)
+	}
+snippet raylib
+	package raylib_thingie
+
+	import "core:fmt"
+	import "core:math"
+	import "core:math/linalg"
+	import rand "core:math/rand"
+	import rl "vendor:raylib"
+
+	SCREEN_SIZE :: 320
+	PLAYER_WIDTH :: 64
+
+	camera: rl.Camera2D
+	player_pos: [2]f32
+
+	restart :: proc() {
+		player_pos.x = SCREEN_SIZE / 2 + PLAYER_WIDTH
+		player_pos.y = SCREEN_SIZE / 2 + PLAYER_WIDTH
+	}
+
+	update :: proc() {
+		dt := rl.GetFrameTime()
+
+		player_speed: [2]f32
+		if rl.IsKeyDown(.LEFT) {
+			player_speed.x = -100
+		} else if rl.IsKeyDown(.RIGHT) {
+			player_speed.x = 100
+		}
+
+		player_pos += player_speed * dt
+	}
+
+	draw :: proc() {
+		rl.BeginDrawing()
+		defer rl.EndDrawing()
+
+		rl.ClearBackground({30, 30, 30, 255})
+
+		// draw ground
+		rl.DrawRectangle(
+			i32(player_pos.x),
+			i32(player_pos.y),
+			PLAYER_WIDTH,
+			PLAYER_WIDTH,
+			rl.RED,
+		)
+
+		rl.DrawText("Move L/R with arrow keys", 20, 20, 40, rl.BLUE)
+
+		rl.BeginMode2D(camera)
+		defer rl.EndMode2D()
+	}
+
+	loadAssets :: proc() {
+		// load any assets here, e.g.
+		// player_texture = rl.LoadTexture("assets/character.png")
+	}
+
+	main :: proc() {
+		rl.SetConfigFlags({.VSYNC_HINT})
+
+		rl.InitWindow(640, 480, "Window Title")
+		defer rl.CloseWindow()
+
+		rl.InitAudioDevice()
+		defer rl.CloseAudioDevice()
+
+		rl.SetTargetFPS(60)
+
+		loadAssets()
+
+		camera = rl.Camera2D {
+			zoom = f32(rl.GetScreenHeight()) / SCREEN_SIZE,
+		}
+
+		restart()
+
+		for !rl.WindowShouldClose() {
+			update()
+			draw()
+		}
+	}
