@@ -4,7 +4,6 @@ A very hacky REPL for the Odin programming language.
 
 This is mostly to help with exploring functions from the Odin standard library
 and to test one-line snippets of Odin code quickly.
-Anything more than a single line deserves a dedicated file.
 """
 
 import argparse
@@ -26,6 +25,7 @@ import "core:path/filepath"
 
 
 main :: proc () {
+    __PREAMBLE_CODE_HERE__
     fmt.println(__INPUT_CODE_HERE__)
 }
 """
@@ -49,17 +49,34 @@ def setup_readline():
 
 def run(args):
     setup_readline()
+    tmp_dir = tempfile.TemporaryDirectory(prefix="odinsh_")
+    print("Using temp dir", tmp_dir.name)
+    os.chdir(tmp_dir.name)
+    preamble = []
     try:
-        tmp_dir = tempfile.TemporaryDirectory(prefix="odinsh_")
-        print("Using temp dir", tmp_dir.name)
-        os.chdir(tmp_dir.name)
         while code_line := input("> "):
-            code = odin_program_template.replace("__INPUT_CODE_HERE__", code_line)
+            if "=" in code_line: # Assume it's a variable assignment
+                preamble.append(code_line)
+                continue
+
+            preamble_code = "\n    ".join(preamble)
+            code = odin_program_template.replace(
+                "__INPUT_CODE_HERE__", code_line
+            ).replace("__PREAMBLE_CODE_HERE__", preamble_code)
             with open("main.odin", "w") as f:
                 f.write(code)
+
             if args.debug:
                 print("Running code:", code)
-            os.system("odin run main.odin -file")
+
+            exit_status = os.system("odin run main.odin -file")
+
+            if exit_status != 0 and preamble:
+                print("odinsh: preamble code will be discarded -- please fix the error above.")
+                print("--" * 20)
+                print(preamble_code)
+                print("--" * 20)
+                preamble = []
     except EOFError:
         print("Bye")
         sys.exit(0)
