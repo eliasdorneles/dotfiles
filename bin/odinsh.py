@@ -22,6 +22,8 @@ import "core:time"
 import "core:c/libc"
 import "core:math"
 import "core:path/filepath"
+import "core:strconv"
+__EXTRA_IMPORTS_HERE__
 
 
 main :: proc () {
@@ -53,16 +55,26 @@ def run(args):
     print("Using temp dir", tmp_dir.name)
     os.chdir(tmp_dir.name)
     preamble = []
+    extra_imports = []
     try:
         while code_line := input("> "):
             if "=" in code_line: # Assume it's a variable assignment
                 preamble.append(code_line)
                 continue
+            if code_line.split()[0].endswith(":"): # Assume it's a variable decl
+                preamble.append(code_line)
+                continue
+            if code_line.startswith("import "):
+                extra_imports.append(code_line.strip())
+                continue
 
             preamble_code = "\n    ".join(preamble)
+            import_code = "\n".join(extra_imports)
             code = odin_program_template.replace(
                 "__INPUT_CODE_HERE__", code_line
-            ).replace("__PREAMBLE_CODE_HERE__", preamble_code)
+            ).replace("__PREAMBLE_CODE_HERE__", preamble_code).replace(
+                "__EXTRA_IMPORTS_HERE__", import_code
+            )
             with open("main.odin", "w") as f:
                 f.write(code)
 
@@ -72,11 +84,14 @@ def run(args):
             exit_status = os.system("odin run main.odin -file")
 
             if exit_status != 0 and preamble:
-                print("odinsh: preamble code will be discarded -- please fix the error above.")
+                print("odinsh: preamble and imports will be discarded -- please fix the error above.")
+                print("--" * 20)
+                print(import_code)
                 print("--" * 20)
                 print(preamble_code)
                 print("--" * 20)
                 preamble = []
+                extra_imports = []
     except EOFError:
         print("Bye")
         sys.exit(0)
