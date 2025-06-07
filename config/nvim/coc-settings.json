@@ -5,6 +5,7 @@
   "pyright.organizeimports.provider": "isort",
   "python.sortImports.path": "~/.local/bin/isort",
   "coc.preferences.jumpCommand": "tab drop",
+  "outline.sortBy": "position",
   "zig.enabled": true,
   "zig.path": "zls",
   "zig.debugLog": false,
