@@ -1,14 +1,33 @@
-snippet script
-	package main
+snippet main
+	package my_program
 
 	import "core:fmt"
-	import "core:strings"
-	import "core:time"
-	import "core:c/libc"
-	import "core:math"
 
 	main :: proc () {
-		fmt.println(__INPUT_CODE_HERE__)
+		fmt.println("Hello from my program")
+		${0}
+	}
+snippet script
+	package my_script
+
+	import "core:fmt"
+	import "core:flags"
+	import "core:os"
+	import "core:strings"
+	import "core:time"
+	import "core:math"
+
+	Args :: struct {
+		// pos_arg1: string \`args:"pos=0,required" usage:"Positional arg 1"\`,
+		// pos_arg2: string \`args:"pos=1,required" usage:"Positional arg 2"\`,
+		// output:   string \`usage:"Output file"\`,
+	}
+
+	main :: proc () {
+		args: Args
+		flags.parse_or_exit(&args, os.args, style = .Unix)
+		fmt.println(args)
+		${0}
 	}
 snippet raylib
 	package raylib_thingie

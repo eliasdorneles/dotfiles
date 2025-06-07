@@ -16,9 +16,12 @@ import tempfile
 odin_program_template = """
 package main
 
+import "core:bytes"
 import "core:fmt"
 import "core:strings"
 import "core:time"
+import "core:time/datetime"
+import "core:time/timezone"
 import "core:c/libc"
 import "core:math"
 import "core:path/filepath"
