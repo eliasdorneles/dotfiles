@@ -51,10 +51,6 @@
     filelog = log -u
     fl = log -u
 
-    # pull and rebase
-    pullr = pull --rebase
-    pulr = pull --rebase
-
     please = push --force-with-lease
 
 	alias = !sh -c 'git config --global "alias.$1" "$2"' --
@@ -213,3 +209,5 @@
 	autoSquash = true
 	autoStash = true
 	updateRefs = true
+[pull]
+	rebase = true
