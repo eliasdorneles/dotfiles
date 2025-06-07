@@ -81,8 +81,16 @@ noremap <leader>P "+P
 map <leader>qw ysiw`
 map <leader>qW ysiW`
 
-" map CTRL_T to open tags map
-nmap <C-t> :TagbarToggle<CR>
+" map CTRL_T to toggle outline view
+nnoremap <silent><nowait> <C-t>  :call ToggleOutline()<CR>
+function! ToggleOutline() abort
+let winid = coc#window#find('cocViewId', 'OUTLINE')
+if winid == -1
+  call CocActionAsync('showOutline', 1)
+else
+  call coc#window#close(winid)
+endif
+endfunction
 
 " make <F8> toggle inlay type hints
 nmap <F8> :CocCommand document.toggleInlayHint<CR>

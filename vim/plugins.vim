@@ -34,8 +34,6 @@ Plug 'nelstrom/vim-visual-star-search'
 
 Plug 'Glench/Vim-Jinja2-Syntax'
 
-Plug 'preservim/tagbar'
-
 " :Rename to rename file in current buffer
 Plug 'danro/rename.vim'
 

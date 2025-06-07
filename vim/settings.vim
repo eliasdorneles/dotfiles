@@ -64,10 +64,6 @@ let g:airline_powerline_fonts = 1
 " disabled because causing weird chars in output
 let g:airline#extensions#tagbar#enabled = 0
 
-let g:tagbar_autoclose = 1
-" preserve order in source file
-let g:tagbar_sort = 0
-
 " keep syntastic minimally annoying
 let g:syntastic_enable_signs=0
 let g:syntastic_python_checkers=['flake8']
