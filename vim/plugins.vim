@@ -82,7 +82,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
-" TODO: why is this breaking?
 Plug 'SirVer/ultisnips'
 
 Plug 'mechatroner/rainbow_csv'
@@ -91,8 +90,6 @@ Plug 'github/copilot.vim'
 
 " :Goyo to focus on writing
 Plug 'junegunn/goyo.vim'
-
-Plug 'elixir-editors/vim-elixir'
 
 " using this as coc-zls seems broken for now... =/
 Plug 'ziglang/zig.vim'

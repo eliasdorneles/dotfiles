@@ -8,9 +8,6 @@ map <S-L> gt
 vmap v     <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" nerdtree toggle shortcut
-nnoremap <Leader>n :NERDTreeToggle<CR>
-
 
 " maps <space> to default leader - this works better
 " than setting mapleader because it works with showcmd
@@ -91,9 +88,6 @@ else
   call coc#window#close(winid)
 endif
 endfunction
-
-" make <F8> toggle inlay type hints
-nmap <F8> :CocCommand document.toggleInlayHint<CR>
 
 " toggle mouse control between terminal and vim
 noremap <silent><F2> :let &mouse=(&mouse == "a"?"":"a")<CR>:call ShowMouseMode()<CR>

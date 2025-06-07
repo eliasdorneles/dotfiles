@@ -56,9 +56,6 @@ if has('persistent_undo')
 endif
 let g:undotree_WindowLayout = 4
 
-" uses Ctrl-Space for emmet expanding
-" let g:user_emmet_expandabbr_key = '<C-space>'
-
 let g:airline_powerline_fonts = 1
 
 " disabled because causing weird chars in output
@@ -174,9 +171,14 @@ augroup strace_dump_config
 augroup END
 
 augroup python_config
-    " highlight self and tabs
+    " highlight self
     au FileType python syn match keyword '\<self\>'
-    au FileType python syn match pyTAB '^\t\+' | hi pyTAB ctermbg=darkblue
+augroup END
+
+augroup odin_config
+    " highlight keywords: in and not_in
+    au FileType odin syn match Statement ' in '
+    au FileType odin syn match Statement ' not_in '
 augroup END
 
 augroup turtle_config
@@ -186,11 +188,6 @@ augroup END
 augroup terraform_config
     " au FileType terraform setlocal formatprg=terraform\ fmt\ -
     let g:terraform_fmt_on_save=1
-augroup END
-
-augroup elm_config
-    au FileType elm set shiftwidth=2 tabstop=2
-    au FileType elm setlocal formatprg=elm-format\ --stdin
 augroup END
 
 augroup javascript_config
@@ -219,12 +216,6 @@ au FileType html,markdown,mmd,text,mail,gitcommit
     \ runtime macros/emoji-ab.vim
 
 
-" tell snipMate to use the new parser and shutup
-let g:snipMate = { 'snippet_version' : 1 }
-
-let g:asyncrun_open = 6
-
-
 let g:localvimrc_whitelist = ['/home/elias/code/']
 
 " use custom hunk text objects for GitGutter
@@ -232,13 +223,6 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-
-let g:vimwiki_markdown_link_ext = 1
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md',
-                      \ 'custom_wiki2html': 'vimwiki_markdown',
-                      \ 'links_space_char': '_',
-                      \ 'path_html': '~/Documents/vimwiki/htmlsite/'}]
 
 " TODO: need to make supertab work nicely w/ lsp autocompletion
 " let g:SuperTabDefaultCompletionType = "context"
@@ -359,22 +343,6 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-" Remap <C-f> and <C-b> to scroll float windows/popups
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-"TODO: find an alternate shortcut for this, as CTRL-S saves the file
-" Use CTRL-S for selections ranges
-" Requires 'textDocument/selectionRange' support of language server
-" nmap <silent> <C-s> <Plug>(coc-range-select)
-" xmap <silent> <C-s> <Plug>(coc-range-select)
-
 " Format selected code
 xmap <F9>  <Plug>(coc-format-selected)
 nmap <F9>  <Plug>(coc-format-selected)
@@ -382,12 +350,6 @@ nmap <F9>  <Plug>(coc-format-selected)
 " Format current buffer
 " nmap <F9> :call CocActionAsync('format')<CR>:call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 nmap <F9> :call CocActionAsync('format')<CR>
-
-" Add `:Format` command to format current buffer
-command! -nargs=0 Format :call CocActionAsync('format')
-
-" Add `:OI` command for organize imports of the current buffer
-command! -nargs=0 OI   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Mappings for CoCList
 " Show all diagnostics
