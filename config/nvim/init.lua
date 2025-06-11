@@ -10,7 +10,7 @@ source ~/.vim/settings.vim
 
 -- settings in lua:
 require('core.settings')
-require('settings')
+require('plugins.setup')
 
 vim.cmd([[
 source ~/.vim/mappings.vim
