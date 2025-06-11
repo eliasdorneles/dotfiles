@@ -354,8 +354,6 @@ nmap <F9> :call CocActionAsync('format')<CR>
 " Mappings for CoCList
 " Show all diagnostics
 nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
 " Show commands
 nnoremap <silent><nowait> <leader>cl  :<C-u>CocList commands<cr>
 " Find symbol of current document

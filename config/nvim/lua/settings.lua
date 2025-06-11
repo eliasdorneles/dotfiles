@@ -7,11 +7,6 @@ if pcall(require, 'mini.files') then
 end
 
 
--- codecompanion setup
-if pcall(require, "codecompanion") then
-    require("codecompanion").setup()
-end
-
 -- load plugins
 require("lualine").setup()
 require("Comment").setup()

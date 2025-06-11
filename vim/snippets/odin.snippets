@@ -17,14 +17,14 @@ snippet script
 	import "core:time"
 	import "core:math"
 
-	Args :: struct {
+	Options :: struct {
 		// pos_arg1: string \`args:"pos=0,required" usage:"Positional arg 1"\`,
 		// pos_arg2: string \`args:"pos=1,required" usage:"Positional arg 2"\`,
 		// output:   string \`usage:"Output file"\`,
 	}
 
 	main :: proc () {
-		args: Args
+		args: Options
 		flags.parse_or_exit(&args, os.args, style = .Unix)
 		fmt.println(args)
 		${0}
