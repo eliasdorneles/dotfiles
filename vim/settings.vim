@@ -356,8 +356,6 @@ nmap <F9> :call CocActionAsync('format')<CR>
 nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
 " Show commands
 nnoremap <silent><nowait> <leader>cl  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item

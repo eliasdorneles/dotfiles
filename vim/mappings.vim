@@ -46,12 +46,6 @@ inoremap <silent> <C-S> <Esc>:<C-u>SaveCurrentFile<CR>a
 " exit using <C-Q>
 nnoremap <silent> <C-Q> :qa<CR>
 
-"windows:
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
 " quick no-regex search
 noremap <C-f> /\V
 
@@ -134,3 +128,13 @@ vnoremap <leader>ev :call ExtractVariable()<cr>
 " Telescope mappings
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <C-g> <cmd>Telescope live_grep<cr>
+
+"Gitsigns Mappings
+nnoremap <C-h>s <cmd>Gitsigns stage_hunk<cr>
+nnoremap <C-h>n <cmd>Gitsigns next_hunk<cr>
+nnoremap <C-h>p <cmd>Gitsigns prev_hunk<cr>
+nnoremap <C-h>r <cmd>Gitsigns reset_hunk<cr>
+nnoremap <C-h>v <cmd>Gitsigns preview_hunk<cr>
+nnoremap <C-h>S <cmd>Gitsigns stage_buffer<cr>
+nnoremap <C-h>R <cmd>Gitsigns reset_buffer<cr>
+nnoremap <C-h>b <cmd>Gitsigns blame_line<cr>
