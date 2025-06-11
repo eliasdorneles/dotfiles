@@ -1,4 +1,3 @@
-
 " Show invisible characters
 set lcs=tab:▸\ ,trail:·,nbsp:_
 set list
@@ -16,59 +15,6 @@ if has('persistent_undo')
   set undofile
 endif
 let g:undotree_WindowLayout = 4
-
-let g:airline_powerline_fonts = 1
-
-" disabled because causing weird chars in output
-let g:airline#extensions#tagbar#enabled = 0
-
-" keep syntastic minimally annoying
-let g:syntastic_enable_signs=0
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_mode_map = {
-            \ "mode": "active",
-            \ "active_filetypes": ["ruby", "php", "python", "javascript", "c", "cpp"],
-            \ "passive_filetypes": ["puppet", "java"] }
-
-let g:flake8_max_line_length=100
-
-" don't fold docstrings:
-let g:SimpylFold_fold_docstring = 0
-
-" make Python plugin Jedi more awesome
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#goto_assignments_command = 'gd'
-let g:jedi#goto_command = 'gD'
-let g:jedi#popup_on_dot = 0
-let g:jedi#rename_command = ""
-let g:jedi#smart_auto_mappings = 0
-
-
-" let g:tagbar_ctags_bin='~/bin/ctags'
-
-" ALE (linter)
-" Only use flake8 for Python, because pylint is huge and impossible to appease
-let g:ale_linters = {
-\ 'python': ['flake8'],
-\ 'javascript': ['prettier'],
-\}
-" Stupid Unicode tricks
-let g:ale_sign_info = "🚩"
-let g:ale_sign_warning = "🚨"
-let g:ale_sign_error = "💥"
-let g:ale_sign_style_warning = "💈"  " get it?  /style/ issues?  wow tough crowd
-let g:ale_sign_style_error = "🚨"
-
-" Airline; use powerline-style glyphs and colors
-let g:airline_powerline_fonts = 1
-" ALE
-let g:airline#extensions#ale#error_symbol = "🚨"
-
-"Prettier (JS linter):
-let g:prettier#config#semi = 'false'
-let g:prettier#config#arrow_parens = 'always'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#config#print_width = 100
 
 " save and load bookmarks automatically
 let g:bookmark_manage_per_buffer = 1
