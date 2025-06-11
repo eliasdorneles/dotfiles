@@ -6,14 +6,6 @@ call plug#begin()
 " tim pope's sensible defaults
 Plug 'tpope/vim-sensible'
 
-" left align stuff with :Tab /<search here>
-" (use \zs after search expr to leave it left-side)
-Plug 'godlygeek/tabular'
-
-" JS stuff
-Plug 'pangloss/vim-javascript'
-" Plug 'isRuslan/vim-es6'
-
 Plug 'tpope/vim-fugitive'
 Plug 'whiteinge/diffconflicts'
 
@@ -27,7 +19,7 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-unimpaired'
 
 " gc{motion} for toggle comments
-Plug 'tomtom/tcomment_vim'
+Plug 'numToStr/Comment.nvim'
 
 " enables to search from visual selection (useful for weird strings)
 Plug 'nelstrom/vim-visual-star-search'
@@ -43,7 +35,10 @@ Plug 'tommcdo/vim-exchange'
 " expand/shrink current visual selection with v/^v
 Plug 'terryma/vim-expand-region'
 
-Plug 'bling/vim-airline'
+"Plug 'bling/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'nvim-tree/nvim-web-devicons'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -60,7 +55,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'mbbill/undotree'
 
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 
 "colorschemes:
 Plug 'tomasr/molokai'

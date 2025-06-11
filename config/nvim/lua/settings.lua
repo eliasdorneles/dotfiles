@@ -12,6 +12,9 @@ if pcall(require, "codecompanion") then
     require("codecompanion").setup()
 end
 
+-- load plugins
+require("lualine").setup()
+require("Comment").setup()
 
 -- nvim-dap settings
 if pcall(require, 'dap-python') then
