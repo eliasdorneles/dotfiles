@@ -1,5 +1,3 @@
-vim.cmd('set nu')
-
 -- mini.nvim config:
 -- require('mini.pairs').setup()
 if pcall(require, 'mini.files') then

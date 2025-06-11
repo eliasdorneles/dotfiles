@@ -134,7 +134,15 @@ nnoremap <C-h>s <cmd>Gitsigns stage_hunk<cr>
 nnoremap <C-h>n <cmd>Gitsigns next_hunk<cr>
 nnoremap <C-h>p <cmd>Gitsigns prev_hunk<cr>
 nnoremap <C-h>r <cmd>Gitsigns reset_hunk<cr>
-nnoremap <C-h>v <cmd>Gitsigns preview_hunk<cr>
+nnoremap <C-h>y <cmd>Gitsigns preview_hunk<cr>
 nnoremap <C-h>S <cmd>Gitsigns stage_buffer<cr>
 nnoremap <C-h>R <cmd>Gitsigns reset_buffer<cr>
 nnoremap <C-h>b <cmd>Gitsigns blame_line<cr>
+nnoremap <leader>hs <cmd>Gitsigns stage_hunk<cr>
+nnoremap <leader>hn <cmd>Gitsigns next_hunk<cr>
+nnoremap <leader>hp <cmd>Gitsigns prev_hunk<cr>
+nnoremap <leader>hr <cmd>Gitsigns reset_hunk<cr>
+nnoremap <leader>hy <cmd>Gitsigns preview_hunk<cr>
+nnoremap <leader>hS <cmd>Gitsigns stage_buffer<cr>
+nnoremap <leader>hR <cmd>Gitsigns reset_buffer<cr>
+nnoremap <leader>hb <cmd>Gitsigns blame_line<cr>

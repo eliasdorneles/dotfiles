@@ -9,6 +9,7 @@ source ~/.vim/settings.vim
 ]])
 
 -- settings in lua:
+require('core.settings')
 require('settings')
 
 vim.cmd([[
