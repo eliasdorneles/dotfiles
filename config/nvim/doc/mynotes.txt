@@ -11,12 +11,13 @@ EXCHANGE:
 * Use <Visual>X or cx{motion} twice to exchange two things
 
 FORMATTING:
-* Use <Ctrl><Space> for HTML zen coding (emmet)
-* Use gq{motion} to reformat text
 * Use <leader>qw or <leader>qW for quoting words with backticks
 
 SEARCHING:
 * Use <C-f> for non-regex search (needs escaping slash and backslash)
+
+GIT:
+* Use <C-h>hs to stage hunks, and navigate with <C-h>n and <C-h>p
 
 MOUSE:
 * Use <F2> for toggling mouse control between X11 and Vim
