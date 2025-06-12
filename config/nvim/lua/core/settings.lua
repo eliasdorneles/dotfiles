@@ -1,6 +1,20 @@
 -- disable startup message
 vim.opt.shortmess:append("I")
 
+-- Show invisible characters
+vim.opt.list = true
+vim.opt.listchars = {
+    tab = "▸ ",
+    trail = "·",
+    nbsp = "_"
+}
+
+-- Keep undo history across sessions
+vim.opt.undolevels = 1000
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.fn.system("mkdir -p " .. vim.opt.undodir:get()[1]) -- we need get()[1] because undodir is a list
+
 -- setup swap files dir per user
 local swap_dir = vim.fn.expand("$HOME") .. "/.swap-" .. vim.env.USER .. "-vim"
 vim.fn.system("mkdir -p " .. swap_dir)
@@ -10,6 +24,7 @@ vim.opt.directory = swap_dir
 -- diagnostics appear/become resolved
 vim.opt.signcolumn = "yes"
 
+-- Disable folding
 vim.opt.foldenable = false
 
 -- Grails configuration
@@ -86,3 +101,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         vim.cmd("helptags ~/.vim/doc")
     end
 })
+
+-- Set colorscheme
+local colorscheme = "gruvbox"
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+    vim.cmd("colorscheme default")
+    vim.opt.background = "dark"
+end

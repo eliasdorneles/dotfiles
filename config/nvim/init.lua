@@ -5,8 +5,6 @@ let &packpath = &runtimepath
 
 vim.cmd([[
 source ~/.vim/plugins.vim
-source ~/.vim/settings.vim
-source ~/.vim/coc.vim
 ]])
 
 -- settings in lua:
@@ -14,5 +12,6 @@ require('core.settings')
 require('plugins.setup')
 
 vim.cmd([[
+source ~/.vim/coc.vim
 source ~/.vim/mappings.vim
 ]])
