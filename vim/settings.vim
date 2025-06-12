@@ -14,10 +14,6 @@ if has('persistent_undo')
   end
   set undofile
 endif
-let g:undotree_WindowLayout = 4
-
-" save and load bookmarks automatically
-let g:bookmark_manage_per_buffer = 1
 
 if has("gui_running")
     set guifont=Monospace\ 12
@@ -123,40 +119,7 @@ au FileType html,markdown,mmd,text,mail,gitcommit
     \ runtime macros/emoji-ab.vim
 
 
-let g:localvimrc_whitelist = ['/home/elias/code/']
-
-" use custom hunk text objects for GitGutter
-omap ih <Plug>(GitGutterTextObjectInnerPending)
-omap ah <Plug>(GitGutterTextObjectOuterPending)
-xmap ih <Plug>(GitGutterTextObjectInnerVisual)
-xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-
-" TODO: need to make supertab work nicely w/ lsp autocompletion
-" let g:SuperTabDefaultCompletionType = "context"
-
-" COPILOT CONFIG:
-let g:copilot_filetypes = {
-            \ '*': v:false,
-            \ 'gitcommit': v:true,
-            \ 'python': v:true,
-            \ 'javascript': v:true,
-            \ 'Dockerfile': v:true,
-            \ 'vue': v:true,
-            \ 'js': v:true,
-            \ 'sh': v:true,
-            \ 'html': v:true,
-            \ 'json': v:true,
-            \ 'make': v:true,
-            \ 'vim': v:true,
-            \ 'conf': v:true,
-            \ 'c': v:true,
-            \ 'zig': v:true,
-            \ 'cpp': v:true,
-            \ 'sql': v:true,
-            \ 'yaml': v:true,
-            \ }
-
-" add alternative map for copilot, for when TAB doesn't work (e.g. in Markdown files)
+" Github Copilot: alternative map for when TAB doesn't work (e.g. in Markdown files)
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 
 
