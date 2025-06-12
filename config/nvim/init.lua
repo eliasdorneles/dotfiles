@@ -10,6 +10,7 @@ source ~/.vim/plugins.vim
 -- settings in lua:
 require('core.settings')
 require('plugins.setup')
+require('keymaps.custom')
 
 vim.cmd([[
 source ~/.vim/coc.vim

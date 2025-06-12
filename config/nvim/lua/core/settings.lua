@@ -109,3 +109,7 @@ if not status_ok then
     vim.cmd("colorscheme default")
     vim.opt.background = "dark"
 end
+
+-- Set space as leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
