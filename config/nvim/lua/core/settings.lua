@@ -11,3 +11,78 @@ vim.opt.directory = swap_dir
 vim.opt.signcolumn = "yes"
 
 vim.opt.foldenable = false
+
+-- Grails configuration
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = "*.gsp",
+    callback = function()
+        vim.bo.filetype = "jsp"
+    end
+})
+
+-- Highlight trailing whitespace in red
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = "*",
+    callback = function()
+        vim.cmd([[syntax match annoyingwhitespace '\s\+$']])
+        vim.cmd([[highlight annoyingwhitespace ctermbg=red]])
+    end
+})
+
+-- Add hyphen to word characters in CSS/SCSS/Sass files for better word completion
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"css", "scss", "sass"},
+    callback = function()
+        vim.bo.iskeyword = vim.bo.iskeyword .. ",-"
+    end
+})
+
+-- Set tabstop to 2 spaces for YAML and JS files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"yaml", "js"},
+    callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.shiftwidth = 2
+    end
+})
+
+-- Set filetype for strace dump files
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*.strace",
+    callback = function()
+        vim.bo.filetype = "strace"
+    end
+})
+
+-- Highlight 'self' keyword in Python files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "python",
+    callback = function()
+        vim.cmd([[syntax match keyword '\<self\>']])
+    end
+})
+
+-- Highlight 'in' and 'not_in' keywords in Odin files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "odin",
+    callback = function()
+        vim.cmd([[syntax match Statement ' in ']])
+        vim.cmd([[syntax match Statement ' not_in ']])
+    end
+})
+
+-- Set filetype for Turtle RDF files
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*.ttl",
+    callback = function()
+        vim.bo.filetype = "turtle"
+    end
+})
+
+-- Generate help tags for personal documentation
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = vim.fn.expand("~/.vim/doc/*.txt"),
+    callback = function()
+        vim.cmd("helptags ~/.vim/doc")
+    end
+})

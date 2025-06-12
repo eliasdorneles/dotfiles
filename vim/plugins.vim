@@ -40,8 +40,6 @@ Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
 
-Plug 'editorconfig/editorconfig-vim'
-
 Plug 'wellle/targets.vim'
 
 " linter for English prose, see :Writegood<TAB...> commands
