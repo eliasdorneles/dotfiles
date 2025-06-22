@@ -1,6 +1,8 @@
 -- disable startup message
 vim.opt.shortmess:append("I")
 
+vim.opt.number = true
+
 -- Show invisible characters
 vim.opt.list = true
 vim.opt.listchars = {
@@ -83,6 +85,8 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.cmd([[syntax match Statement ' in ']])
         vim.cmd([[syntax match Statement ' not_in ']])
+        vim.cmd([[syntax match Statement '\<fallthrough\>']])
+        vim.cmd([[syntax match Statement '\<context\>']])
     end
 })
 
@@ -101,6 +105,19 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         vim.cmd("helptags ~/.vim/doc")
     end
 })
+
+-- restore last cursor position, copied from :help restore-cursor
+vim.cmd([[
+    augroup RestoreCursor
+      autocmd!
+      autocmd BufReadPre * autocmd FileType <buffer> ++once
+        \ let s:line = line("'\"")
+        \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+        \      && index(['xxd', 'gitrebase'], &filetype) == -1
+        \ |   execute "normal! g`\""
+        \ | endif
+    augroup END
+]])
 
 -- Set colorscheme
 local colorscheme = "gruvbox"
