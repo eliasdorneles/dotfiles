@@ -61,9 +61,22 @@ dap.configurations.zig = {
         name = 'Launch',
         type = 'codelldb',
         request = 'launch',
+        -- TODO: this probably needs updating, maybe odin debug ... -file or something
         program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
         args = {},
     },
-} 
+}
+
+dap.configurations.odin = {
+    {
+        name = 'Launch',
+        type = 'codelldb',
+        request = 'launch',
+        program = '${workspaceFolder}/${workspaceFolderBasename}.bin',
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+    },
+}

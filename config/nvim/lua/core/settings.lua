@@ -3,6 +3,11 @@ vim.opt.shortmess:append("I")
 
 vim.opt.number = true
 
+-- Prefer spaces over TABs, expand TABs by default
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 -- Show invisible characters
 vim.opt.list = true
 vim.opt.listchars = {
