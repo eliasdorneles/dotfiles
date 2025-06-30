@@ -18,14 +18,24 @@ alias clean='echo -n "Really clean this directory (y/N)? ";
 # and to keep your life happier!
 alias open='xdg-open'
 alias e="$EDITOR"
-alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.argv[0]))"'
-alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquote_plus(sys.argv[0]))"'
+alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))"'
+alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquote_plus(sys.argv[1]))"'
 alias jsonfmt='python -mjson.tool'
 
 alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias dco="docker compose"
+alias dcm="docker compose"
+alias dcu="docker compose up -d"
+alias dcd="docker compose down --remove-orphans"
+alias dcdv="docker compose down --remove-orphans --volumes"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
+if command -v eza &> /dev/null; then
+    alias ls='eza'
+fi
 
 alias zbr='zig build run'
 

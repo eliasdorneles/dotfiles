@@ -164,6 +164,21 @@ alias er=edit_recently_committed
 
 _git_switch (){ __gitcomp_nl "$(__git_refs)"; }
 
+parse_docker_json_logs(){
+    # parse docker logs in JSON format, outputting time and body (colored output if TTY)
+    if [ -t 1 ]; then
+        # we are writing to a terminal, so we can use colors
+        cut -d'|' -f2 | grep '^ {' | jq -r '"[\(.Time)] \(.Body)"' | while IFS= read -r line; do
+        # Extract timestamp and message
+        timestamp=$(echo "$line" | sed 's/^\[\([^]]*\)\].*/\1/')
+        message=$(echo "$line" | sed 's/^\[[^]]*\] //')
+        printf "\033[95m[%s]\033[0m %s\n" "$timestamp" "$message"
+    done
+else
+    # output to pipe/file - no colors
+    cut -d'|' -f2 | grep '^ {' | jq -r '"[\(.Time)] \(.Body)"'
+    fi
+} 
 
 # Replace current editing line with eval'd echo, via C-t
 _replace() { READLINE_LINE="$(eval echo -n "$READLINE_LINE")"; }
@@ -260,7 +275,7 @@ lastdl(){
     # show last N downloads, default 1
     n=1
     [ -n "$1" ] && n=$1
-    ls --sort=time --escape ~/Downloads 2>/dev/null | head -n $n | while read f
+    /bin/ls --sort=time --escape ~/Downloads 2>/dev/null | head -n $n | while read f
     do
         echo "$HOME/Downloads/$f"
     done
