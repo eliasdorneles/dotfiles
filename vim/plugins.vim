@@ -102,4 +102,6 @@ Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'knsh14/vim-github-link'
 
+Plug 'ranelpadon/python-copy-reference.vim'
+
 call plug#end()
