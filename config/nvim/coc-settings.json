@@ -6,6 +6,8 @@
   "python.sortImports.path": "~/.local/bin/isort",
   "coc.preferences.jumpCommand": "tab drop",
   "outline.sortBy": "position",
+  "outline.expandLevel": 0,
+  "outline.autoWidth": true,
   "zig.enabled": true,
   "zig.path": "zls",
   "zig.debugLog": false,

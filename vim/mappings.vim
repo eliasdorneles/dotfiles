@@ -2,13 +2,22 @@
 
 " map CTRL_T to toggle outline view
 nnoremap <silent><nowait> <C-t>  :call ToggleOutline()<CR>
+function! AdjustOutlineWidth(timerid)
+    let winid = coc#window#find('cocViewId', 'OUTLINE')
+    if winid != -1
+        call coc#window#adjust_width(winid)
+    endif
+endfunction
 function! ToggleOutline() abort
-let winid = coc#window#find('cocViewId', 'OUTLINE')
-if winid == -1
-  call CocActionAsync('showOutline', 1)
-else
-  call coc#window#close(winid)
-endif
+    let winid = coc#window#find('cocViewId', 'OUTLINE')
+    if winid == -1
+      call CocActionAsync('showOutline')
+      call timer_start(100, 'AdjustOutlineWidth')
+    else
+      " note: using win_execute instead of coc#window#close because the latter
+      " reopens the outline window when switching back to the buffer
+      call win_execute(winid, 'close')
+    endif
 endfunction
 
 " toggle mouse control between terminal and vim
