@@ -16,7 +16,7 @@ vim.g.bookmark_manage_per_buffer = 1
 
 -- Localvimrc settings
 vim.g.localvimrc_whitelist = {
-    "~/code",
+    vim.fs.joinpath(os.getenv("HOME"), "/code/.*"),
 }
 
 -- Copilot configuration
