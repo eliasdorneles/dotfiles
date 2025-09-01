@@ -156,7 +156,7 @@
         }; f "
 
 [core]
-    editor = vim -p
+    editor = nvim -p
     autocrlf = input
     excludesfile = /home/elias/.gitignore_global
     pager = delta
