@@ -11,6 +11,12 @@
   "zig.enabled": true,
   "zig.path": "zls",
   "zig.debugLog": false,
+  "markdownlint.config": {
+    "default": true,
+    "line_length": false,
+    "blanks-around-lists": false,
+    "blanks-around-headings": false
+  },
   "languageserver": {
     "turtle": {
       "command": "turtle_langserver",
