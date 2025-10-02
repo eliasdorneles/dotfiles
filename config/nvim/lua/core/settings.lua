@@ -125,7 +125,7 @@ vim.cmd([[
 ]])
 
 -- Set colorscheme
-local colorscheme = "gruvbox"
+local colorscheme = "molokai"
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
     vim.cmd("colorscheme default")

@@ -58,7 +58,6 @@ Plug 'lewis6991/gitsigns.nvim'
 "colorschemes:
 Plug 'tomasr/molokai'
 Plug 'jacoborus/tender.vim'
-Plug 'morhetz/gruvbox'
 
 Plug 'chr4/nginx.vim'
 
