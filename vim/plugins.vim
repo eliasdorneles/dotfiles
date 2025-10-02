@@ -103,4 +103,7 @@ Plug 'knsh14/vim-github-link'
 
 Plug 'ranelpadon/python-copy-reference.vim'
 
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
+
 call plug#end()

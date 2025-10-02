@@ -46,3 +46,5 @@ if pcall(require, 'dap-python') then
     require("dap-python").setup("python")
     require("plugins.dap-setup")
 end
+
+require("nvim-tree").setup()
