@@ -17,6 +17,7 @@
     "blanks-around-lists": false,
     "blanks-around-headings": false
   },
+  "Lua.workspace.checkThirdParty": "Apply",
   "languageserver": {
     "turtle": {
       "command": "turtle_langserver",
