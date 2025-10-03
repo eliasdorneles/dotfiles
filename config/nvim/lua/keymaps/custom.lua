@@ -73,22 +73,21 @@ map("n", "<leader>P", '"+P', { desc = "Paste from system clipboard" })
 map("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 map("n", "<C-g>", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
 
--- Gitsigns mappings
+-- Gitsigns mappings: hunk actions
 local gitsigns = {
-    stage_hunk = "Stage hunk",
-    next_hunk = "Next hunk",
-    prev_hunk = "Previous hunk",
-    reset_hunk = "Reset hunk",
-    preview_hunk = "Preview hunk",
-    stage_buffer = "Stage buffer",
-    reset_buffer = "Reset buffer",
-    blame_line = "Blame line"
+    stage_hunk = { key = "a", desc = "Stage hunk" },
+    next_hunk = { key = "n", desc = "Next hunk" },
+    prev_hunk = { key = "p", desc = "Previous hunk" },
+    reset_hunk = { key = "d", desc = "Reset hunk" },
+    preview_hunk = { key = "v", desc = "Preview hunk" },
+    blame_line = { key = "b", desc = "Blame line" }
 }
 
-for action, desc in pairs(gitsigns) do
-    map("n", "<C-h>" .. action:sub(1, 1), "<cmd>Gitsigns " .. action .. "<cr>", { desc = desc })
-    map("n", "<leader>h" .. action:sub(1, 1), "<cmd>Gitsigns " .. action .. "<cr>", { desc = desc })
+for action, config in pairs(gitsigns) do
+    map("n", "<C-h>" .. config.key, "<cmd>Gitsigns " .. action .. "<cr>", { desc = config.desc })
+    map("n", "<leader>h" .. config.key, "<cmd>Gitsigns " .. action .. "<cr>", { desc = config.desc })
 end
+map("n", "<C-h>s", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Stage hunk" }) -- alternative mapping
 
 -- Copy Reference plugin, for copying Python paths
 map("n", "<leader>y.", ":PythonCopyReferenceDotted<CR>", { desc = "Copy Python Reference - Dotted" })
