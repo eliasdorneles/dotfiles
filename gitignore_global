@@ -90,3 +90,6 @@ local_settings.py
 
 ##### PyCharm
 .idea
+
+##### Claude Code
+.claude

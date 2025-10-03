@@ -29,6 +29,7 @@ alias dcm="docker compose"
 alias dcu="docker compose up -d"
 alias dcd="docker compose down --remove-orphans"
 alias dcdv="docker compose down --remove-orphans --volumes"
+alias ldo="lazydocker"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
