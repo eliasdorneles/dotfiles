@@ -91,8 +91,5 @@ map("n", "<C-h>s", "<cmd>Gitsigns stage_hunk<cr>", { desc = "Stage hunk" }) -- a
 
 -- Copy Reference plugin, for copying Python paths
 map("n", "<leader>y.", ":PythonCopyReferenceDotted<CR>", { desc = "Copy Python Reference - Dotted" })
-map("n", "<leader>ym", ":PythonCopyReferenceDotted<CR>", { desc = "Copy Python Reference - Dotted" })
 map("n", "<leader>yt", ":PythonCopyReferencePytest<CR>", { desc = "Copy Python Reference - Pytest" })
-map("n", "<leader>yp", ":PythonCopyReferencePytest<CR>", { desc = "Copy Python Reference - Pytest" })
-map("n", "<leader>yf", ":PythonCopyReferenceImport<CR>", { desc = "Copy Python Reference - Import" })
 map("n", "<leader>yi", ":PythonCopyReferenceImport<CR>", { desc = "Copy Python Reference - Import" })

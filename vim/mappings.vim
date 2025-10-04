@@ -62,3 +62,5 @@ function! ExtractVariable()
 endfunction
 vnoremap <leader>ev :call ExtractVariable()<cr>
 
+" in a terminal, <esc> will go to normal mode
+tnoremap <Esc> <C-\><C-n>
