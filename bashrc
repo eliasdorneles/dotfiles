@@ -116,9 +116,6 @@ alias cp='cp -i'
 # load the rest of aliases
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
-# load z script:
-[ -f ~/bin/z.sh ] && . ~/bin/z.sh
-
 # don't write pyc files by default
 export PYTHONDONTWRITEBYTECODE=1
 [ -f ~/.pythonrc ] && export PYTHONSTARTUP=~/.pythonrc
@@ -288,6 +285,10 @@ alias vim=nvim
 
 # load my environment specific variables:
 [ -f ~/.myenv ] && . ~/.myenv
+
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init bash)"
+fi
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

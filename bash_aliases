@@ -23,7 +23,6 @@ alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquot
 alias jsonfmt='python -mjson.tool'
 
 alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias dco="docker compose"
 alias dcm="docker compose"
 alias dcu="docker compose up -d"
@@ -36,6 +35,9 @@ alias pbpaste='xclip -selection clipboard -o'
 
 if command -v eza &> /dev/null; then
     alias ls='eza'
+fi
+if command -v batcat &> /dev/null; then
+    alias bat='batcat'
 fi
 
 alias zbr='zig build run'
