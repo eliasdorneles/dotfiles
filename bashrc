@@ -27,19 +27,6 @@ function progress(){
     awk "BEGIN { printf \"$1 of $2 (%.2f%%)\n\", 100 * $1 / $2 }" 
 }
 
-# psgrep firef   to check if firefox is running...
-psgrep(){
-	ps aux | grep $1 | grep -v grep
-}
-# ... and pskill firef   to kill it!
-pskill(){
-	local pid
-	pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
-	echo -n "killing $1 (process $pid)..."
-	kill -9 "$pid"
-	echo "slaughtered."
-}
-
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -288,6 +275,11 @@ alias vim=nvim
 
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init bash)"
+fi
+
+# experimental: trying out starship prompt
+if command -v starship &> /dev/null; then
+    eval "$(starship init bash)"
 fi
 
 export VOLTA_HOME="$HOME/.volta"
