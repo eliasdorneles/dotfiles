@@ -1,9 +1,10 @@
+# vim: set ft=config:
 [user]
     name = Elias Dorneles
     email = elias.dorneles@hey.com
 [merge]
     tool = diffconflicts
-    conflictstyle = zdiff3
+    conflictStyle = zdiff3
 [mergetool]
     keepBackup = false
 [mergetool "diffconflicts"]
@@ -38,7 +39,7 @@
     undo-commit = reset HEAD~1 --mixed
     undo = reset HEAD~1 --mixed
 
-    undo-add = reset --keep
+    unstage = reset --keep
     rk = reset --keep
 
     # logs, enhanced
@@ -53,7 +54,7 @@
 
     please = push --force-with-lease
 
-	alias = !sh -c 'git config --global "alias.$1" "$2"' --
+    alias = !sh -c 'git config --global "alias.$1" "$2"' --
 
     hub = "!f() { git clone git@github.com:$1; }; f"
     lab = "!f() { git clone git@gitlab.com:$1; }; f"
@@ -156,6 +157,7 @@
 	editor = vim -p
 	autocrlf = input
 	excludesfile = /home/elias/.gitignore_global
+	pager = delta
 [push]
 	default = simple
 	autoSetupRemote = true
@@ -172,10 +174,6 @@
 	colorMoved = plain
 	mnemonicPrefix = true
 	renames = true
-#[pager]
-#	log = diff-highlight | less
-#	show = diff-highlight | less
-#	diff = diff-highlight | less
 
 [color "branch"]
     current = yellow reverse
@@ -211,3 +209,9 @@
 	updateRefs = true
 [pull]
 	rebase = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[maintenance]
+	strategy = incremental
