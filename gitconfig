@@ -1,4 +1,4 @@
-# vim: set ft=config:
+# vim: set expandtab ft=config:
 [user]
     name = Elias Dorneles
     email = elias.dorneles@hey.com
@@ -7,15 +7,17 @@
     conflictStyle = zdiff3
 [mergetool]
     keepBackup = false
-[mergetool "diffconflicts"]
-    cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
-    trustExitCode = true
+
 [branch]
-        sort = -committerdate
+    sort = -committerdate
+
 [alias]
     root = rev-parse --show-toplevel
     current = rev-parse --abbrev-ref HEAD  # current branch
     last = rev-parse --short HEAD  # last commit
+
+    lstash = stash list --pretty=format:'%C(bold magenta)%gd %C(blue)(%cr)%C(reset)  %<(70,trunc)%s  %C(reset)'
+    lst = lstash
 
     co = checkout
     cob = checkout -b
@@ -154,26 +156,26 @@
         }; f "
 
 [core]
-	editor = vim -p
-	autocrlf = input
-	excludesfile = /home/elias/.gitignore_global
-	pager = delta
+    editor = vim -p
+    autocrlf = input
+    excludesfile = /home/elias/.gitignore_global
+    pager = delta
 [push]
-	default = simple
-	autoSetupRemote = true
+    default = simple
+    autoSetupRemote = true
 [github]
-	user = eliasdorneles
+    user = eliasdorneles
 [web]
-	browser = xdg-open
+    browser = xdg-open
 [rerere]
-	enabled = true
-	autoupdate = true
+    enabled = true
+    autoupdate = true
 [diff]
-	compactionHeuristic = true
-	algorithm = histogram
-	colorMoved = plain
-	mnemonicPrefix = true
-	renames = true
+    compactionHeuristic = true
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 
 [color "branch"]
     current = yellow reverse
@@ -189,29 +191,37 @@
 [color "status"]
     untracked = cyan
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
 [column]
-	ui = auto
+    ui = auto
 [fetch]
-	prune = true
-	pruneTags = true
-	all = true
+    prune = true
+    pruneTags = true
+    all = true
 [help]
-	autocorrect = prompt
+    autocorrect = prompt
 [rebase]
-	autoSquash = true
-	autoStash = true
-	updateRefs = true
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
 [pull]
-	rebase = true
+    rebase = true
 [interactive]
-	diffFilter = delta --color-only
+    diffFilter = delta --color-only
 [delta]
-	navigate = true
+    navigate = true
+    dark = true
+    line-numbers = true
+    map-styles = bold purple => syntax "#351030", bold cyan => syntax "#103530"
+
 [maintenance]
-	strategy = incremental
+    strategy = incremental
+
+[mergetool "diffconflicts"]
+    cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
