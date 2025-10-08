@@ -137,3 +137,4 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.opt.termguicolors = true
+vim.opt.timeoutlen = 350
