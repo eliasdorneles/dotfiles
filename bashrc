@@ -27,73 +27,20 @@ function progress(){
     awk "BEGIN { printf \"$1 of $2 (%.2f%%)\n\", 100 * $1 / $2 }" 
 }
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# prompt timing function, stolen from: https://stackoverflow.com/a/64524817/149872
-function convert_secs {
-    ((h=${1}/3600))
-    ((m=(${1}%3600)/60))
-    ((s=${1}%60))
-    if [ $h -gt 0 ]; then echo -n "${h}h "; fi
-    if [ $h -gt 0 ] || [ $m -gt 0 ]; then echo -n "${m}m "; fi
-    if [ $s -gt 0 ]; then echo -n "${s}s "; fi
-}
-
-function timer_start {
-    timer=${timer:-$SECONDS}
-}
-TIMER_SHOW=""
-
-function timer_stop {
-    time_threshold=3
-    timer_time=$((SECONDS - timer))
-
-    if [ -n "$timer_time" ] && [ $timer_time -ge ${time_threshold} ]; then
-        TIMER_SHOW="took $(convert_secs $timer_time)"
-    else
-        TIMER_SHOW=""
-    fi
-
-    unset timer
-}
-
-trap 'timer_start' DEBUG
-
-__kube_ps1()
-{
-    # Get current context
-    [ -f ~/.kube/config ] || return
-    CONTEXT=$(grep "current-context:" ~/.kube/config | sed "s/current-context: //")
-
-    if [ -n "$CONTEXT" ]; then
-        echo "(k8s: ${CONTEXT})"
-    fi
-}
-
-my_prompt(){
-    timer_stop
-    __git_ps1 "${VIRTUAL_ENV:+[$GRAY`basename $VIRTUAL_ENV`${NORMAL}] }${debian_chroot:+($debian_chroot)}${GREEN}\u${CYAN}@${BLUE}\h${CYAN}:${YELLOW}\w ${MAGENTA}\$(__kube_ps1) ${CYAN}${TIMER_SHOW}${NORMAL}" "\n\\\$ "
-}
-
 # enable color support
 if [ "$TERM" != "dumb" ] && [ "$TERM" != "emacs" ] && [ -x /usr/bin/dircolors ]; then
     eval "$(dircolors -b)"
     alias ls='ls -F --color=auto'
     alias grep='grep --color=auto'
-    # fancy prompt
-    GREEN="\[\033[0;32m\]"
-    RED="\[\033[0;31m\]"
-    MAGENTA="\[\033[0;35m\]"
-    CYAN="\[\033[0;36m\]"
-    GRAY="\[\033[0;37m\]"
-    BLUE="\[\033[0;34m\]"
-    YELLOW="\[\033[0;33m\]"
-    NORMAL="\[\033[m\]"
-    [ -f /etc/bash_completion.d/git-prompt ] && . /etc/bash_completion.d/git-prompt
-    PROMPT_COMMAND=my_prompt
+    # uncomment if needing colors for other commands
+    # GREEN="\[\033[0;32m\]"
+    # RED="\[\033[0;31m\]"
+    # MAGENTA="\[\033[0;35m\]"
+    # CYAN="\[\033[0;36m\]"
+    # GRAY="\[\033[0;37m\]"
+    # BLUE="\[\033[0;34m\]"
+    # YELLOW="\[\033[0;33m\]"
+    # NORMAL="\[\033[m\]"
 fi
 
 # aliases to keep your life safer...
@@ -277,7 +224,6 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init bash)"
 fi
 
-# experimental: trying out starship prompt
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
 fi

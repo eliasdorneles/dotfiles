@@ -1,0 +1,55 @@
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$docker_context\
+$kubernetes\
+$golang\
+$helm\
+$terraform\
+$typst\
+$vagrant\
+$zig\
+$direnv\
+$env_var\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$container\
+$netns\
+$character"""
+
+add_newline = true
+
+[character]
+success_symbol = '[\$](green)'
+error_symbol = '[\$](bold red)'
+
+[directory]
+style = 'yellow'
+truncate_to_repo = false
+
+[git_branch]
+style = 'bold cyan'
+
+[git_metrics]
+disabled = false
+
+[kubernetes]
+disabled = false
+format = ' [󱃾 $context](purple) '
+contexts = [
+  { context_pattern = "dev.local.cluster.k8s", style = "green", symbol = "💔 " },
+]
