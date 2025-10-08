@@ -22,10 +22,9 @@ vim.g.localvimrc_whitelist = {
 -- Floaterm settings and keymaps
 vim.g.floaterm_width = 0.8
 vim.g.floaterm_height = 0.8
-vim.g.floaterm_keymap_toggle = '<F7>'
-vim.g.floaterm_keymap_new = '<leader>to'
-vim.g.floaterm_keymap_prev   = '<leader>tp'
-vim.g.floaterm_keymap_next   = '<leader>tn'
+vim.g.floaterm_keymap_toggle = '<f7>'
+vim.g.floaterm_keymap_new = '<f6>'
+vim.g.floaterm_keymap_next   = '<f8>'
 
 -- Copilot configuration
 vim.g.copilot_filetypes = {
