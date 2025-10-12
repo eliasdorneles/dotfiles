@@ -9,3 +9,4 @@ sudo apt install direnv  # source env variables securely
 sudo apt install git-delta  # better git diff
 
 sudo apt install xclip  # clipboard mgmt
+sudo apt install ncdu  # text-based disk usage analyzer
