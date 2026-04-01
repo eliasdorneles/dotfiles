@@ -35,15 +35,13 @@ Plug 'tommcdo/vim-exchange'
 " expand/shrink current visual selection with v/^v
 Plug 'terryma/vim-expand-region'
 
-"Plug 'bling/vim-airline'
 Plug 'nvim-lualine/lualine.nvim'
-" If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 
+" This plugin adds extra text objects, e.g. for separators like comma, semicolon, etc.
+" See :help targets
 Plug 'wellle/targets.vim'
-
-" linter for English prose, see :Writegood<TAB...> commands
-Plug 'davidbeckingsale/writegood.vim'
 
 Plug 'ekalinin/Dockerfile.vim'
 
@@ -57,7 +55,6 @@ Plug 'lewis6991/gitsigns.nvim'
 
 "colorschemes:
 Plug 'tomasr/molokai'
-Plug 'jacoborus/tender.vim'
 
 Plug 'chr4/nginx.vim'
 
@@ -69,10 +66,8 @@ Plug 'andymass/vim-matchup'
 " TAB completes everything
 Plug 'ervandew/supertab'
 
-Plug 'dhruvasagar/vim-table-mode'
-
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': 'v0.2.1' }
 
 Plug 'SirVer/ultisnips'
 
@@ -80,11 +75,7 @@ Plug 'mechatroner/rainbow_csv'
 
 Plug 'github/copilot.vim'
 
-" :Goyo to focus on writing
-Plug 'junegunn/goyo.vim'
-
-" using this as coc-zls seems broken for now... =/
-Plug 'ziglang/zig.vim'
+Plug 'https://codeberg.org/ziglang/zig.vim'
 
 Plug 'niklasl/vim-rdf'
 
@@ -92,8 +83,7 @@ Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 
 Plug 'mfussenegger/nvim-dap'
 
-" nvim-nio is dependency of nvim-dap-ui
-Plug 'nvim-neotest/nvim-nio'
+Plug 'nvim-neotest/nvim-nio' " transitional dependency of nvim-dap-ui
 Plug 'rcarriga/nvim-dap-ui'
 
 " requires debugpy installed
@@ -101,11 +91,15 @@ Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'knsh14/vim-github-link'
 
+" This plugin allows to copy reference of current symbol in various formats
+" Current mappings:
+" <leader>y. copy as dotted path, e.g. mymodule.submodule.Class.method
+" <leader>yt copy as pytest path, e.g. mymodule/submodule.py::Class::method
+" <leader>yi copy as import path, e.g. from mymodule.submodule import Class
 Plug 'ranelpadon/python-copy-reference.vim'
 
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-tree/nvim-tree.lua'
-
+" This plugin provides floating terminal, currently mapped to:
+" <F7> to toggle, <F6> to open new and <f8> to cycle through open terminals
 Plug 'voldikss/vim-floaterm'
 
 call plug#end()

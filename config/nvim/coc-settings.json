@@ -11,12 +11,20 @@
   "zig.enabled": true,
   "zig.path": "zls",
   "zig.debugLog": false,
+  "clangd.fallbackFlags": [
+    "-std=c++23",
+  ],
   "markdownlint.config": {
     "default": true,
     "line_length": false,
     "blanks-around-lists": false,
     "blanks-around-headings": false
   },
+  "workspace.ignoredFolders": [
+      "$HOME",
+      "$HOME/.cargo/**",
+      "$HOME/.rustup/**"
+  ],
   "Lua.workspace.checkThirdParty": "Apply",
   "languageserver": {
     "turtle": {

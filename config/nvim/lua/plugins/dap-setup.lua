@@ -25,8 +25,6 @@ end, {})
 -- use <Alt-e> to eval expressions
 vim.keymap.set({ 'n', 'v' }, '<M-e>', function() require('dapui').eval() end)
 
--- makes nvim-dap work w/ .vscode/launch.json files
-require('dap.ext.vscode').load_launchjs(nil, {})
 
 local sign = vim.fn.sign_define
 
